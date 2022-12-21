@@ -14,9 +14,10 @@ enum ValidInputError: String, Error {
 }
 
 // 정규표현식 충족 여부
-var regexMatch: Bool = {
-    return true
-}
+var regexMatch: Bool = true
+//{
+//    return true
+//}
 
 func errorMessage(_ data: String) -> String {
     "입력한 \(data) 정보가 잘못되었습니다. 입력 형식을 확인해주세요."
