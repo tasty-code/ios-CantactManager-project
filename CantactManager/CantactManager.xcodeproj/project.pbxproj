@@ -72,6 +72,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90D3F19D2952D18800CEA3F8 /* Build configuration list for PBXNativeTarget "CantactManager" */;
 			buildPhases = (
+				BFF2FF582952E86E00DD88E4 /* Run Script */,
 				90D3F1922952D18800CEA3F8 /* Sources */,
 				90D3F1932952D18800CEA3F8 /* Frameworks */,
 				90D3F1942952D18800CEA3F8 /* CopyFiles */,
@@ -117,6 +118,28 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BFF2FF582952E86E00DD88E4 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		90D3F1922952D18800CEA3F8 /* Sources */ = {
