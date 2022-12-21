@@ -7,4 +7,4 @@
 
 import Foundation
 
-print("Hello, My Contact Manager!")
+print("Hi Avery")
