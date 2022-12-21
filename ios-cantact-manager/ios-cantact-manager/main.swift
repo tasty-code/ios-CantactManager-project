@@ -46,3 +46,8 @@ func checkContact(_ contact: String) throws -> String {
 //    case age(type: String = "나이", data: String?, form: String = "regex")
 //    case contact(type: String = "연락처", data: String?, form: String = "regex")
 //}
+
+let info = ContactManageSystem()
+info.addProfile()
+
+
