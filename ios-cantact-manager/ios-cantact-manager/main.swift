@@ -40,8 +40,8 @@ func checkContact(_ contact: String) throws -> String {
     throw ValidInputError.notValidContact
 }
 
-enum Profile {
-    case name(type: String = "이름", data: String?, form: String = "regex")
-    case age(type: String = "나이", data: String?, form: String = "regex")
-    case contact(type: String = "연락처", data: String?, form: String = "regex")
-}
+//enum Profile {
+//    case name(type: String = "이름", data: String?, form: String = "regex")
+//    case age(type: String = "나이", data: String?, form: String = "regex")
+//    case contact(type: String = "연락처", data: String?, form: String = "regex")
+//}
