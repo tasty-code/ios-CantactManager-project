@@ -17,4 +17,10 @@ struct Profile {
         self.age = age
         self.tel = tel
     }
+    
+    mutating func updateProfile(name: String, age: String, tel: String) {
+        self.name = name
+        self.age = age
+        self.tel = tel
+    }
 }
