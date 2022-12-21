@@ -1,12 +1,13 @@
 ---
-name: "✨ Feature"
-about: 'Feature 작업 사항을 입력해주세요. '
-title: ''
+name: "\U0001F41B [Bug report]"
+about: 'BUG 발생 시 작성해주세요 '
+title: "\U0001F41B [Bug report]"
 labels: ''
 assignees: ''
 
 ---
 
+```markdown
 ## 설명: **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
@@ -22,3 +23,4 @@ A clear and concise description of any alternative solutions or features you've 
 
 ## 기타 사항: **Additional context**
 Add any other context or screenshots about the feature request here.
+```
