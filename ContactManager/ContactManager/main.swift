@@ -7,26 +7,20 @@
 
 import Foundation
 
-var inputData: [String] = []
-
-func split(input: String, separatedBy: String) -> [String] {
-    return input.components(separatedBy: separatedBy)
+func split(input: String) -> [String] {
+    var splitted = input.components(separatedBy: " / ")
+    if splitted.count != 3 {
+        splitted = input.components(separatedBy: "/")
+    }
+    return splitted
 }
 
-func validInput() {
+func run() {
     Message.pleaseInputContactData.printSelf(terminator: "")
     if let input = readLine() {
-        var splitted = split(input: input, separatedBy: " / ")
-        if splitted.count != 3 {
-            splitted = split(input: input, separatedBy: "/")
-            guard splitted.count == 3 else {
-                Message.inputError.printSelf(terminator: "\n")
-                return
-            }
-        }
-        inputData = splitted
+        let splitted = split(input: input)
+        print(splitted)
     }
 }
 
-validInput()
-print(inputData)
+run()
