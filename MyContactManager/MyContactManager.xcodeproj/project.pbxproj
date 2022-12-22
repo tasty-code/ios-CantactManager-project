@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8E191A962952A9AE0043ABBB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E191A952952A9AE0043ABBB /* main.swift */; };
 		8E191A9E2952DB370043ABBB /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E191A9D2952DB370043ABBB /* StringLiterals.swift */; };
+		F132887F2953E06600535A23 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132887E2953E06600535A23 /* Person.swift */; };
+		F13288822953E4A000535A23 /* PersonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13288812953E4A000535A23 /* PersonManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +29,8 @@
 		8E191A922952A9AE0043ABBB /* MyContactManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MyContactManager; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E191A952952A9AE0043ABBB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8E191A9D2952DB370043ABBB /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
+		F132887E2953E06600535A23 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		F13288812953E4A000535A23 /* PersonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				8E191A9C2952DB250043ABBB /* Literals */,
+				F13288802953E06F00535A23 /* Model */,
 				8E191A952952A9AE0043ABBB /* main.swift */,
 			);
 			path = MyContactManager;
@@ -71,6 +76,15 @@
 				8E191A9D2952DB370043ABBB /* StringLiterals.swift */,
 			);
 			path = Literals;
+			sourceTree = "<group>";
+		};
+		F13288802953E06F00535A23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F132887E2953E06600535A23 /* Person.swift */,
+				F13288812953E4A000535A23 /* PersonManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,7 +146,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E191A9E2952DB370043ABBB /* StringLiterals.swift in Sources */,
+				F13288822953E4A000535A23 /* PersonManager.swift in Sources */,
 				8E191A962952A9AE0043ABBB /* main.swift in Sources */,
+				F132887F2953E06600535A23 /* Person.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +272,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R6RDNJW78B;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -267,7 +283,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R6RDNJW78B;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
