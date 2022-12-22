@@ -14,15 +14,15 @@ enum ValidInputError: String, Error {
     case notValidInput
 }
 
-extension ValidInputError: LocalizedError {
-    public var errorDescription: String? {
-        switch self {
-        case .notValidName: return "입력한 이름정보가 잘못되었습니다. 입력 형식을 확인해주세요."
-        case .notValidAge: return "입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요."
-        case .notValidTel: return "입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요."
-        case .notValidInput: return "아무것도 입력되지 않았습니다. 입력 형식을 확인해주세요."
-        }
-    }
-}
+//extension ValidInputError: LocalizedError {
+//    public var errorDescription: String? {
+//        switch self {
+//        case .notValidName: return "입력한 이름정보가 잘못되었습니다. 입력 형식을 확인해주세요."
+//        case .notValidAge: return "입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요."
+//        case .notValidTel: return "입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요."
+//        case .notValidInput: return "아무것도 입력되지 않았습니다. 입력 형식을 확인해주세요."
+//        }
+//    }
+//}
 
 
