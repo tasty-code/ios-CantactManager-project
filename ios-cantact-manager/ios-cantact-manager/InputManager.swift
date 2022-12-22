@@ -10,7 +10,6 @@ import Foundation
 struct InputManager {
     let inputInfoMessage = "연락처 정보를 입력해주세요 : "
     
-    // 정규표현식 충족 여부
     var regexMatch: Bool = true
     var regexMatch2: Bool = false
     

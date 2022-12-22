@@ -9,5 +9,3 @@ import Foundation
 
 var info = ContactManageSystem()
 info.addProfile()
-
-
