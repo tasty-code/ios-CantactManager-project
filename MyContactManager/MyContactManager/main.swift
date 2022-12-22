@@ -14,7 +14,7 @@ class MyContactManager {
     private var personDictionary = PersonManager()
         
     func runProgram() {
-        print(StringLiterals.enterMesssage, terminator: " ")
+        print(Message.greeting, terminator: " ")
         getUserInput()
     }
     
@@ -29,12 +29,12 @@ class MyContactManager {
             print("age: \(age)")
             print("number: \(number)")
             if !isIntType(age) {
-                print(StringLiterals.wrongAgeInputMessage)
+                print(Message.wrongAge)
             }
         } else if input.isEmpty {
-            print(StringLiterals.noInputMessage)
+            print(Message.noUserInput)
         } else {
-            print(StringLiterals.wrongInputMessage)
+            print(Message.defaultError)
         }
     }
     
