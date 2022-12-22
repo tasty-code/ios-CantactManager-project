@@ -43,7 +43,7 @@
 		90D3F18D2952D18800CEA3F8 = {
 			isa = PBXGroup;
 			children = (
-				90D3F1982952D18800CEA3F8 /* CantactManager */,
+				90D3F1982952D18800CEA3F8 /* ContactManager */,
 				90D3F1972952D18800CEA3F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,13 +56,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		90D3F1982952D18800CEA3F8 /* CantactManager */ = {
+		90D3F1982952D18800CEA3F8 /* ContactManager */ = {
 			isa = PBXGroup;
 			children = (
 				90D3F1992952D18800CEA3F8 /* main.swift */,
 				90D3F1A02952DA1800CEA3F8 /* Message.swift */,
 			);
-			path = CantactManager;
+			path = ContactManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -101,7 +101,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 90D3F1912952D18800CEA3F8 /* Build configuration list for PBXProject "CantactManager" */;
+			buildConfigurationList = 90D3F1912952D18800CEA3F8 /* Build configuration list for PBXProject "ContactManager" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -288,7 +288,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		90D3F1912952D18800CEA3F8 /* Build configuration list for PBXProject "CantactManager" */ = {
+		90D3F1912952D18800CEA3F8 /* Build configuration list for PBXProject "ContactManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90D3F19B2952D18800CEA3F8 /* Debug */,
