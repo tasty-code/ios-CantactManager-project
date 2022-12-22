@@ -11,7 +11,7 @@ print("Hello, World!")
 
 do {
     let test = try IOManager.getInput()
-    print(test)
+    IOManager.sendOutput(type: .infomation, contents: test)
 } catch {
     print(error.localizedDescription)
 }

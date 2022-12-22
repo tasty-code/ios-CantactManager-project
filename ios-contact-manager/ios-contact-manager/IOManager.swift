@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum PrintType {
+    case menu
+    case infomation
+    case error
+}
+
 enum IOManager {
     static func getInput() throws -> String {
         guard let input = readLine(),
@@ -15,5 +21,16 @@ enum IOManager {
         }
         
         return input
+    }
+    
+    static func sendOutput(type: PrintType, contents: String) {
+        switch type {
+        case .menu:
+            print("🖥️ \(contents)")
+        case .infomation:
+            print("🤔 \(contents)")
+        case .error:
+            print("❌ \(contents)")
+        }
     }
 }
