@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		90D3F19A2952D18800CEA3F8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3F1992952D18800CEA3F8 /* main.swift */; };
 		90D3F1A12952DA1800CEA3F8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3F1A02952DA1800CEA3F8 /* Message.swift */; };
+		90D3F1DC2954178900CEA3F8 /* ContactManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3F1DB2954178900CEA3F8 /* ContactManagerTest.swift */; };
+		90D3F1E0295417E800CEA3F8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3F1992952D18800CEA3F8 /* main.swift */; };
+		90D3F1E1295417EB00CEA3F8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3F1A02952DA1800CEA3F8 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,10 +30,19 @@
 		90D3F1962952D18800CEA3F8 /* CantactManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CantactManager; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D3F1992952D18800CEA3F8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		90D3F1A02952DA1800CEA3F8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		90D3F1D92954178900CEA3F8 /* ContactManagerTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactManagerTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		90D3F1DB2954178900CEA3F8 /* ContactManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManagerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		90D3F1932952D18800CEA3F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90D3F1D62954178900CEA3F8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				90D3F1982952D18800CEA3F8 /* ContactManager */,
+				90D3F1DA2954178900CEA3F8 /* ContactManagerTest */,
 				90D3F1972952D18800CEA3F8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				90D3F1962952D18800CEA3F8 /* CantactManager */,
+				90D3F1D92954178900CEA3F8 /* ContactManagerTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -63,6 +77,14 @@
 				90D3F1A02952DA1800CEA3F8 /* Message.swift */,
 			);
 			path = ContactManager;
+			sourceTree = "<group>";
+		};
+		90D3F1DA2954178900CEA3F8 /* ContactManagerTest */ = {
+			isa = PBXGroup;
+			children = (
+				90D3F1DB2954178900CEA3F8 /* ContactManagerTest.swift */,
+			);
+			path = ContactManagerTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +108,23 @@
 			productReference = 90D3F1962952D18800CEA3F8 /* CantactManager */;
 			productType = "com.apple.product-type.tool";
 		};
+		90D3F1D82954178900CEA3F8 /* ContactManagerTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90D3F1DF2954178900CEA3F8 /* Build configuration list for PBXNativeTarget "ContactManagerTest" */;
+			buildPhases = (
+				90D3F1D52954178900CEA3F8 /* Sources */,
+				90D3F1D62954178900CEA3F8 /* Frameworks */,
+				90D3F1D72954178900CEA3F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ContactManagerTest;
+			productName = ContactManagerTest;
+			productReference = 90D3F1D92954178900CEA3F8 /* ContactManagerTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -97,6 +136,9 @@
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					90D3F1952952D18800CEA3F8 = {
+						CreatedOnToolsVersion = 14.0;
+					};
+					90D3F1D82954178900CEA3F8 = {
 						CreatedOnToolsVersion = 14.0;
 					};
 				};
@@ -115,9 +157,20 @@
 			projectRoot = "";
 			targets = (
 				90D3F1952952D18800CEA3F8 /* CantactManager */,
+				90D3F1D82954178900CEA3F8 /* ContactManagerTest */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		90D3F1D72954178900CEA3F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		BFF2FF582952E86E00DD88E4 /* Run Script */ = {
@@ -148,6 +201,16 @@
 			files = (
 				90D3F19A2952D18800CEA3F8 /* main.swift in Sources */,
 				90D3F1A12952DA1800CEA3F8 /* Message.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90D3F1D52954178900CEA3F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90D3F1E1295417EB00CEA3F8 /* Message.swift in Sources */,
+				90D3F1E0295417E800CEA3F8 /* main.swift in Sources */,
+				90D3F1DC2954178900CEA3F8 /* ContactManagerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +348,34 @@
 			};
 			name = Release;
 		};
+		90D3F1DD2954178900CEA3F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = neuJooJ.ContactManagerTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		90D3F1DE2954178900CEA3F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = neuJooJ.ContactManagerTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -302,6 +393,15 @@
 			buildConfigurations = (
 				90D3F19E2952D18800CEA3F8 /* Debug */,
 				90D3F19F2952D18800CEA3F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		90D3F1DF2954178900CEA3F8 /* Build configuration list for PBXNativeTarget "ContactManagerTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90D3F1DD2954178900CEA3F8 /* Debug */,
+				90D3F1DE2954178900CEA3F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
