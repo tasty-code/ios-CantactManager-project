@@ -22,6 +22,8 @@ final class ContactManagerTest: XCTestCase {
         XCTAssertEqual(getAge(input: "-3"), nil)
         XCTAssertEqual(getAge(input: "23"), 23)
         XCTAssertEqual(getAge(input: "999"), 999)
+        XCTAssertEqual(getAge(input: "0"), 0)
+        XCTAssertEqual(getAge(input: "010"), nil)
     }
 
     func testPerformanceExample() throws {
