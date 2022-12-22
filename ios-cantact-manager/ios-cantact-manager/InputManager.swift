@@ -10,33 +10,37 @@ import Foundation
 struct InputManager {
     let inputInfoMessage = "연락처 정보를 입력해주세요 : "
     
+    // 정규표현식 충족 여부
+    var regexMatch: Bool = true
+    var regexMatch2: Bool = true
+    
     func printErrorMessage(_ data: String) {
         print("입력한 \(data) 정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
     }
     
-    func inputInfo() -> [String] {
+    func inputInfo() throws -> [String] {
         print(inputInfoMessage)
-//        var inputs: (String?, String?, String?)
-        guard let input = readLine() else { return ["1"] }
+        guard let input = readLine() else { throw ValidInputError.notValidInput }
         let splitInput = input.components(separatedBy: "/").map { $0.replacingOccurrences(of: " ", with: "") }
-//        do {
-//            try checkName(splitInput[0])
-//        } catch ValidInputError.notValidName {
-//            printErrorMessage("이름")
-//        }
-//        do {
-//            try checkAge(splitInput[1])
-//        } catch ValidInputError.notValidAge {
-//            printErrorMessage("나이")
-//        }
-//        do {
-//            try checkTel(splitInput[2])
-//        } catch ValidInputError.notValidTel {
-//            printErrorMessage("연락처")
-//        }
-        return splitInput
-//        ((try? checkName(splitInput[0])) ?? "", (try? checkAge(splitInput[1])) ?? "", (try? checkTel(splitInput[2]))  ?? "")
-//        return inputs
+        return [splitInput[0], splitInput[1], splitInput[2]]
+    }
+    
+    func checkName(_ name: String) throws -> String {
+        guard !regexMatch else { return name }
+//            print(InputManager().printErrorMessage(name))
+        throw ValidInputError.notValidName
+    }
+
+    func checkAge(_ age: String) throws -> String {
+        guard !regexMatch2 else { return age }
+//        print(ValidInputError.notValidAge.errorDescription)
+        throw ValidInputError.notValidAge
+    }
+
+    func checkTel(_ tel: String) throws -> String {
+        guard !regexMatch else { return tel }
+//            print(InputManager().printErrorMessage(tel))
+        throw ValidInputError.notValidTel
     }
 }
 
