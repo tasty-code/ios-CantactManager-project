@@ -18,7 +18,15 @@ func split(input: String) -> [String] {
 func run() {
     Message.pleaseInputContactData.printSelf(terminator: "")
     if let input = readLine() {
+        guard false == input.isEmpty else {
+            Message.inputEmptyError.printSelf(terminator: "\n")
+            return
+        }
         let splitted = split(input: input)
+        guard splitted.count == 3 else {
+            Message.inputError.printSelf(terminator: "\n")
+            return
+        }
         print(splitted)
     }
 }
