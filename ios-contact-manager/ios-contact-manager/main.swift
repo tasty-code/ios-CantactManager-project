@@ -9,3 +9,9 @@ import Foundation
 
 print("Hello, World!")
 
+do {
+    let test = try IOManager.getInput()
+    print(test)
+} catch {
+    print(error.localizedDescription)
+}
