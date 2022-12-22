@@ -15,6 +15,14 @@ func split(input: String) -> [String] {
     return splitted
 }
 
+func getAge(input: String) -> String? {
+    let pattern = "^[0-9]{1,3}$"
+    guard input.range(of: pattern, options: .regularExpression) != nil else {
+        return nil
+    }
+    return input
+}
+
 func run() {
     Message.pleaseInputContactData.printSelf(terminator: "")
     if let input = readLine() {
@@ -27,7 +35,11 @@ func run() {
             Message.inputError.printSelf(terminator: "\n")
             return
         }
-        print(splitted)
+        guard let age = getAge(input: splitted[1]) else {
+            Message.getAgeError.printSelf(terminator: "\n")
+            return
+        }
+        print(age)
     }
 }
 
