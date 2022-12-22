@@ -10,6 +10,7 @@
 		3B7DEA132952C861002C7E4D /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7DEA122952C861002C7E4D /* InputManager.swift */; };
 		3B7DEA152952C8F1002C7E4D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7DEA142952C8F1002C7E4D /* Profile.swift */; };
 		3B7DEA172952D10D002C7E4D /* ContactManageSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7DEA162952D10D002C7E4D /* ContactManageSystem.swift */; };
+		EB1AE1932953F044003C94B0 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1AE1922953F044003C94B0 /* ErrorManager.swift */; };
 		EB5EB1AA2952BE4300752155 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5EB1A92952BE4300752155 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		3B7DEA122952C861002C7E4D /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
 		3B7DEA142952C8F1002C7E4D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		3B7DEA162952D10D002C7E4D /* ContactManageSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManageSystem.swift; sourceTree = "<group>"; };
+		EB1AE1922953F044003C94B0 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		EB5EB1A62952BE4300752155 /* ios-cantact-manager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ios-cantact-manager"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB5EB1A92952BE4300752155 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +69,7 @@
 				3B7DEA122952C861002C7E4D /* InputManager.swift */,
 				3B7DEA142952C8F1002C7E4D /* Profile.swift */,
 				3B7DEA162952D10D002C7E4D /* ContactManageSystem.swift */,
+				EB1AE1922953F044003C94B0 /* ErrorManager.swift */,
 			);
 			path = "ios-cantact-manager";
 			sourceTree = "<group>";
@@ -133,6 +136,7 @@
 				3B7DEA152952C8F1002C7E4D /* Profile.swift in Sources */,
 				3B7DEA172952D10D002C7E4D /* ContactManageSystem.swift in Sources */,
 				EB5EB1AA2952BE4300752155 /* main.swift in Sources */,
+				EB1AE1932953F044003C94B0 /* ErrorManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
