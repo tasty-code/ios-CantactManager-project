@@ -10,35 +10,32 @@ import Foundation
 enum ValidInputError: String, Error {
     case notValidName = "이름"
     case notValidAge = "나이"
-    case notValidContact = "연락처"
+    case notValidTel = "연락처"
 }
 
 // 정규표현식 충족 여부
 var regexMatch: Bool = true
+var regexMatch2: Bool = false
 //{
 //    return true
 //}
 
-func errorMessage(_ data: String) -> String {
-    "입력한 \(data) 정보가 잘못되었습니다. 입력 형식을 확인해주세요."
-}
-
 func checkName(_ name: String) throws -> String {
     guard !regexMatch else { return name }
-    print(errorMessage(name))
+    print(InputManager().printErrorMessage(name))
     throw ValidInputError.notValidName
 }
 
 func checkAge(_ age: String) throws -> String {
-    guard !regexMatch else { return age }
-    print(errorMessage(age))
+    guard !regexMatch2 else { return age }
+    print(InputManager().printErrorMessage(age))
     throw ValidInputError.notValidAge
 }
 
-func checkContact(_ contact: String) throws -> String {
-    guard !regexMatch else { return contact }
-    print(errorMessage(contact))
-    throw ValidInputError.notValidContact
+func checkTel(_ tel: String) throws -> String {
+    guard !regexMatch else { return tel }
+    print(InputManager().printErrorMessage(tel))
+    throw ValidInputError.notValidTel
 }
 
 //enum Profile {

@@ -11,7 +11,9 @@ struct ContactManageSystem {
     let inputManager = InputManager()
     
     func addProfile() {
-        let (name, age, tel) = inputManager.inputInfo()
+
+        let inputArray = inputManager.inputInfo()
+        let (name, age, tel) = (inputArray[0], inputArray[1], inputArray[2])
         let jojo = Profile(name: name, age: age, tel: tel)
         print(jojo)
     }
