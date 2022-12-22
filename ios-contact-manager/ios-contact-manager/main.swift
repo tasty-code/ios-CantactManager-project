@@ -7,11 +7,4 @@
 
 import Foundation
 
-print("Hello, World!")
-
-do {
-    let test = try IOManager.getInput()
-    IOManager.sendOutput(type: .infomation, contents: test)
-} catch {
-    print(error.localizedDescription)
-}
+ContactManager.shared.run()

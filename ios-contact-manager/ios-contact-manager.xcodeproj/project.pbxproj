@@ -11,6 +11,7 @@
 		4FCF4FFD2952A4AE00CA262F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF4FFC2952A4AE00CA262F /* main.swift */; };
 		4FCF50082953F79200CA262F /* IOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF50072953F79200CA262F /* IOManager.swift */; };
 		4FCF500A2953F7B200CA262F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF50092953F7B200CA262F /* Error.swift */; };
+		4FCF500C2954157F00CA262F /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF500B2954157F00CA262F /* ContactManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		4FCF4FFC2952A4AE00CA262F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4FCF50072953F79200CA262F /* IOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOManager.swift; sourceTree = "<group>"; };
 		4FCF50092953F7B200CA262F /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		4FCF500B2954157F00CA262F /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				40F965532952ED4200ACCA0C /* StringLiteral.swift */,
 				4FCF50072953F79200CA262F /* IOManager.swift */,
 				4FCF50092953F7B200CA262F /* Error.swift */,
+				4FCF500B2954157F00CA262F /* ContactManager.swift */,
 			);
 			path = "ios-contact-manager";
 			sourceTree = "<group>";
@@ -129,6 +132,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FCF500C2954157F00CA262F /* ContactManager.swift in Sources */,
 				4FCF500A2953F7B200CA262F /* Error.swift in Sources */,
 				40F965542952ED4200ACCA0C /* StringLiteral.swift in Sources */,
 				4FCF50082953F79200CA262F /* IOManager.swift in Sources */,
