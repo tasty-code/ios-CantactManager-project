@@ -28,11 +28,19 @@ class MyContactManager {
             print("name: \(name)")
             print("age: \(age)")
             print("number: \(number)")
+            if !isIntType(age) {
+                print(StringLiterals.wrongAgeInputMessage)
+            }
         } else if input.isEmpty {
             print(StringLiterals.noInputMessage)
         } else {
             print(StringLiterals.wrongInputMessage)
         }
+    }
+    
+    private func isIntType(_ input: String) -> Bool {
+        guard let _ = Int(input) else { return false }
+        return true
     }
 
     private func exitProgram() {
