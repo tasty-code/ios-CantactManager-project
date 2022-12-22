@@ -14,10 +14,18 @@ class MyContactManager {
     private var personDictionary = PersonManager()
         
     func runProgram() {
-        print(StringLiterals.enterMesssage)
-        exitProgram()
+        print(StringLiterals.enterMesssage, terminator: " ")
+        getUserInput()
     }
     
+    private func getUserInput() {
+        guard let userInput = readLine() else { return }
+        let inputData = userInput.split(separator: " ")
+        if inputData.isEmpty {
+            print(StringLiterals.noInputMessage)
+        }
+    }
+
     private func exitProgram() {
         runValue = false
         print("exit test")
