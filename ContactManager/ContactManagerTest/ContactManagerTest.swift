@@ -15,11 +15,15 @@ final class ContactManagerTest: XCTestCase {
     func testSplit() throws {
         XCTAssertEqual(split(input: "james/30/123-1234-1234"), ["james", "30", "123-1234-1234"])
     }
-    
+
     func test나이() {
         XCTAssertEqual(getAge(input: "000"), nil)
+        XCTAssertEqual(getAge(input: "1234"), nil)
+        XCTAssertEqual(getAge(input: "-3"), nil)
+        XCTAssertEqual(getAge(input: "23"), 23)
+        XCTAssertEqual(getAge(input: "999"), 999)
     }
-    
+
     func testPerformanceExample() throws {
         measure {}
     }

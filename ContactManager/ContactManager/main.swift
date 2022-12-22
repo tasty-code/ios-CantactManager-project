@@ -15,12 +15,15 @@ func split(input: String) -> [String] {
     return splitted
 }
 
-func getAge(input: String) -> String? {
+func getAge(input: String) -> Int? {
     let pattern = "^[0-9]{1,3}$"
     guard input.range(of: pattern, options: .regularExpression) != nil else {
         return nil
     }
-    return input
+    guard let age = Int(input) else {
+        return nil
+    }
+    return age == 0 ? nil : age
 }
 
 func run() {
