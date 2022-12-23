@@ -25,6 +25,8 @@ final class ContactManager {
         let splited: [String]
         if input.contains(" / ") {
             splited = input.components(separatedBy: " / ")
+        } else if input.contains(" /") || input.contains("/ ") {
+            throw IOError.inputFormatError
         } else {
             splited = input.components(separatedBy: "/")
         }
