@@ -40,7 +40,8 @@ struct UserInfo {
     
     init(name: String) throws {
         do {
-            self.name = try name.getInfoAfter(type: .name)
+            let regexName = try name.getInfoAfter(type: .name)
+            self.name = regexName.components(separatedBy: " ").joined()
             print(self.name)
         } catch {
             throw error

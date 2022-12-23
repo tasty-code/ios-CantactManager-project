@@ -9,7 +9,7 @@ import Foundation
 
 //ContactManager.shared.run()
 
-let goodName = "Su  n ny "
+let goodName = "    Su  n ny s"
 let badName = "sssss  ss00"
 
 let t1 = try? UserInfo(name: goodName)
