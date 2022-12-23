@@ -61,12 +61,7 @@ class MyContactManager {
 
     private func validateNumberForm(_ number: String) -> Bool {
         let numberSplit = number.split(separator: "-").map { String($0) }
-        
-        if number.count > 10 && numberSplit.count == 3 {
-            return true
-        } else {
-            return false
-        }
+        return number.count > 10 && numberSplit.count == 3
     }
     
     private func exitProgram() {
