@@ -22,11 +22,10 @@ func split(input: String) -> [String]? {
 }
 
 func checkSplitted(splitted: [String]) -> Bool {
-    guard splitted[0].firstString != " " else {
-        return false
-    }
-    guard splitted[2].lastString != " " else {
-        return false
+    for infomation in splitted {
+        guard infomation.firstString != " ", infomation.lastString != " " else {
+            return false
+        }
     }
     return true
 }
