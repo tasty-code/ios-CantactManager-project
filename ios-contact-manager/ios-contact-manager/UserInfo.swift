@@ -45,14 +45,6 @@ struct UserInfo {
         } catch {
             throw error
         }
-         
-//        guard Self.checkValidity(of: name) else {
-//            throw IOError.nameError
-//        }
-    }
-    
-    static func checkValidity(of item: String, type: UserInfoParams) -> Bool {
-        return item ~= type.regex
     }
 }
 
