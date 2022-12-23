@@ -17,7 +17,7 @@ enum UserInfoParams {
         case .age:
             return "age regex"
         case .phone:
-            return "phone regex"
+            return "^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$"
         }
     }
     
@@ -36,13 +36,15 @@ enum UserInfoParams {
 struct UserInfo {
     let name: String
     let age: String? = nil
-    let phone: String? = nil
+    let phone: String
     
-    init(name: String) throws {
+    init(name: String, phone: String) throws {
         do {
             let regexName = try name.getInfoAfter(type: .name)
             self.name = regexName.components(separatedBy: " ").joined()
-            print(self.name)
+            self.phone = try phone.getInfoAfter(type: .phone)
+            
+            print(self.name, self.phone)
         } catch {
             throw error
         }

@@ -11,11 +11,24 @@ import Foundation
 
 let goodName = "    Su  n ny s"
 let badName = "sssss  ss00"
+let goodPhone = "232-2324-2423"
+let badPhone = "1-22312-122"
+let badPhone2 = "1-22312-12 "
+let badPhone3 = "1-22 1-12 ㄱ"
 
-let t1 = try? UserInfo(name: goodName)
+let t1 = try? UserInfo(name: goodName, phone: goodPhone)
 do {
-    let t2 = try UserInfo(name: badName)
+    let _ = try UserInfo(name: goodName, phone: badPhone)
 } catch {
     print(error.localizedDescription)
 }
-
+do {
+    let _ = try UserInfo(name: goodName, phone: badPhone2)
+} catch {
+    print(error.localizedDescription)
+}
+do {
+    let _ = try UserInfo(name: goodName, phone: badPhone3)
+} catch {
+    print(error.localizedDescription)
+}
