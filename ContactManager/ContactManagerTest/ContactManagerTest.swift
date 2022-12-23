@@ -19,7 +19,7 @@ final class ContactManagerTest: XCTestCase {
         XCTAssertEqual("".lastString, "")
         XCTAssertEqual("42".lastString, "2")
     }
-    
+
     func testSplit() throws {
         XCTAssertEqual(split(input: "james/30/123-1234-1234"), ["james", "30", "123-1234-1234"])
         XCTAssertEqual(split(input: "james / 30 / 123-1234-1234"), ["james", "30", "123-1234-1234"])
@@ -30,6 +30,15 @@ final class ContactManagerTest: XCTestCase {
         XCTAssertNil(split(input: "james/30/ 123-1234-1234"))
         XCTAssertNil(split(input: " james/30/123-1234-1234"))
         XCTAssertNil(split(input: "james/30/123-1234-1234 "))
+    }
+
+    func test이름() {
+        XCTAssertNil(getName(input: "한글의이름"))
+        XCTAssertNil(getName(input: ""))
+        XCTAssertNil(getName(input: " james"))
+        XCTAssertNil(getName(input: "james "))
+        XCTAssertEqual(getName(input: "james"), "james")
+        XCTAssertEqual(getName(input: "jam  es"), "james")
     }
 
     func test나이() {
