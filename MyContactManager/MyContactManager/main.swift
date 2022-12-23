@@ -36,44 +36,29 @@ class MyContactManager {
     }
     
     private func isVaildPersonType(_ name: String, _ age: String, _ number: String) -> Bool {
-        if !vaildateAgeForm(age) {
+
+        if vaildateAgeForm(age) == false {
             print(Message.wrongAge)
             return false
-        } else if !validateNumberForm(number) {
+        }
+        
+        if validateNumberForm(number) == false {
             print(Message.wrongPhoneNumber)
             return false
-        } else {
-            print("name: \(name)")
-            print("age: \(age)")
-            print("number: \(number)")
-            return true
         }
+    
+        print("name: \(name)")
+        print("age: \(age)")
+        print("number: \(number)")
+        
+        return true
     }
     
     private func vaildateAgeForm(_ age: String) -> Bool {
-        if age.count > 2 {
-            return false
-        }
-        
-        if let age = formatAge(with: age) {
-            
-            if age < 100 && age > 0 {
-                return true
-            } else {
-                return false
-            }
-        }
-        return false
+        guard let ageInt = Int(age) else { return false }
+        return ageInt < 1000 && ageInt > 0
     }
-    
-    private func formatAge(with age: String) -> Int? {
-        var ageStr = age
-        ageStr = ageStr.description.trimmingCharacters(in: ["0"])
-        
-        guard let ageInt = Int(ageStr) else { return nil }
-        return ageInt
-    }
-    
+
     private func validateNumberForm(_ number: String) -> Bool {
         let numberSplit = number.split(separator: "-").map { String($0) }
         
