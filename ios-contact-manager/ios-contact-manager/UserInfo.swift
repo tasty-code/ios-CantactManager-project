@@ -8,14 +8,12 @@
 import Foundation
 
 enum UserInfoParams {
-    case name, age, phone
+    case name, phone
     
     var regex: String {
         switch self {
         case .name:
             return "^[A-Za-z ]+$"
-        case .age:
-            return "age regex"
         case .phone:
             return "^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$"
         }
@@ -25,8 +23,6 @@ enum UserInfoParams {
         switch self {
         case .name:
             return IOError.nameError
-        case .age:
-            return IOError.ageError
         case .phone:
             return IOError.phoneError
         }
@@ -35,10 +31,17 @@ enum UserInfoParams {
 
 struct UserInfo {
     let name: String
-    let age: String? = nil
+    let age: Int
     let phone: String
     
-    init(name: String, phone: String) throws {
+    init(name: String, age: String, phone: String) throws {
+        guard let age = Int(age),
+              (1...999).contains(age) else {
+            throw IOError.ageError
+        }
+        self.age = age
+        print(self.age)
+        
         do {
             let regexName = try name.getInfoAfter(type: .name)
             self.name = regexName.components(separatedBy: " ").joined()
