@@ -9,6 +9,7 @@ import Foundation
 
 enum IOError: Error {
     case emptyInput
+    case nameError
     case ageError
     case phoneError
     case inputFormatError
@@ -20,6 +21,8 @@ extension IOError: LocalizedError {
         switch self {
         case .emptyInput:
             description = "아무것도 입력되지 않았습니다."
+        case .nameError:
+            description = "입력한 이름 정보가 잘못되었습니다."
         case .ageError:
             description = "입력한 나이 정보가 잘못되었습니다."
         case .phoneError:
