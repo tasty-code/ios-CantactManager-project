@@ -14,15 +14,13 @@ struct ContactManageSystem {
     mutating func addProfile() {
         do {
             let inputArray = try inputManager.inputInfo()
-            let name = try inputManager.checkName(inputArray[0])
+            let name = inputArray[0]
             let age = try inputManager.checkAge(inputArray[1])
             let tel = try inputManager.checkTel(inputArray[2])
             contactList.updateValue(Profile(name: name, age: age, tel: tel), forKey: name)
             print("입력한 정보는 \(age)세 \(name)(\(tel))입니다.")
         } catch ValidInputError.notValidInput {
             print("입력한 정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
-        } catch ValidInputError.notValidName {
-            print("입력한 이름정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
         } catch ValidInputError.notValidAge {
             print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
         } catch ValidInputError.notValidTel {

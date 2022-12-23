@@ -7,9 +7,8 @@
 
 import Foundation
 
-enum ValidInputError: String, Error {
-    case notValidName = "이름"
-    case notValidAge = "나이"
-    case notValidTel = "연락처"
+enum ValidInputError: Error {
+    case notValidAge
+    case notValidTel
     case notValidInput
 }

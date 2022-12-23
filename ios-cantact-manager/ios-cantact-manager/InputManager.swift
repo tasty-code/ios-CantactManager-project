@@ -12,22 +12,13 @@ struct InputManager {
     
     var regexMatch: Bool = true
     var regexMatch2: Bool = false
-    
-    func printErrorMessage(_ data: String) {
-        print("입력한 \(data) 정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
-    }
-    
+
     func inputInfo() throws -> [String] {
         print(inputInfoMessage)
         let input = readLine()
         guard let input = input, input != "" else { throw ValidInputError.notValidInput}
         let splitInput = input.components(separatedBy: "/").map { $0.replacingOccurrences(of: " ", with: "") }
         return [splitInput[0], splitInput[1], splitInput[2]]
-    }
-    
-    func checkName(_ name: String) throws -> String {
-        guard !regexMatch else { return name }
-        throw ValidInputError.notValidName
     }
 
     func checkAge(_ age: String) throws -> String {
