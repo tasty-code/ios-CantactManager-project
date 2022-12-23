@@ -60,6 +60,7 @@ final class ContactManagerTest: XCTestCase {
         XCTAssertNil(getPhoneNumber(input: "05 434 2334"))
         XCTAssertNil(getPhoneNumber(input: "james"))
         XCTAssertNil(getPhoneNumber(input: "전화번호부"))
+        XCTAssertNil(getPhoneNumber(input: ""))
     }
 
     func testPerformanceExample() throws {

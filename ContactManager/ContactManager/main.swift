@@ -54,6 +54,18 @@ func getAge(input: String) -> Int? {
 }
 
 func getPhoneNumber(input: String) -> String? {
+    let phoneNumber = input.components(separatedBy: ["-"])
+    guard phoneNumber.count == 3 else {
+        return nil
+    }
+    for digit in phoneNumber {
+        guard Int(digit) != nil else {
+            return nil
+        }
+    }
+    guard input.count > 10 else {
+        return nil
+    }
     return input
 }
 
