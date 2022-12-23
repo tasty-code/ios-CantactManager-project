@@ -12,6 +12,16 @@ final class ContactManagerTest: XCTestCase {
     override func setUpWithError() throws {}
     override func tearDownWithError() throws {}
 
+    func testFirstString() throws {
+        XCTAssertEqual("abcd".firstString, "a")
+        XCTAssertEqual("".firstString, "")
+        XCTAssertEqual(" abcd".firstString, " ")
+    }
+    func testLastString() throws {
+        XCTAssertEqual("abcd".lastString, "d")
+        XCTAssertEqual("".lastString, "")
+        XCTAssertEqual("42".lastString, "2")
+    }
     func testSplit() throws {
         XCTAssertEqual(split(input: "james/30/123-1234-1234"), ["james", "30", "123-1234-1234"])
         XCTAssertEqual(split(input: "james / 30 / 123-1234-1234"), ["james", "30", "123-1234-1234"])

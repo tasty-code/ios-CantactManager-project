@@ -64,3 +64,25 @@ func run() {
 }
 
 run()
+
+extension String {
+    var lastString: String {
+        get {
+            guard !self.isEmpty else {
+                return self
+            }
+            let lastIndex = self.index(before: self.endIndex)
+            return String(self[lastIndex])
+        }
+    }
+    var firstString: String {
+        get {
+            guard !self.isEmpty else {
+                return self
+            }
+            let firstIndex = self.startIndex
+            return String(self[firstIndex])
+        }
+    }
+
+}
