@@ -25,18 +25,28 @@ class MyContactManager {
         
         if input.count == 3 {
             let (name, age, number) = (input[0], input[1], input[2])
-            print("name: \(name)")
-            print("age: \(age)")
-            print("number: \(number)")
-            if !vaildateAgeForm(age) {
-                print(Message.wrongAge)
-            } else if !validateNumberForm(number) {
-                print(Message.wrongPhoneNumber)
+            if isVaildPersonType(name, age, number) {
+                // TODO:- 유효한 데이터를 Person딕셔너리에 추가
             }
         } else if input.isEmpty {
             print(Message.noUserInput)
         } else {
             print(Message.defaultError)
+        }
+    }
+    
+    private func isVaildPersonType(_ name: String, _ age: String, _ number: String) -> Bool {
+        if !vaildateAgeForm(age) {
+            print(Message.wrongAge)
+            return false
+        } else if !validateNumberForm(number) {
+            print(Message.wrongPhoneNumber)
+            return false
+        } else {
+            print("name: \(name)")
+            print("age: \(age)")
+            print("number: \(number)")
+            return true
         }
     }
     
