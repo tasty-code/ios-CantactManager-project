@@ -12,7 +12,7 @@ class MyContactManager {
     private(set) var runValue: Bool = true
     
     private var personDictionary = PersonManager()
-        
+    
     func runProgram() {
         print(Message.greeting, terminator: " ")
         getUserInput()
@@ -28,7 +28,7 @@ class MyContactManager {
             print("name: \(name)")
             print("age: \(age)")
             print("number: \(number)")
-            if !isIntType(age) {
+            if !vaildateAgeForm(age) {
                 print(Message.wrongAge)
             } else if !validateNumberForm(number) {
                 print(Message.wrongPhoneNumber)
@@ -40,20 +40,33 @@ class MyContactManager {
         }
     }
     
-    private func isIntType(_ input: String) -> Bool {
-        guard let _ = Int(input) else { return false }
-        return true
-    }
+    private func vaildateAgeForm(_ age: String) -> Bool {
+        var ageString = age
+        while ageString.description.hasPrefix("0") {
+            ageString = ageString.description.trimmingCharacters(in: ["0"])
+        }
         
+        guard let age = Int(ageString) else { return false }
+        
+        if age < 100 && age > 0 {
+            print(age)
+            return true
+        } else {
+            print(age)
+            return false
+        }
+    }
+    
     private func validateNumberForm(_ number: String) -> Bool {
         let numberSplit = number.split(separator: "-").map { String($0) }
+        
         if number.count > 10 && numberSplit.count == 3 {
             return true
         } else {
             return false
         }
     }
-
+    
     private func exitProgram() {
         runValue = false
         print("exit test")
