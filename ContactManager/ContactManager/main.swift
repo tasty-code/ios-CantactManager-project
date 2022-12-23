@@ -7,12 +7,28 @@
 
 import Foundation
 
-func split(input: String) -> [String] {
+func split(input: String) -> [String]? {
     var splitted = input.components(separatedBy: " / ")
     if splitted.count != 3 {
         splitted = input.components(separatedBy: "/")
+        if splitted.count != 3 {
+            return nil
+        }
+    }
+    guard checkSplitted(splitted: splitted) else {
+        return nil
     }
     return splitted
+}
+
+func checkSplitted(splitted: [String]) -> Bool {
+    guard splitted[0][splitted[0].startIndex] != " " else {
+        return false
+    }
+    guard splitted[2][splitted[2].index(before: splitted[2].endIndex)] != " " else {
+        return false
+    }
+    return true
 }
 
 func getAge(input: String) -> Int? {
@@ -35,8 +51,7 @@ func run() {
             Message.inputEmptyError.printSelf(terminator: "\n")
             return
         }
-        let splitted = split(input: input)
-        guard splitted.count == 3 else {
+        guard let splitted = split(input: input) else {
             Message.inputError.printSelf(terminator: "\n")
             return
         }
