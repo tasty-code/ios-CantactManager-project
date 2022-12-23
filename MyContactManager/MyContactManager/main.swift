@@ -11,7 +11,7 @@ class MyContactManager {
     
     private(set) var runValue: Bool = true
     
-    private var personDictionary = PersonManager()
+    private var personDictionary = [String : Person]()
     
     func runProgram() {
         print(Message.greeting, terminator: " ")
