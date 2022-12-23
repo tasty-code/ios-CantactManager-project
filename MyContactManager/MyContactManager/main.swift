@@ -26,6 +26,9 @@ class MyContactManager {
         if input.count == 3 {
             let (name, age, number) = (input[0], input[1], input[2])
             if isVaildPersonType(name, age, number) {
+                
+                printResult(name: name, age: age, number: number)
+                setContactData(name: name, age: age, number: number)
                 // TODO:- 유효한 데이터를 Person딕셔너리에 추가
             }
         } else if input.isEmpty {
@@ -33,6 +36,16 @@ class MyContactManager {
         } else {
             print(Message.defaultError)
         }
+    }
+    
+    private func setContactData(name: String, age: String, number: String) {
+        guard let age = Int(age) else { return }
+        let person = Person(name: name, age: age, phoneNum: number)
+        personDictionary[name] = person
+    }
+    
+    private func printResult(name: String, age: String, number: String) {
+        print("입력한 정보는 \(age)세 \(name) (\(number))입니다.")
     }
     
     private func isVaildPersonType(_ name: String, _ age: String, _ number: String) -> Bool {
@@ -46,11 +59,6 @@ class MyContactManager {
             print(Message.wrongPhoneNumber)
             return false
         }
-    
-        print("name: \(name)")
-        print("age: \(age)")
-        print("number: \(number)")
-        
         return true
     }
     
