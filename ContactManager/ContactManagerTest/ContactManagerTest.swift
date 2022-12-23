@@ -49,6 +49,19 @@ final class ContactManagerTest: XCTestCase {
         XCTAssertEqual(getAge(input: "010"), nil)
     }
 
+    func test전화번호() {
+        XCTAssertNil(getPhoneNumber(input: "054342334"))
+        XCTAssertNil(getPhoneNumber(input: "05-4342334"))
+        XCTAssertNil(getPhoneNumber(input: "05-4342334-"))
+        XCTAssertNil(getPhoneNumber(input: "-05434-2334"))
+        XCTAssertNil(getPhoneNumber(input: "05434--2334"))
+        XCTAssertNil(getPhoneNumber(input: "05-434-23-34"))
+        XCTAssertNil(getPhoneNumber(input: "05-434-234"))
+        XCTAssertNil(getPhoneNumber(input: "05 434 2334"))
+        XCTAssertNil(getPhoneNumber(input: "james"))
+        XCTAssertNil(getPhoneNumber(input: "전화번호부"))
+    }
+
     func testPerformanceExample() throws {
         measure {}
     }
