@@ -9,7 +9,7 @@ import Foundation
 
 extension String {
     func getInfoAfter(type: UserInfoParams) throws -> String {
-        guard let info = self.range(of: type.regex, options: .regularExpression) else {
+        guard self.range(of: type.regex, options: .regularExpression) != nil else {
             throw type.error
         }
         return self
