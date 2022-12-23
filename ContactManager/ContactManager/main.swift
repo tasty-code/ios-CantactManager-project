@@ -22,10 +22,10 @@ func split(input: String) -> [String]? {
 }
 
 func checkSplitted(splitted: [String]) -> Bool {
-    guard splitted[0][splitted[0].startIndex] != " " else {
+    guard splitted[0].firstString != " " else {
         return false
     }
-    guard splitted[2][splitted[2].index(before: splitted[2].endIndex)] != " " else {
+    guard splitted[2].lastString != " " else {
         return false
     }
     return true
@@ -67,22 +67,18 @@ run()
 
 extension String {
     var lastString: String {
-        get {
-            guard !self.isEmpty else {
-                return self
-            }
-            let lastIndex = self.index(before: self.endIndex)
-            return String(self[lastIndex])
+        guard !self.isEmpty else {
+            return self
         }
-    }
-    var firstString: String {
-        get {
-            guard !self.isEmpty else {
-                return self
-            }
-            let firstIndex = self.startIndex
-            return String(self[firstIndex])
-        }
+        let lastIndex = self.index(before: self.endIndex)
+        return String(self[lastIndex])
     }
 
+    var firstString: String {
+        guard !self.isEmpty else {
+            return self
+        }
+        let firstIndex = self.startIndex
+        return String(self[firstIndex])
+    }
 }
