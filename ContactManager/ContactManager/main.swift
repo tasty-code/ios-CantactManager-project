@@ -53,26 +53,26 @@ func getPhoneNumber(input: String) -> String? {
 }
 
 func run() {
-    Message.pleaseInputContactData.printSelf(terminator: "")
+    Message.pleaseInputContactData.printSelf()
     if let input = readLine() {
         guard false == input.isEmpty else {
-            Message.inputEmptyError.printSelf(terminator: "\n")
+            Message.inputEmptyError.printSelf()
             return
         }
         guard let splitted = split(input: input) else {
-            Message.inputError.printSelf(terminator: "\n")
+            Message.inputError.printSelf()
             return
         }
         guard let name = getName(input: splitted[0]) else {
-            Message.getNameError.printSelf(terminator: "\n")
+            Message.getNameError.printSelf()
             return
         }
         guard let age = getAge(input: splitted[1]) else {
-            Message.getAgeError.printSelf(terminator: "\n")
+            Message.getAgeError.printSelf()
             return
         }
         guard let phoneNumber = getPhoneNumber(input: splitted[2]) else {
-            Message.getPhoneNumberError.printSelf(terminator: "\n")
+            Message.getPhoneNumberError.printSelf()
             return
         }
         print("입력한 정보는 \(age)세 \(name)(\(phoneNumber))입니다.")

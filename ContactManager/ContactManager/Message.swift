@@ -17,7 +17,10 @@ enum Message: String {
 }
 
 extension Message {
-    func printSelf(terminator: String) {
-        print(self.rawValue, terminator: terminator)
+    func printSelf() {
+        switch self {
+        case .pleaseInputContactData: print(self.rawValue, terminator: "")
+        default: print(self.rawValue)
+        }
     }
 }
