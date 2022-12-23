@@ -35,8 +35,6 @@ final class ContactManagerTest: XCTestCase {
     func test이름() {
         XCTAssertNil(getName(input: "한글의이름"))
         XCTAssertNil(getName(input: ""))
-        XCTAssertNil(getName(input: " james"))
-        XCTAssertNil(getName(input: "james "))
         XCTAssertEqual(getName(input: "james"), "james")
         XCTAssertEqual(getName(input: "jam  es"), "james")
     }

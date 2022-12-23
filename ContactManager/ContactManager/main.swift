@@ -31,7 +31,13 @@ func checkSplitted(splitted: [String]) -> Bool {
 }
 
 func getName(input: String) -> String? {
-    return input
+    guard !input.isEmpty else {
+        return nil
+    }
+    guard input.allSatisfy({$0.isLowercase || $0.isUppercase || $0 == " "}) else {
+        return nil
+    }
+    return input.components(separatedBy: [" "]).joined()
 }
 
 func getAge(input: String) -> Int? {
