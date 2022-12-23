@@ -11,7 +11,7 @@ struct InputManager {
     let inputInfoMessage = "연락처 정보를 입력해주세요 : "
 
     func inputInfo() throws -> [String] {
-        print(inputInfoMessage)
+        print(inputInfoMessage, terminator: "")
         
         let input = readLine()
         guard let input = input, input != "" else { throw ValidInputError.notValidInput}
