@@ -53,20 +53,20 @@ func getAge(input: String) -> Int? {
     return age
 }
 
-func getPhoneNumber(input: String) -> String? {
+func isValidPhoneNumber(input: String) -> Bool {
     let phoneNumber = input.components(separatedBy: ["-"])
     guard phoneNumber.count == 3 else {
-        return nil
+        return false
     }
     for digit in phoneNumber {
         guard Int(digit) != nil else {
-            return nil
+            return false
         }
     }
     guard input.count > 10 else {
-        return nil
+        return false
     }
-    return input
+    return true
 }
 
 func run() {
@@ -88,10 +88,11 @@ func run() {
             Message.getAgeError.printSelf()
             return
         }
-        guard let phoneNumber = getPhoneNumber(input: splitted[2]) else {
+        guard isValidPhoneNumber(input: splitted[2]) else {
             Message.getPhoneNumberError.printSelf()
             return
         }
+        let phoneNumber: String = splitted[2]
         print("입력한 정보는 \(age)세 \(name)(\(phoneNumber))입니다.")
     }
 }
