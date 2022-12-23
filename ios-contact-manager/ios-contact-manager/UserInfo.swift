@@ -7,20 +7,52 @@
 
 import Foundation
 
-struct UserInfo {
-    let name: String
-    let age: Int?
-    let phone: String?
+enum UserInfoParams {
+    case name, age, phone
     
-    init(name: String) throws {
-        guard Self.checkValidity(of: name) else {
-            throw IOError.nameError
+    var regex: String {
+        switch self {
+        case .name:
+            return "^[A-Za-z ]+$"
+        case .age:
+            return "age regex"
+        case .phone:
+            return "phone regex"
         }
     }
     
-    static func checkValidity(of item: String) {
-        
+    var error: IOError {
+        switch self {
+        case .name:
+            return IOError.nameError
+        case .age:
+            return IOError.ageError
+        case .phone:
+            return IOError.phoneError
+        }
     }
 }
 
+struct UserInfo {
+    let name: String
+    let age: String? = nil
+    let phone: String? = nil
+    
+    init(name: String) throws {
+        do {
+            self.name = try name.getInfoAfter(type: .name)
+            print(self.name)
+        } catch {
+            throw error
+        }
+         
+//        guard Self.checkValidity(of: name) else {
+//            throw IOError.nameError
+//        }
+    }
+    
+    static func checkValidity(of item: String, type: UserInfoParams) -> Bool {
+        return item ~= type.regex
+    }
+}
 
