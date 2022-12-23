@@ -30,6 +30,8 @@ class MyContactManager {
             print("number: \(number)")
             if !isIntType(age) {
                 print(Message.wrongAge)
+            } else if !validateNumberForm(number) {
+                print(Message.wrongPhoneNumber)
             }
         } else if input.isEmpty {
             print(Message.noUserInput)
@@ -41,6 +43,15 @@ class MyContactManager {
     private func isIntType(_ input: String) -> Bool {
         guard let _ = Int(input) else { return false }
         return true
+    }
+        
+    private func validateNumberForm(_ number: String) -> Bool {
+        let numberSplit = number.split(separator: "-").map { String($0) }
+        if number.count > 10 && numberSplit.count == 3 {
+            return true
+        } else {
+            return false
+        }
     }
 
     private func exitProgram() {
