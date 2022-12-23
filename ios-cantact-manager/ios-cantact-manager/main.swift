@@ -7,5 +7,5 @@
 
 import Foundation
 
-var info = ContactManageSystem()
-info.addProfile()
+var contactManage = ContactManageSystem()
+contactManage.addProfile()
