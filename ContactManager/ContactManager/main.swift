@@ -31,6 +31,10 @@ func checkSplitted(splitted: [String]) -> Bool {
     return true
 }
 
+func getName(input: String) -> String? {
+    return input
+}
+
 func getAge(input: String) -> Int? {
     guard input[input.startIndex] != "0" else {
         return nil
@@ -44,6 +48,10 @@ func getAge(input: String) -> Int? {
     return age
 }
 
+func getPhoneNumber(input: String) -> String? {
+    return input
+}
+
 func run() {
     Message.pleaseInputContactData.printSelf(terminator: "")
     if let input = readLine() {
@@ -55,11 +63,19 @@ func run() {
             Message.inputError.printSelf(terminator: "\n")
             return
         }
+        guard let name = getName(input: splitted[0]) else {
+            Message.getNameError.printSelf(terminator: "\n")
+            return
+        }
         guard let age = getAge(input: splitted[1]) else {
             Message.getAgeError.printSelf(terminator: "\n")
             return
         }
-        print(age)
+        guard let phoneNumber = getPhoneNumber(input: splitted[2]) else {
+            Message.getPhoneNumberError.printSelf(terminator: "\n")
+            return
+        }
+        print("입력한 정보는 \(age)세 \(name)(\(phoneNumber))입니다.")
     }
 }
 
