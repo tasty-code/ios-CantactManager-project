@@ -8,9 +8,9 @@
 import Foundation
 
 struct InputManager {
-    let inputInfoMessage = "연락처 정보를 입력해주세요 : "
+    private let inputInfoMessage = "연락처 정보를 입력해주세요 : "
 
-    func inputInfo() throws -> [String] {
+    func parseUserInput() throws -> [String] {
         print(inputInfoMessage, terminator: "")
         
         let input = readLine()
@@ -19,25 +19,18 @@ struct InputManager {
         
         return [splitInput[0], splitInput[1], splitInput[2]]
     }
-
-    func checkAge(_ age: String) throws -> String {
+    
+    func checkUserInput(name: String, age: String, tel: String) throws -> (String, String, String) {
         let ageRegex = "^[0-9]{1,3}$"
-        let regexTest = NSPredicate(format: "SELF MATCHES %@", ageRegex)
+        let ageRegexTest = NSPredicate(format: "SELF MATCHES %@", ageRegex)
+        guard ageRegexTest.evaluate(with: age) else { throw ValidInputError.notValidAge }
         
-        guard regexTest.evaluate(with: age) else { throw ValidInputError.notValidAge }
-        
-        return age
-    }
-
-    func checkTel(_ tel: String) throws -> String {
         guard (tel.filter { $0 == "-" }).count == 2 else { throw ValidInputError.notValidTel }
-        let tel = tel.filter { $0 != "-" }
-        
+        let filteredTel = tel.filter { $0 != "-" }
         let telRegex = "^[0-9]{9,}$"
-        let regexTest = NSPredicate(format: "SELF MATCHES %@", telRegex)
+        let telRegexTest = NSPredicate(format: "SELF MATCHES %@", telRegex)
+        guard telRegexTest.evaluate(with: filteredTel) else { throw ValidInputError.notValidTel }
         
-        guard regexTest.evaluate(with: tel) else { throw ValidInputError.notValidTel }
-        
-        return tel
+        return (name, age, tel)
     }
 }
