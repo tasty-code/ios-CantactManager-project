@@ -16,14 +16,16 @@ func split(input: String) -> [String] {
 }
 
 func getAge(input: String) -> Int? {
-    let pattern = "^[0-9]{1,3}$"
-    guard input.range(of: pattern, options: .regularExpression) != nil else {
+    guard input[input.startIndex] != "0" else {
         return nil
     }
     guard let age = Int(input) else {
         return nil
     }
-    return age == 0 ? nil : age
+    guard age > 0, age < 1000 else {
+        return nil
+    }
+    return age
 }
 
 func run() {
