@@ -12,8 +12,8 @@ enum StringLiteral {
         연락처 정보를 입력해주세요.
         """
     
-    static func infoPrint(name:String, age:Int, phone:String) -> String {
-        return "입력한 정보는 \(age)세 \(name)(\(phone)) 입니다."
+    static func infoPrint(of item: CustomStringConvertible) -> String {
+        return "입력한 정보는 \(item) 입니다."
     }
     
     static let help = """

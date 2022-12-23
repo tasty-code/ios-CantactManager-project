@@ -34,23 +34,25 @@ struct UserInfo {
     let age: Int
     let phone: String
     
-    init(name: String, age: String, phone: String) throws {
-        guard let age = Int(age),
+    init(input: InfoInput) throws {
+        guard let age = Int(input.age),
               (1...999).contains(age) else {
             throw IOError.ageError
         }
         self.age = age
-        print(self.age)
         
         do {
-            let regexName = try name.getInfoAfter(type: .name)
+            let regexName = try input.name.getInfoAfter(type: .name)
             self.name = regexName.components(separatedBy: " ").joined()
-            self.phone = try phone.getInfoAfter(type: .phone)
-            
-            print(self.name, self.phone)
+            self.phone = try input.phone.getInfoAfter(type: .phone)
         } catch {
             throw error
         }
     }
 }
 
+extension UserInfo: CustomStringConvertible {
+    var description: String {
+        return "\(self.age)세 \(self.name)(\(self.phone))"
+    }
+}

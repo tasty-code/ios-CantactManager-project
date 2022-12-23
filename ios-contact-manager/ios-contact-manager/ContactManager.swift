@@ -7,21 +7,26 @@
 
 import Foundation
 
+typealias InfoInput = (name: String, age: String, phone: String)
+
 final class ContactManager {
     static let shared = ContactManager()
     private init() { }
     
     func run() {
         do {
+            IOManager.sendOutput(type: .menu, contents: StringLiteral.start)
             let input = try IOManager.getInput()
-            let a = try parse(input)
-            print(a.age, a.name, a.phone)
+            let parsedInfoInput = try parse(input)
+            
+            let userInfo = try UserInfo(input: parsedInfoInput)
+            IOManager.sendOutput(type: .infomation, contents: StringLiteral.infoPrint(of: userInfo))
         } catch {
-            print(error.localizedDescription)
+            IOManager.sendOutput(type: .error, contents: error.localizedDescription)
         }
     }
     
-    private func parse(_ input: String) throws -> (name: String, age: String, phone: String) {
+    private func parse(_ input: String) throws -> InfoInput {
         let splited: [String]
         if input.contains(" / ") {
             splited = input.components(separatedBy: " / ")
