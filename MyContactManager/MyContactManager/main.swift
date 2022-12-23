@@ -19,7 +19,7 @@ class MyContactManager {
     }
     
     private func getUserInput() {
-        guard let userInput = readLine() else {   return }
+        guard let userInput = readLine() else { return }
         let inputData = userInput.components(separatedBy: " ").joined()
         let input = inputData.split(separator: "/").map { String($0) }
         
