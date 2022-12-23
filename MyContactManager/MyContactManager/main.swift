@@ -41,20 +41,27 @@ class MyContactManager {
     }
     
     private func vaildateAgeForm(_ age: String) -> Bool {
-        var ageString = age
-        while ageString.description.hasPrefix("0") {
-            ageString = ageString.description.trimmingCharacters(in: ["0"])
-        }
-        
-        guard let age = Int(ageString) else { return false }
-        
-        if age < 100 && age > 0 {
-            print(age)
-            return true
-        } else {
-            print(age)
+        if age.count > 2 {
             return false
         }
+        
+        if let age = formatAge(with: age) {
+            
+            if age < 100 && age > 0 {
+                return true
+            } else {
+                return false
+            }
+        }
+        return false
+    }
+    
+    private func formatAge(with age: String) -> Int? {
+        var ageStr = age
+        ageStr = ageStr.description.trimmingCharacters(in: ["0"])
+        
+        guard let ageInt = Int(ageStr) else { return nil }
+        return ageInt
     }
     
     private func validateNumberForm(_ number: String) -> Bool {
