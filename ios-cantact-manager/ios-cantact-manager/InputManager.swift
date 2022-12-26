@@ -9,6 +9,7 @@ import Foundation
 
 struct InputManager {
     private let inputInfoMessage = "연락처 정보를 입력해주세요 : "
+    private let hyphenCount = 2
 
     func parseUserInput() throws -> [String] {
         print(inputInfoMessage, terminator: "")
@@ -21,7 +22,7 @@ struct InputManager {
             $0.replacingOccurrences(of: " ", with: "")
         }
         
-        return [splitInput[0], splitInput[1], splitInput[2]]
+        return splitInput
     }
     
     func checkUserInput(name: String, age: String, tel: String) throws -> (String, String, String) {
@@ -31,7 +32,7 @@ struct InputManager {
             throw InputError.invalidAge
         }
         
-        guard (tel.filter { $0 == "-" }).count == 2 else {
+        guard (tel.filter { $0 == "-" }).count == hyphenCount else {
             throw InputError.invalidTel
         }
         let filteredTel = tel.filter { $0 != "-" }
