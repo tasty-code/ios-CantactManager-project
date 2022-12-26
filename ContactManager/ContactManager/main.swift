@@ -40,14 +40,14 @@ func getName(input: String) -> String? {
     return input.components(separatedBy: [" "]).joined()
 }
 
-func getAge(input: String) -> Int? {
+func getAge(input: String) -> UInt? {
+    if input == "0" {
+        return 0
+    }
     guard !input.hasPrefix("0") else {
         return nil
     }
-    guard let age = Int(input) else {
-        return nil
-    }
-    guard age > 0, age < 1000 else {
+    guard let age = UInt(input), age < 1000 else {
         return nil
     }
     return age
