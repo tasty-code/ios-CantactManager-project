@@ -78,5 +78,9 @@ if let input = readLine() {
     let trimNum = add[2].trimmingCharacters(in: [" "])
     
     let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
-
+    
+    if errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum){
+        isError = false
+        print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
+    }
 }
