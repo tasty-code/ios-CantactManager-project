@@ -15,19 +15,7 @@ func split(input: String) -> [String]? {
             return nil
         }
     }
-    guard checkSplitted(splitted: splitted) else {
-        return nil
-    }
     return splitted
-}
-
-func checkSplitted(splitted: [String]) -> Bool {
-    for infomation in splitted {
-        guard !infomation.hasPrefix(" "), !infomation.hasSuffix(" ") else {
-            return false
-        }
-    }
-    return true
 }
 
 func getName(input: String) -> String? {
