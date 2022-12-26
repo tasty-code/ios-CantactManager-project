@@ -63,24 +63,29 @@ func errorCheck(trimName: String, trimAge: String, trimNum: String) -> Bool {
 var isError: Bool = true
 let regex = "^[A-Za-z\\s]+$"
 
-print("")
-print("연락처 정보를 입력해주세요: ")
-
-if let input = readLine() {
-    if !(calculateSlashNum(input: input)) {
-        print("입력된 정보가 [이름]/[나이]/[전화번호] 형식인지 확인해주세요")
-    }
+while isError {
+    print("")
+    print("연락처 정보를 입력해주세요: ")
     
-    let add = input.components(separatedBy:"/")
-
-    let trimName = add[0].trimmingCharacters(in: [" "])
-    let trimAge = add[1].trimmingCharacters(in: [" "])
-    let trimNum = add[2].trimmingCharacters(in: [" "])
-    
-    let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
-    
-    if errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum){
-        isError = false
-        print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
+    if let input = readLine() {
+        if !(calculateSlashNum(input: input)) {
+            print("입력된 정보가 [이름]/[나이]/[전화번호] 형식인지 확인해주세요")
+            continue
+        }
+        
+        let add = input.components(separatedBy:"/")
+        
+        let trimName = add[0].trimmingCharacters(in: [" "])
+        let trimAge = add[1].trimmingCharacters(in: [" "])
+        let trimNum = add[2].trimmingCharacters(in: [" "])
+        
+        let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
+        
+        if errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum){
+            isError = false
+            print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
+        } else{
+            continue
+        }
     }
 }
