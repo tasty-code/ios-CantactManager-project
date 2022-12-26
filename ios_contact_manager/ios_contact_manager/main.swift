@@ -39,3 +39,8 @@ enum regularExpressionChecker: String {
     case ageChecker = "^[0-9]{1,3}$"
     case phoneNumberChecker = "^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$"
 }
+
+func checkString(string: String, type: regularExpressionChecker) -> Bool {
+    let isStringChecked = string.range(of: type.rawValue,  options: .regularExpression) != nil
+    return isStringChecked
+}
