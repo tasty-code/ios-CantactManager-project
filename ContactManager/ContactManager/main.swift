@@ -22,6 +22,9 @@ func getName(input: String) -> String? {
     guard !input.isEmpty else {
         return nil
     }
+    guard !input.hasPrefix(" "), !input.hasSuffix(" ") else {
+        return nil
+    }
     guard input.allSatisfy({$0.isLowercase || $0.isUppercase || $0 == " "}) else {
         return nil
     }

@@ -19,14 +19,17 @@ final class ContactManagerTest: XCTestCase {
         XCTAssertNil(split(input: "james/30/123-1234-1234/40"))
     }
 
-    // TODO: split에서 처리하던 앞뒤 공백을 이름, 나이, 전화번호에서 처리하도록 변경
     func test이름() {
         XCTAssertNil(getName(input: "한글의이름"))
         XCTAssertNil(getName(input: ""))
         XCTAssertEqual(getName(input: "james"), "james")
         XCTAssertEqual(getName(input: "jam  es"), "james")
+        XCTAssertNil(getName(input: " james "))
+        XCTAssertNil(getName(input: " james"))
+        XCTAssertNil(getName(input: "james "))
     }
 
+    // TODO: split에서 처리하던 앞뒤 공백을 나이, 전화번호에서 처리하도록 변경
     func test나이() {
         XCTAssertEqual(getAge(input: "000"), nil)
         XCTAssertEqual(getAge(input: "1234"), nil)
