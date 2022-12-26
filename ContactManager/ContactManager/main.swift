@@ -41,7 +41,7 @@ func getName(input: String) -> String? {
 }
 
 func getAge(input: String) -> Int? {
-    guard input.firstString != "0" else {
+    guard !input.hasPrefix("0") else {
         return nil
     }
     guard let age = Int(input) else {
