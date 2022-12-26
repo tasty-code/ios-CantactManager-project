@@ -14,8 +14,12 @@ struct InputManager {
         print(inputInfoMessage, terminator: "")
         
         let input = readLine()
-        guard let input = input, input != "" else { throw InputError.invalidInput}
-        let splitInput = input.components(separatedBy: "/").map { $0.replacingOccurrences(of: " ", with: "") }
+        guard let input = input, input != "" else {
+            throw InputError.invalidInput
+        }
+        let splitInput = input.components(separatedBy: "/").map {
+            $0.replacingOccurrences(of: " ", with: "")
+        }
         
         return [splitInput[0], splitInput[1], splitInput[2]]
     }
@@ -23,13 +27,19 @@ struct InputManager {
     func checkUserInput(name: String, age: String, tel: String) throws -> (String, String, String) {
         let ageRegex = "^[0-9]{1,3}$"
         let ageRegexTest = NSPredicate(format: "SELF MATCHES %@", ageRegex)
-        guard ageRegexTest.evaluate(with: age) else { throw InputError.invalidAge }
+        guard ageRegexTest.evaluate(with: age) else {
+            throw InputError.invalidAge
+        }
         
-        guard (tel.filter { $0 == "-" }).count == 2 else { throw InputError.invalidTel }
+        guard (tel.filter { $0 == "-" }).count == 2 else {
+            throw InputError.invalidTel
+        }
         let filteredTel = tel.filter { $0 != "-" }
         let telRegex = "^[0-9]{9,}$"
         let telRegexTest = NSPredicate(format: "SELF MATCHES %@", telRegex)
-        guard telRegexTest.evaluate(with: filteredTel) else { throw InputError.invalidTel }
+        guard telRegexTest.evaluate(with: filteredTel) else {
+            throw InputError.invalidTel
+        }
         
         return (name, age, tel)
     }
