@@ -31,12 +31,12 @@ final class ContactManager {
         if input.contains(" / ") {
             splited = input.components(separatedBy: " / ")
         } else if input.contains(" /") || input.contains("/ ") {
-            throw IOError.inputFormatError
+            throw IOError.invalidInputFormat
         } else {
             splited = input.components(separatedBy: "/")
         }
         guard splited.count == 3 else {
-            throw IOError.inputFormatError
+            throw IOError.invalidInputFormat
         }
         return (splited[0], splited[1], splited[2])
     }

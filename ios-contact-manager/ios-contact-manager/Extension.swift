@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    func getInfoAfter(type: UserInfoParams) throws -> String {
+    func getInfoAfter(type: UserInfoParameters) throws -> String {
         guard self.range(of: type.regex, options: .regularExpression) != nil else {
             throw type.error
         }

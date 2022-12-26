@@ -9,10 +9,8 @@ import Foundation
 
 enum IOError: Error {
     case emptyInput
-    case nameError
-    case ageError
-    case phoneError
-    case inputFormatError
+    case invalidProperty(parameter: UserInfoParameters)
+    case invalidInputFormat
 }
 
 extension IOError: LocalizedError {
@@ -21,13 +19,9 @@ extension IOError: LocalizedError {
         switch self {
         case .emptyInput:
             description = "아무것도 입력되지 않았습니다."
-        case .nameError:
-            description = "입력한 이름 정보가 잘못되었습니다."
-        case .ageError:
-            description = "입력한 나이 정보가 잘못되었습니다."
-        case .phoneError:
-            description = "입력한 연락처 정보가 잘못되었습니다."
-        case .inputFormatError:
+        case let .invalidProperty(parameter):
+            description = "입력한 \(parameter.rawValue) 정보가 잘못되었습니다."
+        case .invalidInputFormat:
             description = "입력 형식이 잘못되었습니다."
         }
         return "\(description) \(StringLiteral.help)"
