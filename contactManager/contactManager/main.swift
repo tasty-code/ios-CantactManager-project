@@ -65,7 +65,7 @@ let regex = "^[A-Za-z\\s]+$"
 
 while isError {
     print("")
-    print("연락처 정보를 입력해주세요: ")
+    print("연락처 정보를 입력해주세요: ", terminator: "")
     
     if let input = readLine() {
         if !(calculateSlashNum(input: input)) {
