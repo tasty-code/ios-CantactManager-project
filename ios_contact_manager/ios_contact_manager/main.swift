@@ -64,3 +64,10 @@ func verifyInput(input: Array<String>) {
         return
     }
 }
+
+func addNewUser() {
+    if checkedAge > 0, checkedName != "", checkedPhoneNumber != "" {
+        print("입력한 정보는 \(checkedAge)세 \(checkedName)(\(checkedPhoneNumber))입니다.")
+        allUsersData.append(UserInfo(name: checkedName, age: checkedAge, phoneNumbers: [checkedPhoneNumber]))
+    }
+}
