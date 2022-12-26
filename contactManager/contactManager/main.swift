@@ -17,6 +17,20 @@ func checkNameError(name: String) -> Bool{
     }
 }
 
+func checkAgeError(age: String) -> Bool{
+    if !age.allSatisfy({ $0.isNumber}){
+        print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
+        return false
+    } else if let changeToInt = Int(age) {
+        if changeToInt >= 1000 {
+            print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
+            print("숫자는 세자리수 이하로 입력해주세요.")
+            return false
+        }
+    }
+    return true
+}
+
 var isError: Bool = true
 let regex = "^[A-Za-z\\s]+$"
 
