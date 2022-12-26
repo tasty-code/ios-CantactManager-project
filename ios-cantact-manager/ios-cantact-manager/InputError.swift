@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum ValidInputError: Error {
-    case notValidAge
-    case notValidTel
-    case notValidInput
+enum InputError: Error {
+    case invalidAge
+    case invalidTel
+    case invalidInput
 }

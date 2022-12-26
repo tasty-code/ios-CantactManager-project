@@ -18,11 +18,11 @@ struct ContactManageSystem {
             let profile = Profile(name: name, age: age, tel: tel)
             contactList.updateValue(profile, forKey: name)
             print("입력한 정보는 \(age)세 \(name)(\(tel))입니다.")
-        } catch ValidInputError.notValidInput {
+        } catch InputError.invalidInput {
             print("입력한 정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
-        } catch ValidInputError.notValidAge {
+        } catch InputError.invalidAge {
             print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
-        } catch ValidInputError.notValidTel {
+        } catch InputError.invalidTel {
             print("입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
         } catch {
             print("입력한 정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
