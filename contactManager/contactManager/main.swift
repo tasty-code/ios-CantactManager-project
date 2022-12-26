@@ -31,6 +31,13 @@ func checkAgeError(age: String) -> Bool{
     return true
 }
 
+func calculateHyphenNum(input: String) -> Bool {
+    if (input.filter { $0 == "-" }.count != 2) {
+        return false
+    }
+    return true
+}
+
 var isError: Bool = true
 let regex = "^[A-Za-z\\s]+$"
 
