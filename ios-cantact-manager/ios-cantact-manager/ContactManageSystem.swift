@@ -14,7 +14,8 @@ struct ContactManageSystem {
     mutating func addProfile() {
         do {
             let inputArray = try inputManager.parseUserInput()
-            let (name, age, tel) = try inputManager.checkUserInput(name: inputArray[0], age: inputArray[1], tel: inputArray[2])
+            let (name, age ,tel) = (inputArray[0], inputArray[1], inputArray[2])
+            try inputManager.checkUserInput(name, age, tel)
             let profile = Profile(name: name, age: age, tel: tel)
             contactList.updateValue(profile, forKey: name)
             print("입력한 정보는 \(age)세 \(name)(\(tel))입니다.")

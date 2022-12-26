@@ -29,7 +29,7 @@ struct InputManager {
         return splitInput
     }
     
-    func checkUserInput(name: String, age: String, tel: String) throws -> (String, String, String) {
+    func checkUserInput(_ name: String, _ age: String, _ tel: String) throws {
         let ageRegex = "^[0-9]{1,3}$"
         let ageRegexTest = NSPredicate(format: "SELF MATCHES %@", ageRegex)
         guard ageRegexTest.evaluate(with: age) else {
@@ -45,7 +45,5 @@ struct InputManager {
         guard telRegexTest.evaluate(with: filteredTel) else {
             throw InputError.invalidTel
         }
-        
-        return (name, age, tel)
     }
 }
