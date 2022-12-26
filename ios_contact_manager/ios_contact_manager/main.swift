@@ -21,7 +21,7 @@ var transformedInput: [String] = []
 var checkedName: String = ""
 
 var checkedAge: Int = 0
-벤
+
 var checkedPhoneNumber: String = ""
 
 
@@ -74,3 +74,8 @@ func addNewUser() {
         allUsersData.append(UserInfo(name: checkedName, age: checkedAge, phoneNumbers: [checkedPhoneNumber]))
     }
 }
+
+inputNewUser()
+transform(input: validInput)
+verifyInput(input: transformedInput)
+addNewUser()
