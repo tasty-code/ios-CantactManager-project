@@ -15,7 +15,8 @@ struct ContactManageSystem {
         do {
             let inputArray = try inputManager.parseUserInput()
             let (name, age, tel) = try inputManager.checkUserInput(name: inputArray[0], age: inputArray[1], tel: inputArray[2])
-            contactList.updateValue(Profile(name: name, age: age, tel: tel), forKey: name)
+            let profile = Profile(name: name, age: age, tel: tel)
+            contactList.updateValue(profile, forKey: name)
             print("입력한 정보는 \(age)세 \(name)(\(tel))입니다.")
         } catch ValidInputError.notValidInput {
             print("입력한 정보가 잘못되었습니다. 입력 형식을 확인해주세요.")

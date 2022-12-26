@@ -11,10 +11,4 @@ struct Profile {
     var name: String
     var age: String
     var tel: String
-        
-    init(name: String, age: String, tel: String) {
-        self.name = name
-        self.age = age
-        self.tel = tel
-    }
 }
