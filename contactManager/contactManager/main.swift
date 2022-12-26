@@ -7,6 +7,16 @@ func calculateSlashNum(input: String) -> Bool {
     return true
 }
 
+func checkNameError(name: String) -> Bool{
+    if name.range(of: regex, options: .regularExpression) == nil {
+        print("이름이 잘못되었습니다.")
+        print(name)
+        return false
+    }else {
+        return true
+    }
+}
+
 var isError: Bool = true
 let regex = "^[A-Za-z\\s]+$"
 
