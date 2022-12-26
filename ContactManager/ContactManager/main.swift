@@ -63,19 +63,19 @@ func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
 func run() {
     Message.pleaseInputContactData.printSelf()
     if let input = readLine() {
-        guard false == input.isEmpty else {
+    guard !input.isEmpty else {
             Message.inputEmptyError.printSelf()
             return
         }
-        guard let splitted = split(input: input) else {
+        guard let splitted: [String] = split(input: input) else {
             Message.inputError.printSelf()
             return
         }
-        guard let name = getName(input: splitted[0]) else {
+        guard let name: String = getName(input: splitted[0]) else {
             Message.getNameError.printSelf()
             return
         }
-        guard let age = getAge(input: splitted[1]) else {
+        guard let age: UInt = getAge(input: splitted[1]) else {
             Message.getAgeError.printSelf()
             return
         }
