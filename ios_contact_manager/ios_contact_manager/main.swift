@@ -44,3 +44,23 @@ func checkString(string: String, type: regularExpressionChecker) -> Bool {
     let isStringChecked = string.range(of: type.rawValue,  options: .regularExpression) != nil
     return isStringChecked
 }
+
+func verifyInput(input: Array<String>) {
+    if checkString(string: transformedInput[0], type: regularExpressionChecker.nameChecker) {
+        checkedName = transformedInput[0]
+    }
+    
+    if checkString(string: transformedInput[1], type: regularExpressionChecker.ageChecker) {
+        checkedAge = Int(transformedInput[1]) ?? -1
+    } else {
+        print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요. ")
+        return
+    }
+    
+    if checkString(string: transformedInput[2], type: regularExpressionChecker.phoneNumberChecker) {
+        checkedPhoneNumber = transformedInput[2]
+    } else {
+        print("입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요. ")
+        return
+    }
+}
