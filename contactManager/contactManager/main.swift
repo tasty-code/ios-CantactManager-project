@@ -51,6 +51,15 @@ func checkPhoneNumError(num: String) -> Bool {
     }
 }
 
+func errorCheck(trimName: String, trimAge: String, trimNum: String) -> Bool {
+    
+    if (checkNameError(name: trimName) == false || checkAgeError(age: trimAge) == false || checkPhoneNumError(num: trimNum) == false) {
+        return false
+    } else {
+        return true
+    }
+}
+
 var isError: Bool = true
 let regex = "^[A-Za-z\\s]+$"
 
