@@ -29,3 +29,7 @@ func transform(input: String) {
     
     transformedInput = splitedInput
 }
+
+var checkedName: String = ""
+var checkedAge: Int = 0
+var checkedPhoneNumber: String = ""
