@@ -23,4 +23,7 @@ if let input = readLine() {
     let trimName = add[0].trimmingCharacters(in: [" "])
     let trimAge = add[1].trimmingCharacters(in: [" "])
     let trimNum = add[2].trimmingCharacters(in: [" "])
+    
+    let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
+
 }
