@@ -42,8 +42,8 @@ final class ContactManagerTest: XCTestCase {
         XCTAssertEqual(getAge(input: "0"), 0)
     }
 
-    // TODO: split에서 처리하던 앞뒤 공백을 전화번호에서 처리하도록 변경
     func test전화번호() {
+        XCTAssertTrue(isValidPhoneNumber(input: "05-434-2334"))
         XCTAssertFalse(isValidPhoneNumber(input: "054342334"))
         XCTAssertFalse(isValidPhoneNumber(input: "05-4342334"))
         XCTAssertFalse(isValidPhoneNumber(input: "05-4342334-"))
@@ -55,6 +55,9 @@ final class ContactManagerTest: XCTestCase {
         XCTAssertFalse(isValidPhoneNumber(input: "james"))
         XCTAssertFalse(isValidPhoneNumber(input: "전화번호부"))
         XCTAssertFalse(isValidPhoneNumber(input: ""))
+        XCTAssertFalse(isValidPhoneNumber(input: " 05-434-2334"))
+        XCTAssertFalse(isValidPhoneNumber(input: "05-434-2334 "))
+        XCTAssertFalse(isValidPhoneNumber(input: " 05-434-2334 "))
     }
 
     func testPerformanceExample() throws {
