@@ -23,7 +23,7 @@ func split(input: String) -> [String]? {
 
 func checkSplitted(splitted: [String]) -> Bool {
     for infomation in splitted {
-        guard infomation.firstString != " ", infomation.lastString != " " else {
+        guard !infomation.hasPrefix(" "), !infomation.hasSuffix(" ") else {
             return false
         }
     }
@@ -98,21 +98,3 @@ func run() {
 }
 
 run()
-
-extension String {
-    var lastString: String {
-        guard !self.isEmpty else {
-            return self
-        }
-        let lastIndex = self.index(before: self.endIndex)
-        return String(self[lastIndex])
-    }
-
-    var firstString: String {
-        guard !self.isEmpty else {
-            return self
-        }
-        let firstIndex = self.startIndex
-        return String(self[firstIndex])
-    }
-}
