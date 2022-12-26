@@ -9,6 +9,7 @@ import Foundation
 
 struct InputManager {
     private let inputInfoMessage = "연락처 정보를 입력해주세요 : "
+    private let splitInputCount = 3
     private let hyphenCount = 2
 
     func parseUserInput() throws -> [String] {
@@ -20,6 +21,9 @@ struct InputManager {
         }
         let splitInput = input.components(separatedBy: "/").map {
             $0.replacingOccurrences(of: " ", with: "")
+        }
+        guard splitInput.count == splitInputCount else {
+            throw InputError.invalidInput
         }
         
         return splitInput
