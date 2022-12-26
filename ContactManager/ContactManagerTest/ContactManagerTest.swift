@@ -43,21 +43,21 @@ final class ContactManagerTest: XCTestCase {
     }
 
     func test전화번호() {
-        XCTAssertTrue(isValidPhoneNumber(input: "05-434-2334"))
-        XCTAssertFalse(isValidPhoneNumber(input: "054342334"))
-        XCTAssertFalse(isValidPhoneNumber(input: "05-4342334"))
-        XCTAssertFalse(isValidPhoneNumber(input: "05-4342334-"))
-        XCTAssertFalse(isValidPhoneNumber(input: "-05434-2334"))
-        XCTAssertFalse(isValidPhoneNumber(input: "05434--2334"))
-        XCTAssertFalse(isValidPhoneNumber(input: "05-434-23-34"))
-        XCTAssertFalse(isValidPhoneNumber(input: "05-434-234"))
-        XCTAssertFalse(isValidPhoneNumber(input: "05 434 2334"))
-        XCTAssertFalse(isValidPhoneNumber(input: "james"))
-        XCTAssertFalse(isValidPhoneNumber(input: "전화번호부"))
-        XCTAssertFalse(isValidPhoneNumber(input: ""))
-        XCTAssertFalse(isValidPhoneNumber(input: " 05-434-2334"))
-        XCTAssertFalse(isValidPhoneNumber(input: "05-434-2334 "))
-        XCTAssertFalse(isValidPhoneNumber(input: " 05-434-2334 "))
+        XCTAssertTrue(isValidPhoneNumber("05-434-2334"))
+        XCTAssertFalse(isValidPhoneNumber("054342334"))
+        XCTAssertFalse(isValidPhoneNumber("05-4342334"))
+        XCTAssertFalse(isValidPhoneNumber("05-4342334-"))
+        XCTAssertFalse(isValidPhoneNumber("-05434-2334"))
+        XCTAssertFalse(isValidPhoneNumber("05434--2334"))
+        XCTAssertFalse(isValidPhoneNumber("05-434-23-34"))
+        XCTAssertFalse(isValidPhoneNumber("05-434-234"))
+        XCTAssertFalse(isValidPhoneNumber("05 434 2334"))
+        XCTAssertFalse(isValidPhoneNumber("james"))
+        XCTAssertFalse(isValidPhoneNumber("전화번호부"))
+        XCTAssertFalse(isValidPhoneNumber(""))
+        XCTAssertFalse(isValidPhoneNumber(" 05-434-2334"))
+        XCTAssertFalse(isValidPhoneNumber("05-434-2334 "))
+        XCTAssertFalse(isValidPhoneNumber(" 05-434-2334 "))
     }
 
     func testPerformanceExample() throws {

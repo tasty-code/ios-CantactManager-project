@@ -44,18 +44,18 @@ func getAge(input: String) -> UInt? {
     return age
 }
 
-func isValidPhoneNumber(input: String) -> Bool {
-    let phoneNumber = input.components(separatedBy: ["-"])
-    guard phoneNumber.count == 3 else {
+func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
+    guard phoneNumber.count > 10 else {
         return false
     }
-    for digit in phoneNumber {
+    let digits = phoneNumber.components(separatedBy: ["-"])
+    guard digits.count == 3 else {
+        return false
+    }
+    for digit in digits {
         guard Int(digit) != nil else {
             return false
         }
-    }
-    guard input.count > 10 else {
-        return false
     }
     return true
 }
@@ -79,7 +79,7 @@ func run() {
             Message.getAgeError.printSelf()
             return
         }
-        guard isValidPhoneNumber(input: splitted[2]) else {
+        guard isValidPhoneNumber(splitted[2]) else {
             Message.getPhoneNumberError.printSelf()
             return
         }
