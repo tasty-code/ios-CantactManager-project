@@ -33,3 +33,9 @@ func transform(input: String) {
 var checkedName: String = ""
 var checkedAge: Int = 0
 var checkedPhoneNumber: String = ""
+
+enum regularExpressionChecker: String {
+    case nameChecker = "^[a-zA-Z]*$"
+    case ageChecker = "^[0-9]{1,3}$"
+    case phoneNumberChecker = "^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$"
+}
