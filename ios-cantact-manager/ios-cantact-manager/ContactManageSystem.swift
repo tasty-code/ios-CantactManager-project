@@ -9,9 +9,8 @@ import Foundation
 
 struct ContactManageSystem {
     let inputManager = InputManager()
-    var contactList = [String: Profile]()
-    
-    static var loopStarter = true
+    var contactList = [Profile]()
+    var loopStarter = true
     
     enum Menu: String {
         case addProfile = "1"
@@ -26,10 +25,10 @@ struct ContactManageSystem {
     }
     
     mutating func startProgram(input: String) {
-        Self.loopStarter = true
         switch Menu(rawValue: input) {
         case .addProfile:
             addProfile()
+            print(contactList)
         case .watchList:
             watchList()
         case .searchList:
@@ -37,24 +36,23 @@ struct ContactManageSystem {
         case .stop:
             stop()
         default:
-            break
+            inputManager.printWrongInput()
         }
         print()
     }
     
     static func start() {
-        while Self.loopStarter {
-            var contactManageSystem = ContactManageSystem()
-            
+        var contactManageSystem = ContactManageSystem()
+        
+        while contactManageSystem.loopStarter {
             do {
                 let input = try contactManageSystem.receiveMenu()
                 contactManageSystem.startProgram(input: input)
             } catch {
-                print("선택이 잘못되었습니다 확인 후 다시 입력해주세요.")
+                contactManageSystem.inputManager.printWrongInput()
             }
         }
     }
-
     
     mutating func addProfile() {
         do {
@@ -62,7 +60,7 @@ struct ContactManageSystem {
             let (name, age ,tel) = (inputArray[0], inputArray[1], inputArray[2])
             try inputManager.checkUserInput(name, age, tel)
             let profile = Profile(name: name, age: age, tel: tel)
-            contactList.updateValue(profile, forKey: name)
+            contactList.append(profile)
             print("입력한 정보는 \(age)세 \(name)(\(tel))입니다.")
         } catch InputError.invalidInput {
             print("입력한 정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
@@ -84,7 +82,7 @@ struct ContactManageSystem {
     }
     
     mutating func stop() {
-        print("\n[프로그램 종료]")
-        Self.loopStarter = false
+        print("\n[프로그램 종료]", terminator: "")
+        loopStarter = false
     }
 }

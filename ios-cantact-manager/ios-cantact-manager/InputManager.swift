@@ -10,6 +10,7 @@ import Foundation
 struct InputManager {
     private let inputInfoMessage = "연락처 정보를 입력해주세요 : "
     private let inputMenuMessage = "1) 연락처 추가 2) 연락처 목록보기 3) 연락처 검색 x) 종료\n메뉴를 선택해주세요 : "
+    private let wrongInput = "선택이 잘못되었습니다 확인 후 다시 입력해주세요."
     private let splitInputCount = 3
     private let hyphenCount = 2
     
@@ -55,5 +56,9 @@ struct InputManager {
         guard telRegexTest.evaluate(with: filteredTel) else {
             throw InputError.invalidTel
         }
+    }
+    
+    func printWrongInput() {
+        print(wrongInput)
     }
 }
