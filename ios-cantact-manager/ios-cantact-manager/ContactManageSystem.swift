@@ -18,9 +18,25 @@ struct ContactManageSystem {
         case stop = "x"
     }
     
-    func receiveMenu() {
+    func receiveMenu() throws -> String {
+        let menuInput = try inputManager.menuInput()
+        return menuInput
+    }
+    
+    mutating func startProgram(input: String) {
         do {
-            let menuInput = try inputManager.menuInput()
+            switch Menu(rawValue: input) {
+            case .addProfile:
+                self.addProfile()
+            case .watchList:
+                self.watchList()
+            case .searchList:
+                self.searchList()
+            case .stop:
+                self.stop()
+            case .none:
+                print("선택이 잘못되었습니다 확인 후 다시 입력해주세요.")
+            }
         } catch {
             print(error)
         }
@@ -43,5 +59,17 @@ struct ContactManageSystem {
         } catch {
             print("입력한 정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
         }
+    }
+    
+    func watchList() {
+        
+    }
+    
+    func searchList() {
+        
+    }
+    
+    func stop() {
+        
     }
 }
