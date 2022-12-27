@@ -11,6 +11,14 @@ struct ContactManageSystem {
     let inputManager = InputManager()
     var contactList = [String: Profile]()
     
+    func receiveMenu() {
+        do {
+            let menuInput = try inputManager.menuInput()
+        } catch {
+            print(error)
+        }
+    }
+    
     mutating func addProfile() {
         do {
             let inputArray = try inputManager.parseUserInput()
