@@ -37,6 +37,7 @@ struct ContactManageSystem {
     func receiveMenu() throws -> String {
         outputManager.printInputMenu()
         let menuInput = try inputManager.menuInput()
+        
         return menuInput
     }
     

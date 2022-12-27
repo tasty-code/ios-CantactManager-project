@@ -17,22 +17,23 @@ struct InputManager {
         guard let input = input else {
             throw InputError.invalidInput
         }
+        
         return input
     }
     
     func parseUserInput() throws -> [String] {
-
-        
         let input = readLine()
         guard let input = input, input != "" else {
             throw InputError.invalidInput
         }
+        
         let splitInput = input.components(separatedBy: "/").map {
             $0.replacingOccurrences(of: " ", with: "")
         }
         guard splitInput.count == splitInputCount else {
             throw InputError.invalidInput
         }
+        
         return splitInput
     }
     
