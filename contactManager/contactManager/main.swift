@@ -17,14 +17,13 @@ func checkNameError(name: String) -> Bool{
 }
 
 func checkAgeError(age: String) -> Bool{
-    if !age.allSatisfy({ $0.isNumber}){
+    guard age.allSatisfy({ $0.isNumber}) else {
         print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
         return false
-    } else if let changeToInt = Int(age) {
-        if changeToInt >= 1000 {
-            print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
-            return false
-        }
+    }
+    guard let changeToInt = Int(age), changeToInt <= 1000 else {
+        print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
+        return false
     }
     return true
 }
