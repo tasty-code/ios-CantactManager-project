@@ -8,13 +8,6 @@
 import Foundation
 
 extension String {
-    func matches(InfoType: UserInfoParameters) throws -> String {
-        guard self ~= InfoType.regex else {
-            throw InfoType.error
-        }
-        return self
-    }
-    
     static func ~= (_ lhs: String, _ rhs: String) -> Bool {
         return lhs.range(of: rhs, options: .regularExpression) != nil
     }

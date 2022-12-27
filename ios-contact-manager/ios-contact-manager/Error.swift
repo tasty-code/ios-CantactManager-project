@@ -14,7 +14,7 @@ enum IOError: Error {
 }
 
 extension IOError: LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         let description:String
         switch self {
         case .emptyInput:

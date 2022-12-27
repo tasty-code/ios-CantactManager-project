@@ -29,12 +29,10 @@ final class ContactManager {
     }
     
     private func parse(_ input: String) throws -> InfoInput {
-        if input ~= inputPattern {
-            let splitedInput = input.components(separatedBy: "/").map {$0.trimmingCharacters(in: .whitespaces)}
-            return (name: splitedInput[0], age: splitedInput[1], phone: splitedInput[2])
-        } else {
+        guard input ~= inputPattern else {
             throw IOError.invalidInputFormat
         }
+        let splitedInput = input.components(separatedBy: "/").map {$0.trimmingCharacters(in: .whitespaces)}
+        return (name: splitedInput[0], age: splitedInput[1], phone: splitedInput[2])
     }
-    
 }
