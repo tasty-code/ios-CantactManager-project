@@ -13,14 +13,18 @@ final class MyContactManager {
     
     func runProgram() {
         while isProgramRun() {
-            print(Messages.greeting.rawValue, terminator: " ")
+            printGreeting()
             let userInput = getUserInput()
-            let validInput = setValidInput(userInput: userInput)
+            let validInput = checkValidInput(userInput: userInput)
             
             if let description = inputDescription(of: validInput) {
                 print(description)
             }
         }
+    }
+    
+    private func printGreeting() {
+        print(Messages.greeting.rawValue, terminator: " ")
     }
     
     private func trimming(of str:String) -> [String] {
@@ -31,11 +35,10 @@ final class MyContactManager {
     
     private func getUserInput() -> [String]? {
         guard let userInput = readLine() else { return nil }
-        
         return trimming(of: userInput)
     }
     
-    private func setValidInput(userInput: [String]?) -> [String]? {
+    private func checkValidInput(userInput: [String]?) -> [String]? {
         
         var validInput = userInput
         
@@ -68,13 +71,11 @@ final class MyContactManager {
         return String(ageInt)
     }
     
-    private func getValidNumber(_ number: String) throws -> String{
-        
+    private func getValidNumber(_ number: String) throws -> String {
         let numberSplit = number.split(separator: "-").map { String($0) }
         if number.count < 10 || numberSplit.count < 3 {
             throw Errors.wrongPhoneNumber
         }
-        
         return number
     }
     
