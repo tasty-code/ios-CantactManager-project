@@ -7,84 +7,77 @@
 
 import Foundation
 
-func split(input: String) -> [String]? {
+func split(input: String) throws -> (String, String, String) {
     var splitted = input.components(separatedBy: " / ")
     if splitted.count != 3 {
         splitted = input.components(separatedBy: "/")
         if splitted.count != 3 {
-            return nil
+            throw ContactManagerError.invalidInput
         }
     }
-    return splitted
+    return (splitted[0], splitted[1], splitted[2])
 }
 
-func getName(input: String) -> String? {
+func getName(input: String) throws -> String {
     guard !input.isEmpty else {
-        return nil
+        throw ContactManagerError.invalidName
     }
     guard !input.hasPrefix(" "), !input.hasSuffix(" ") else {
-        return nil
+        throw ContactManagerError.invalidName
     }
     guard input.allSatisfy({$0.isLowercase || $0.isUppercase || $0 == " "}) else {
-        return nil
+        throw ContactManagerError.invalidName
     }
     return input.components(separatedBy: [" "]).joined()
 }
 
-func getAge(input: String) -> UInt? {
+func getAge(input: String) throws -> UInt {
     if input == "0" {
         return 0
     }
     guard !input.hasPrefix("0") else {
-        return nil
+        throw ContactManagerError.invalidAge
     }
     guard let age = UInt(input), age < 1000 else {
-        return nil
+        throw ContactManagerError.invalidAge
     }
     return age
 }
 
-func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
+func isValidPhoneNumber(_ phoneNumber: String) throws {
     guard phoneNumber.count > 10 else {
-        return false
+        throw ContactManagerError.invalidPhoneNumber
     }
     let digits = phoneNumber.components(separatedBy: ["-"])
     guard digits.count == 3 else {
-        return false
+        throw ContactManagerError.invalidPhoneNumber
     }
     for digit in digits {
         guard Int(digit) != nil else {
-            return false
+            throw ContactManagerError.invalidPhoneNumber
         }
     }
-    return true
+}
+
+func getLine(messageType: Message) throws -> String {
+    messageType.printSelf()
+    guard let input = readLine(), !input.isEmpty else {
+        throw ContactManagerError.emptyInput
+    }
+    return input
 }
 
 func run() {
-    Message.pleaseInputContactData.printSelf()
-    if let input = readLine() {
-    guard !input.isEmpty else {
-            Message.inputEmptyError.printSelf()
-            return
-        }
-        guard let splitted: [String] = split(input: input) else {
-            Message.inputError.printSelf()
-            return
-        }
-        guard let name: String = getName(input: splitted[0]) else {
-            Message.getNameError.printSelf()
-            return
-        }
-        guard let age: UInt = getAge(input: splitted[1]) else {
-            Message.getAgeError.printSelf()
-            return
-        }
-        guard isValidPhoneNumber(splitted[2]) else {
-            Message.getPhoneNumberError.printSelf()
-            return
-        }
-        let phoneNumber: String = splitted[2]
+    do {
+        let input: String = try getLine(messageType: .pleaseInputContactData)
+        let raw: (name: String, age: String, phoneNumber: String) = try split(input: input)
+        let name: String = try getName(input: raw.name)
+        let age: UInt = try getAge(input: raw.age)
+        try isValidPhoneNumber(raw.phoneNumber)
+        let phoneNumber: String = raw.phoneNumber
         print("입력한 정보는 \(age)세 \(name)(\(phoneNumber))입니다.")
+    } catch {
+        print(error.localizedDescription)
     }
 }
 

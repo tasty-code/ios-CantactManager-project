@@ -12,6 +12,9 @@
 		90D3F1DC2954178900CEA3F8 /* ContactManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3F1DB2954178900CEA3F8 /* ContactManagerTest.swift */; };
 		90D3F1E0295417E800CEA3F8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3F1992952D18800CEA3F8 /* main.swift */; };
 		90D3F1E1295417EB00CEA3F8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3F1A02952DA1800CEA3F8 /* Message.swift */; };
+		BFCB3448295AC82D00B5C55C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCB3447295AC82D00B5C55C /* Error.swift */; };
+		BFCB3449295AC82D00B5C55C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCB3447295AC82D00B5C55C /* Error.swift */; };
+		BFCB344D295ACFC100B5C55C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BFCB344C295ACFC100B5C55C /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +35,8 @@
 		90D3F1A02952DA1800CEA3F8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		90D3F1D92954178900CEA3F8 /* ContactManagerTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactManagerTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D3F1DB2954178900CEA3F8 /* ContactManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManagerTest.swift; sourceTree = "<group>"; };
+		BFCB3447295AC82D00B5C55C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		BFCB344C295ACFC100B5C55C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +60,7 @@
 		90D3F18D2952D18800CEA3F8 = {
 			isa = PBXGroup;
 			children = (
+				BFCB344C295ACFC100B5C55C /* .swiftlint.yml */,
 				90D3F1982952D18800CEA3F8 /* ContactManager */,
 				90D3F1DA2954178900CEA3F8 /* ContactManagerTest */,
 				90D3F1972952D18800CEA3F8 /* Products */,
@@ -75,6 +81,7 @@
 			children = (
 				90D3F1992952D18800CEA3F8 /* main.swift */,
 				90D3F1A02952DA1800CEA3F8 /* Message.swift */,
+				BFCB3447295AC82D00B5C55C /* Error.swift */,
 			);
 			path = ContactManager;
 			sourceTree = "<group>";
@@ -167,6 +174,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCB344D295ACFC100B5C55C /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90D3F19A2952D18800CEA3F8 /* main.swift in Sources */,
+				BFCB3448295AC82D00B5C55C /* Error.swift in Sources */,
 				90D3F1A12952DA1800CEA3F8 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCB3449295AC82D00B5C55C /* Error.swift in Sources */,
 				90D3F1E1295417EB00CEA3F8 /* Message.swift in Sources */,
 				90D3F1E0295417E800CEA3F8 /* main.swift in Sources */,
 				90D3F1DC2954178900CEA3F8 /* ContactManagerTest.swift in Sources */,
