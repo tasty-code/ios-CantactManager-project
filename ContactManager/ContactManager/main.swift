@@ -15,7 +15,10 @@ func split(input: String) throws -> (String, String, String) {
             throw ContactManagerError.invalidInput
         }
     }
-    return (splitted[0], splitted[1], splitted[2])
+    let indexOfName = 0
+    let indexOfAge = 1
+    let indexOfPhoneNumber = 2
+    return (splitted[indexOfName], splitted[indexOfAge], splitted[indexOfPhoneNumber])
 }
 
 func getName(input: String) throws -> String {
