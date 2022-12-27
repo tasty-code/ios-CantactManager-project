@@ -19,7 +19,7 @@ struct OutputManager {
     func printInputInfo() {
         print(inputInfoMessage, terminator: "")
     }
-    
+
     func printInputMenu() {
         print(inputMenuMessage, terminator: "")
     }

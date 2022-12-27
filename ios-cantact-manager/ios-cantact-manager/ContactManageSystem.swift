@@ -20,6 +20,20 @@ struct ContactManageSystem {
         case stop = "x"
     }
     
+    static func start() {
+        var contactManageSystem = ContactManageSystem()
+        
+        while contactManageSystem.repetition {
+            do {
+                let menuInput = try contactManageSystem.receiveMenu()
+                contactManageSystem.pipeInMenu(input: menuInput)
+                print()
+            } catch {
+                contactManageSystem.outputManager.printInvalidMenu()
+            }
+        }
+    }
+    
     func receiveMenu() throws -> String {
         outputManager.printInputMenu()
         let menuInput = try inputManager.menuInput()
@@ -38,20 +52,6 @@ struct ContactManageSystem {
             stop()
         default:
             outputManager.printInvalidMenu()
-        }
-    }
-    
-    static func start() {
-        var contactManageSystem = ContactManageSystem()
-        
-        while contactManageSystem.repetition {
-            do {
-                let menuInput = try contactManageSystem.receiveMenu()
-                contactManageSystem.pipeInMenu(input: menuInput)
-                print()
-            } catch {
-                contactManageSystem.outputManager.printInvalidMenu()
-            }
         }
     }
     
