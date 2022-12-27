@@ -64,7 +64,8 @@ while repeatLoop {
     print("")
     print("연락처 정보를 입력해주세요: ", terminator: "")
     
-    guard let input = readLine() else {
+    guard let input = readLine(), input != "" else {
+        print("아무것도 입력되지 않았습니다. 입력 형식을 확인해주세요.")
         continue
     }
 
