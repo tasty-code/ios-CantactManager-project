@@ -9,9 +9,19 @@ import Foundation
 
 struct InputManager {
     private let inputInfoMessage = "연락처 정보를 입력해주세요 : "
+    private let inputMenuMessage = "1) 연락처 추가 2) 연락처 목록보기 3) 연락처 검색 x) 종료\n메뉴를 선택해주세요 : "
     private let splitInputCount = 3
     private let hyphenCount = 2
 
+    func menuInput() throws -> String {
+        print(inputMenuMessage, terminator: "")
+        
+        let input = readLine()
+        guard let input = input else {
+            throw InputError.invalidInput
+        }
+        return input
+    }
     func parseUserInput() throws -> [String] {
         print(inputInfoMessage, terminator: "")
         
