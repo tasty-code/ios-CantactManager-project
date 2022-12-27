@@ -64,25 +64,27 @@ while repeatLoop {
     print("")
     print("연락처 정보를 입력해주세요: ", terminator: "")
     
-    if let input = readLine() {
-        if !(validateSlashInput(input: input)) {
-            print("입력된 정보가 [이름]/[나이]/[전화번호] 형식인지 확인해주세요")
-            continue
-        }
-        
-        let seperatedInput = input.components(separatedBy:"/")
-        
-        let trimName = seperatedInput[0].trimmingCharacters(in: [" "])
-        let trimAge = seperatedInput[1].trimmingCharacters(in: [" "])
-        let trimNum = seperatedInput[2].trimmingCharacters(in: [" "])
-        
-        let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
-        
-        if errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum){
-            repeatLoop = false
-            print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
-        } else{
-            continue
-        }
+    guard let input = readLine() else {
+        continue
+    }
+
+    if !(validateSlashInput(input: input)) {
+        print("입력된 정보가 [이름]/[나이]/[전화번호] 형식인지 확인해주세요")
+        continue
+    }
+    
+    let seperatedInput = input.components(separatedBy:"/")
+    
+    let trimName = seperatedInput[0].trimmingCharacters(in: [" "])
+    let trimAge = seperatedInput[1].trimmingCharacters(in: [" "])
+    let trimNum = seperatedInput[2].trimmingCharacters(in: [" "])
+    
+    let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
+    
+    if errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum){
+        repeatLoop = false
+        print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
+    } else {
+        continue
     }
 }
