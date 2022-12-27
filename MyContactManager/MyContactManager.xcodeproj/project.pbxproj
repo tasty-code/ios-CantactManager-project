@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8E191A962952A9AE0043ABBB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E191A952952A9AE0043ABBB /* main.swift */; };
-		8E191A9E2952DB370043ABBB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E191A9D2952DB370043ABBB /* Message.swift */; };
+		8E191A9E2952DB370043ABBB /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E191A9D2952DB370043ABBB /* Messages.swift */; };
 		F124EE5B295991320051533A /* MyContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F124EE5A295991320051533A /* MyContactManager.swift */; };
 		F132887F2953E06600535A23 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132887E2953E06600535A23 /* Person.swift */; };
+		F1F71BAA295A78D00071220F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F71BA9295A78D00071220F /* Constants.swift */; };
+		F1F71BAC295A791E0071220F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F71BAB295A791E0071220F /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,9 +30,11 @@
 /* Begin PBXFileReference section */
 		8E191A922952A9AE0043ABBB /* MyContactManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MyContactManager; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E191A952952A9AE0043ABBB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		8E191A9D2952DB370043ABBB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8E191A9D2952DB370043ABBB /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		F124EE5A295991320051533A /* MyContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactManager.swift; sourceTree = "<group>"; };
 		F132887E2953E06600535A23 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		F1F71BA9295A78D00071220F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F1F71BAB295A791E0071220F /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +67,7 @@
 		8E191A942952A9AE0043ABBB /* MyContactManager */ = {
 			isa = PBXGroup;
 			children = (
-				8E191A9C2952DB250043ABBB /* Literals */,
+				8E191A9C2952DB250043ABBB /* Enum */,
 				F13288802953E06F00535A23 /* Model */,
 				F124EE5A295991320051533A /* MyContactManager.swift */,
 				8E191A952952A9AE0043ABBB /* main.swift */,
@@ -71,12 +75,14 @@
 			path = MyContactManager;
 			sourceTree = "<group>";
 		};
-		8E191A9C2952DB250043ABBB /* Literals */ = {
+		8E191A9C2952DB250043ABBB /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				8E191A9D2952DB370043ABBB /* Message.swift */,
+				8E191A9D2952DB370043ABBB /* Messages.swift */,
+				F1F71BAB295A791E0071220F /* Errors.swift */,
+				F1F71BA9295A78D00071220F /* Constants.swift */,
 			);
-			path = Literals;
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		F13288802953E06F00535A23 /* Model */ = {
@@ -145,7 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E191A9E2952DB370043ABBB /* Message.swift in Sources */,
+				F1F71BAA295A78D00071220F /* Constants.swift in Sources */,
+				8E191A9E2952DB370043ABBB /* Messages.swift in Sources */,
+				F1F71BAC295A791E0071220F /* Errors.swift in Sources */,
 				8E191A962952A9AE0043ABBB /* main.swift in Sources */,
 				F124EE5B295991320051533A /* MyContactManager.swift in Sources */,
 				F132887F2953E06600535A23 /* Person.swift in Sources */,

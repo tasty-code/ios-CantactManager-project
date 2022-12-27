@@ -9,6 +9,4 @@ import Foundation
 
 let myContactManager = MyContactManager()
 
-while myContactManager.runValue {
-    myContactManager.runProgram()
-}
+myContactManager.runProgram()

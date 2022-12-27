@@ -1,15 +1,11 @@
 //
-//  Message.swift
+//  Errors.swift
 //  MyContactManager
 //
-//  Created by devxsby on 2022/12/21.
+//  Created by DONGWOOK SEO on 2022/12/27.
 //
 
 import Foundation
-
-enum Message: String {
-    case greeting = "연락처 정보를 입력해주세요 :"
-}
 
 enum Errors: String, LocalizedError {
     case wrongAge = "입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요."

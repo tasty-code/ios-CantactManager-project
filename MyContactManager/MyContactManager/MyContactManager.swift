@@ -11,25 +11,33 @@ final class MyContactManager {
     
     private var runValue: Bool = true
     
-    private var personDictionary = [String : Person]()
-    
     func runProgram() {
-        print(Message.greeting.rawValue, terminator: " ")
-        let userInput = getUserInput()
-        let vaildInput = isVaildInput(userInput: userInput)
-        
-        printResult(vaildInput)
+        while isProgramRun() {
+            print(Messages.greeting.rawValue, terminator: " ")
+            let userInput = getUserInput()
+            let validInput = setValidInput(userInput: userInput)
+            
+            if let description = inputDescription(of: validInput) {
+                print(description)
+            }
+        }
+    }
+    
+    private func trimming(of str:String) -> [String] {
+        let unspacedString = str.components(separatedBy: " ").joined()
+        let splitedString = unspacedString.split(separator: "/").map { String($0) }
+        return splitedString
     }
     
     private func getUserInput() -> [String]? {
         guard let userInput = readLine() else { return nil }
-        let inputData = userInput.components(separatedBy: " ").joined()
-        let input = inputData.split(separator: "/").map { String($0) }
         
-        return input
+        return trimming(of: userInput)
     }
     
-    private func isVaildInput(userInput: [String]?) -> [String]? {
+    private func setValidInput(userInput: [String]?) -> [String]? {
+        
+        var validInput = userInput
         
         do {
             guard let input = userInput else { throw Errors.noUserInput }
@@ -38,10 +46,10 @@ final class MyContactManager {
             
             let (age, number) = (input[1], input[2])
             
-            try validateAgeForm(age)
-            try validateNumberForm(number)
+            validInput?[1] = try getValidAge(age)
+            validInput?[2] = try getValidNumber(number)
             
-            return input
+            return validInput
             
         } catch {
             print(error.localizedDescription)
@@ -49,26 +57,32 @@ final class MyContactManager {
         }
     }
     
-    private func printResult(_ vaildInput: [String]?) {
-        guard let vaildInput else { return }
-        print("입력한 정보는 \(vaildInput[1])세 \(vaildInput[0]) (\(vaildInput[2]))입니다.")
+    private func inputDescription(of validInput: [String]?) -> String? {
+        guard let validInput else { return nil }
+        return "입력한 정보는 \(validInput[1])세 \(validInput[0]) (\(validInput[2]))입니다."
     }
     
-    private func validateAgeForm(_ age: String) throws {
+    private func getValidAge(_ age: String) throws -> String {
         guard let ageInt = Int(age) else { throw Errors.wrongAge }
-        guard ageInt < 1000 && ageInt > 0 else { throw Errors.wrongAge }
+        guard ageInt <= Constants.maximumAge && ageInt >= Constants.minimumAge else { throw Errors.wrongAge }
+        return String(ageInt)
     }
     
-    private func validateNumberForm(_ number: String) throws {
+    private func getValidNumber(_ number: String) throws -> String{
         
         let numberSplit = number.split(separator: "-").map { String($0) }
         if number.count < 10 || numberSplit.count < 3 {
             throw Errors.wrongPhoneNumber
         }
+        
+        return number
     }
     
-    private func exitProgram() {
+    private func isProgramRun() -> Bool {
+        return runValue
+    }
+    
+    private func terminateProgram() {
         runValue = false
-        print("exit test")
     }
 }
