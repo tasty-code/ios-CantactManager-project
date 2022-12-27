@@ -10,12 +10,12 @@ import Foundation
 struct ContactManageSystem {
     let inputManager = InputManager()
     var contactList = [Profile]()
-    var loopStarter = true
+    var repetition = true
     
     enum Menu: String {
         case addProfile = "1"
-        case watchList = "2"
-        case searchList = "3"
+        case listUpProfile = "2"
+        case searchProfile = "3"
         case stop = "x"
     }
     
@@ -24,19 +24,18 @@ struct ContactManageSystem {
         return menuInput
     }
     
-    mutating func startProgram(input: String) {
+    mutating func pipeInMenu(input: String) {
         switch Menu(rawValue: input) {
         case .addProfile:
             addProfile()
-            print(contactList)
-        case .watchList:
-            watchList()
-        case .searchList:
-            searchList()
+        case .listUpProfile:
+            listUpProfile()
+        case .searchProfile:
+            searchProfile()
         case .stop:
             stop()
         default:
-            inputManager.printWrongInput()
+            inputManager.printInvalidMenu()
         }
         print()
     }
@@ -44,12 +43,12 @@ struct ContactManageSystem {
     static func start() {
         var contactManageSystem = ContactManageSystem()
         
-        while contactManageSystem.loopStarter {
+        while contactManageSystem.repetition {
             do {
-                let input = try contactManageSystem.receiveMenu()
-                contactManageSystem.startProgram(input: input)
+                let menuInput = try contactManageSystem.receiveMenu()
+                contactManageSystem.pipeInMenu(input: menuInput)
             } catch {
-                contactManageSystem.inputManager.printWrongInput()
+                contactManageSystem.inputManager.printInvalidMenu()
             }
         }
     }
@@ -73,16 +72,16 @@ struct ContactManageSystem {
         }
     }
     
-    func watchList() {
+    func listUpProfile() {
         
     }
     
-    func searchList() {
+    func searchProfile() {
         
     }
     
     mutating func stop() {
         print("\n[프로그램 종료]", terminator: "")
-        loopStarter = false
+        repetition = false
     }
 }
