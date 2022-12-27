@@ -35,13 +35,13 @@ struct UserInfo {
     
     init(name:String, age:String, phone: String) throws {
         do {
-            let regexName = try name.matches(InfoType: .name)
+            let regexName = try name.matches(infoType: .name)
             self.name = regexName.components(separatedBy: " ").joined()
-            guard let age = Int(try age.matches(InfoType: .age)) else {
+            guard let age = Int(try age.matches(infoType: .age)) else {
                 throw IOError.invalidProperty(parameter: .age)
             }
             self.age = age
-            self.phone = try phone.matches(InfoType: .phone)
+            self.phone = try phone.matches(infoType: .phone)
         } catch {
             throw error
         }
@@ -59,9 +59,9 @@ extension UserInfo: CustomStringConvertible {
 }
 
 fileprivate extension String {
-    func matches(InfoType: UserInfoParameters) throws -> String {
-        guard self ~= InfoType.regex else {
-            throw InfoType.error
+    func matches(infoType: UserInfoParameters) throws -> String {
+        guard self ~= infoType.regex else {
+            throw infoType.error
         }
         return self
     }
