@@ -38,7 +38,7 @@ func inputNewUser() {
 func transform(input: String) {
     let spaceRemovedInput = input.replacingOccurrences(of: " ", with: "")
     let splitedInput = spaceRemovedInput.components(separatedBy: "/")
-    guard splitedInput.count == 3 else {return}
+    guard splitedInput.count == 3 else { return }
     
     transformedInput = splitedInput
 }
@@ -49,22 +49,24 @@ func checkString(string: String, type: RegularExpressionChecker) -> Bool {
 }
 
 func verifyInput(input: Array<String>) {
-    if checkString(string: transformedInput[0], type: RegularExpressionChecker.nameChecker) {
-        checkedName = transformedInput[0]
-    }
-    
-    if checkString(string: transformedInput[1], type: RegularExpressionChecker.ageChecker) {
-        checkedAge = Int(transformedInput[1]) ?? -1
-    } else {
-        print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요. ")
-        return
-    }
-    
-    if checkString(string: transformedInput[2], type: RegularExpressionChecker.phoneNumberChecker) {
-        checkedPhoneNumber = transformedInput[2]
-    } else {
-        print("입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요. ")
-        return
+    if input.count == 3 {
+        if checkString(string: transformedInput[0], type: RegularExpressionChecker.nameChecker) {
+            checkedName = transformedInput[0]
+        }
+        
+        if checkString(string: transformedInput[1], type: RegularExpressionChecker.ageChecker) {
+            checkedAge = Int(transformedInput[1]) ?? -1
+        } else {
+            print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요. ")
+            return
+        }
+        
+        if checkString(string: transformedInput[2], type: RegularExpressionChecker.phoneNumberChecker) {
+            checkedPhoneNumber = transformedInput[2]
+        } else {
+            print("입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요. ")
+            return
+        }
     }
 }
 
