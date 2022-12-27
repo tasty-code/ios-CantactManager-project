@@ -40,14 +40,15 @@ final class MyContactManager {
     
     private func checkValidInput(userInput: [String]?) -> [String]? {
         
-        var validInput = userInput
+        guard let input = userInput else { return nil }
         
         do {
-            guard let input = userInput else { throw Errors.noUserInput }
             guard input.isEmpty == false else { throw Errors.noUserInput }
             guard input.count == 3 else { throw Errors.defaultError }
             
             let (age, number) = (input[1], input[2])
+            
+            var validInput = userInput
             
             validInput?[1] = try getValidAge(age)
             validInput?[2] = try getValidNumber(number)
@@ -66,16 +67,14 @@ final class MyContactManager {
     }
     
     private func getValidAge(_ age: String) throws -> String {
-        guard let ageInt = Int(age) else { throw Errors.wrongAge }
-        guard ageInt <= Constants.maximumAge && ageInt >= Constants.minimumAge else { throw Errors.wrongAge }
+        guard let ageInt = Int(age),
+                ageInt <= Constants.maximumAge && ageInt >= Constants.minimumAge else { throw Errors.wrongAge }
         return String(ageInt)
     }
     
     private func getValidNumber(_ number: String) throws -> String {
         let numberSplit = number.split(separator: "-").map { String($0) }
-        if number.count < 10 || numberSplit.count < 3 {
-            throw Errors.wrongPhoneNumber
-        }
+        guard number.count < 10 || numberSplit.count < 3 else { throw Errors.wrongPhoneNumber }
         return number
     }
     
