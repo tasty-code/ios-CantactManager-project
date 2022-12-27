@@ -1,6 +1,6 @@
 import Foundation
 
-func calculateSlashNum(input: String) -> Bool {
+func validateSlashInput(input: String) -> Bool {
     if (input.filter{ $0 == "/" }.count != 2) {
         return false
     }
@@ -68,7 +68,7 @@ while isError {
     print("연락처 정보를 입력해주세요: ", terminator: "")
     
     if let input = readLine() {
-        if !(calculateSlashNum(input: input)) {
+        if !(validateSlashInput(input: input)) {
             print("입력된 정보가 [이름]/[나이]/[전화번호] 형식인지 확인해주세요")
             continue
         }
