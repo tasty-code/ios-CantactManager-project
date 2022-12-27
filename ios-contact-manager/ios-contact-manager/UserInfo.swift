@@ -16,10 +16,10 @@ enum UserInfoParameters: String {
         switch self {
         case .name:
             return "^[A-Za-z ]+$"
+        case .age:
+            return #"^\d{1,3}$"#
         case .phone:
-            return "^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$"
-        default:
-            return ""
+            return #"^\d{2,3}-\d{3,4}-\d{4}$"#
         }
     }
     
@@ -33,33 +33,15 @@ struct UserInfo {
     let age: Int
     let phone: String
     
-    //    init(input: InfoInput) throws {
-    //        guard let age = Int(input.age),
-    //              (1...999).contains(age) else {
-    //            throw IOError.ageError
-    //        }
-    //        self.age = age
-    //
-    //        do {
-    //            let regexName = try input.name.getInfoAfter(type: .name)
-    //            self.name = regexName.components(separatedBy: " ").joined()
-    //            self.phone = try input.phone.getInfoAfter(type: .phone)
-    //        } catch {
-    //            throw error
-    //        }
-    //    }
-    
     init(name:String, age:String, phone: String) throws {
-        guard let age = Int(age),
-              (1...999).contains(age) else {
-            throw IOError.invalidProperty(parameter: .age)
-        }
-        self.age = age
-        
         do {
-            let regexName = try name.getInfoAfter(type: .name)
+            let regexName = try name.matches(InfoType: .name)
             self.name = regexName.components(separatedBy: " ").joined()
-            self.phone = try phone.getInfoAfter(type: .phone)
+            guard let age = Int(try age.matches(InfoType: .age)) else {
+                throw IOError.invalidProperty(parameter: .age)
+            }
+            self.age = age
+            self.phone = try phone.matches(InfoType: .phone)
         } catch {
             throw error
         }

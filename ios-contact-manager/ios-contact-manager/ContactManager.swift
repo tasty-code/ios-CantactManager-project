@@ -13,6 +13,8 @@ final class ContactManager {
     static let shared = ContactManager()
     private init() { }
     
+    let inputPattern = #"^.+\b(?<sep>( \/ )|(\/))(\b[^\s]+\b)\k<sep>(\b[^\s]+)$"#
+    
     func run() {
         do {
             IOManager.sendOutput(type: .menu, contents: StringLiteral.start)
@@ -27,18 +29,12 @@ final class ContactManager {
     }
     
     private func parse(_ input: String) throws -> InfoInput {
-        let splited: [String]
-        if input.contains(" / ") {
-            splited = input.components(separatedBy: " / ")
-        } else if input.contains(" /") || input.contains("/ ") {
-            throw IOError.invalidInputFormat
+        if input ~= inputPattern {
+            let splitedInput = input.components(separatedBy: "/").map {$0.trimmingCharacters(in: .whitespaces)}
+            return (name: splitedInput[0], age: splitedInput[1], phone: splitedInput[2])
         } else {
-            splited = input.components(separatedBy: "/")
-        }
-        guard splited.count == 3 else {
             throw IOError.invalidInputFormat
         }
-        return (splited[0], splited[1], splited[2])
     }
     
 }
