@@ -24,21 +24,17 @@ struct ContactManageSystem {
     }
     
     mutating func startProgram(input: String) {
-        do {
-            switch Menu(rawValue: input) {
-            case .addProfile:
-                self.addProfile()
-            case .watchList:
-                self.watchList()
-            case .searchList:
-                self.searchList()
-            case .stop:
-                self.stop()
-            case .none:
-                print("선택이 잘못되었습니다 확인 후 다시 입력해주세요.")
-            }
-        } catch {
-            print(error)
+        switch Menu(rawValue: input) {
+        case .addProfile:
+            addProfile()
+        case .watchList:
+            watchList()
+        case .searchList:
+            searchList()
+        case .stop:
+            stop()
+        case .none:
+            print("선택이 잘못되었습니다 확인 후 다시 입력해주세요.")
         }
     }
     
