@@ -11,7 +11,7 @@ struct ContactManageSystem {
     let inputManager = InputManager()
     var contactList = [String: Profile]()
     
-    var loopStarter = true
+    static var loopStarter = true
     
     enum Menu: String {
         case addProfile = "1"
@@ -26,7 +26,7 @@ struct ContactManageSystem {
     }
     
     mutating func startProgram(input: String) {
-        self.loopStarter = true
+        Self.loopStarter = true
         switch Menu(rawValue: input) {
         case .addProfile:
             addProfile()
@@ -36,10 +36,25 @@ struct ContactManageSystem {
             searchList()
         case .stop:
             stop()
-        case .none:
-            print("선택이 잘못되었습니다 확인 후 다시 입력해주세요.")
+        default:
+            break
+        }
+        print()
+    }
+    
+    static func start() {
+        while Self.loopStarter {
+            var contactManageSystem = ContactManageSystem()
+            
+            do {
+                let input = try contactManageSystem.receiveMenu()
+                contactManageSystem.startProgram(input: input)
+            } catch {
+                print("선택이 잘못되었습니다 확인 후 다시 입력해주세요.")
+            }
         }
     }
+
     
     mutating func addProfile() {
         do {
@@ -69,6 +84,7 @@ struct ContactManageSystem {
     }
     
     mutating func stop() {
-        self.loopStarter = false
+        print("\n[프로그램 종료]")
+        Self.loopStarter = false
     }
 }
