@@ -73,11 +73,11 @@ while isError {
             continue
         }
         
-        let add = input.components(separatedBy:"/")
+        let seperatedInput = input.components(separatedBy:"/")
         
-        let trimName = add[0].trimmingCharacters(in: [" "])
-        let trimAge = add[1].trimmingCharacters(in: [" "])
-        let trimNum = add[2].trimmingCharacters(in: [" "])
+        let trimName = seperatedInput[0].trimmingCharacters(in: [" "])
+        let trimAge = seperatedInput[1].trimmingCharacters(in: [" "])
+        let trimNum = seperatedInput[2].trimmingCharacters(in: [" "])
         
         let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
         
