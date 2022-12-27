@@ -1,19 +1,18 @@
 import Foundation
 
 func validateSlashInput(input: String) -> Bool {
-    if (input.filter{ $0 == "/" }.count != 2) {
+    guard (input.filter{ $0 == "/" }.count == 2) else {
         return false
     }
     return true
 }
 
 func checkNameError(name: String) -> Bool{
-    if name.range(of: regex, options: .regularExpression) == nil {
+    guard name.range(of: regex, options: .regularExpression) != nil else {
         print("입력한 이름정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
         return false
-    }else {
-        return true
     }
+    return true
 }
 
 func checkAgeError(age: String) -> Bool{
@@ -29,7 +28,7 @@ func checkAgeError(age: String) -> Bool{
 }
 
 func calculateHyphenNum(input: String) -> Bool {
-    if (input.filter { $0 == "-" }.count != 2) {
+    guard (input.filter { $0 == "-" }.count == 2) else {
         return false
     }
     return true
@@ -44,12 +43,10 @@ func checkPhoneNumError(num: String) -> Bool {
 }
 
 func errorCheck(trimName: String, trimAge: String, trimNum: String) -> Bool {
-    
-    if (checkNameError(name: trimName) == false || checkAgeError(age: trimAge) == false || checkPhoneNumError(num: trimNum) == false) {
+    guard checkNameError(name: trimName), checkAgeError(age: trimAge), checkPhoneNumError(num: trimNum) else {
         return false
-    } else {
-        return true
     }
+    return true
 }
 
 var repeatLoop: Bool = true
@@ -64,7 +61,7 @@ while repeatLoop {
         continue
     }
 
-    if !(validateSlashInput(input: input)) {
+    guard validateSlashInput(input: input) else {
         print("입력된 정보가 [이름]/[나이]/[전화번호] 형식인지 확인해주세요")
         continue
     }
@@ -77,10 +74,10 @@ while repeatLoop {
     
     let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
     
-    if errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum){
-        repeatLoop = false
-        print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
-    } else {
+    guard errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum) else {
         continue
     }
+    repeatLoop = false
+    print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
+
 }
