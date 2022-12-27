@@ -11,6 +11,13 @@ struct ContactManageSystem {
     let inputManager = InputManager()
     var contactList = [String: Profile]()
     
+    enum Menu: String {
+        case addProfile = "1"
+        case watchList = "2"
+        case searchList = "3"
+        case stop = "x"
+    }
+    
     func receiveMenu() {
         do {
             let menuInput = try inputManager.menuInput()
