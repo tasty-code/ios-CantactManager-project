@@ -11,6 +11,8 @@ struct ContactManageSystem {
     let inputManager = InputManager()
     var contactList = [String: Profile]()
     
+    var loopStarter = true
+    
     enum Menu: String {
         case addProfile = "1"
         case watchList = "2"
@@ -24,6 +26,7 @@ struct ContactManageSystem {
     }
     
     mutating func startProgram(input: String) {
+        self.loopStarter = true
         switch Menu(rawValue: input) {
         case .addProfile:
             addProfile()
@@ -65,7 +68,7 @@ struct ContactManageSystem {
         
     }
     
-    func stop() {
-        
+    mutating func stop() {
+        self.loopStarter = false
     }
 }
