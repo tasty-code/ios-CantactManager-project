@@ -36,15 +36,11 @@ func calculateHyphenNum(input: String) -> Bool {
 }
 
 func checkPhoneNumError(num: String) -> Bool {
-    if !calculateHyphenNum(input: num){
+    guard calculateHyphenNum(input: num), num.components(separatedBy: ["-"]).joined().count >= 9 else {
         print("입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
         return false
-    } else if num.components(separatedBy: ["-"]).joined().count < 9 {
-        print("입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
-        return false
-    } else {
-        return true
     }
+        return true
 }
 
 func errorCheck(trimName: String, trimAge: String, trimNum: String) -> Bool {
