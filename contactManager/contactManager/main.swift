@@ -9,8 +9,7 @@ func validateSlashInput(input: String) -> Bool {
 
 func checkNameError(name: String) -> Bool{
     if name.range(of: regex, options: .regularExpression) == nil {
-        print("이름이 잘못되었습니다.")
-        print(name)
+        print("입력한 이름정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
         return false
     }else {
         return true
@@ -24,7 +23,6 @@ func checkAgeError(age: String) -> Bool{
     } else if let changeToInt = Int(age) {
         if changeToInt >= 1000 {
             print("입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
-            print("숫자는 세자리수 이하로 입력해주세요.")
             return false
         }
     }
@@ -44,7 +42,6 @@ func checkPhoneNumError(num: String) -> Bool {
         return false
     } else if num.components(separatedBy: ["-"]).joined().count < 9 {
         print("입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
-        print("숫자는 9자리 이상이어야 합니다.")
         return false
     } else {
         return true
