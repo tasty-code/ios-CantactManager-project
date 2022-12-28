@@ -8,7 +8,12 @@
 import Foundation
 
 enum StringLiteral {
-    static let start = """
+    static let menu = """
+        1) 연락처 추가 2) 연락처 목록보기 3) 연락처 검색 x) 종료
+        메뉴를 선택해주세요 :
+        """
+    
+    static let addContact = """
         연락처 정보를 입력해주세요.
         """
     
@@ -19,4 +24,10 @@ enum StringLiteral {
     static let help = """
         입력 형태를 확인해주세요.
         """
+    
+    static let wrongMenu = """
+        선택이 잘못되었습니다 확인 후 다시 입력해주세요.
+        """
+    
+    static let end = "[프로그램 종료]"
 }

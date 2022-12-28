@@ -17,7 +17,7 @@ final class ContactManager {
     
     func run() {
         do {
-            IOManager.sendOutput(type: .menu, contents: StringLiteral.start)
+            IOManager.sendOutput(type: .menu, contents: StringLiteral.menu)
             let input = try IOManager.getInput()
             let parsedInfoInput = try parse(input)
             
