@@ -57,12 +57,3 @@ extension UserInfo: CustomStringConvertible {
         return "\(self.age)세 \(self.name)(\(self.phone))"
     }
 }
-
-fileprivate extension String {
-    func matches(infoType: UserInfoParameters) throws -> String {
-        guard self ~= infoType.regex else {
-            throw infoType.error
-        }
-        return self
-    }
-}

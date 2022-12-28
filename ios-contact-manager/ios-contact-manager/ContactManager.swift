@@ -31,22 +31,17 @@ final class ContactManager {
             
             switch Option(rawValue: input) {
             case .addContact:
-                print("addContact")
+                try addContact()
             case .showAll:
                 print("showAll")
             case .findContact:
                 print("findContact")
             case .exit:
-                print("exit")
+                IOManager.sendOutput(type: .infomation, contents: StringLiteral.end)
                 return
             default:
-                print(StringLiteral.wrongMenu)
+                IOManager.sendOutput(type: .infomation, contents: StringLiteral.wrongMenu)
             }
-            
-            let parsedInfoInput = try parse(input)
-            
-            let userInfo = try UserInfo(input: parsedInfoInput)
-            IOManager.sendOutput(type: .infomation, contents: StringLiteral.infoPrint(of: userInfo))
         } catch {
             IOManager.sendOutput(type: .error, contents: error.localizedDescription)
         }
@@ -62,3 +57,21 @@ final class ContactManager {
         return (name: splitedInput[0], age: splitedInput[1], phone: splitedInput[2])
     }
 }
+
+
+// MARK: - addContact
+
+extension ContactManager {
+    private func addContact() throws {
+        IOManager.sendOutput(
+            type: .menu,
+            contents: StringLiteral.addContact
+        )
+        let input = try IOManager.getInput()
+        let parsedInfoInput = try parse(input)
+        let userInfo = try UserInfo(input: parsedInfoInput)
+        phonebook.add(contact: userInfo)
+        IOManager.sendOutput(type: .infomation, contents: StringLiteral.infoPrint(of: userInfo))
+    }
+}
+
