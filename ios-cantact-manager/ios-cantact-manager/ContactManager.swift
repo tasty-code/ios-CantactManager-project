@@ -11,13 +11,13 @@ struct ContactManager {
     var contactManageSystem = ContactManageSystem()
     
     mutating func run() {
-        while contactManageSystem.repetition {
+        while !contactManageSystem.isFinished {
             do {
-                let menuInput = try contactManageSystem.receiveMenu()
-                contactManageSystem.pipeInMenu(input: menuInput)
+                let input = try contactManageSystem.deliverMenuInputValue()
+                contactManageSystem.pipeInMenu(input)
                 print()
             } catch {
-                OutputManager.printGuideMessage(.invalidMenuMessage)
+                OutputManager.printMessage(.invalidMenu)
             }
         }
     }

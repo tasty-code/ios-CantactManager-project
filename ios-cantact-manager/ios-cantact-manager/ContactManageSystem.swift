@@ -9,8 +9,8 @@ import Foundation
 
 struct ContactManageSystem {
     let inputManager = InputManager()
-    var contactList = [Profile]()
-    var repetition = true
+    var profileData = [Profile]()
+    var isFinished = false
     
     enum Menu: String {
         case addProfile = "1"
@@ -19,33 +19,19 @@ struct ContactManageSystem {
         case stop = "x"
     }
     
-    static func start() {
-        var contactManageSystem = ContactManageSystem()
-        
-        while contactManageSystem.repetition {
-            do {
-                let menuInput = try contactManageSystem.receiveMenu()
-                contactManageSystem.pipeInMenu(input: menuInput)
-                print()
-            } catch {
-                OutputManager.printGuideMessage(.invalidMenuMessage)
-            }
-        }
-    }
-    
-    func receiveMenu() throws -> String {
-        OutputManager.printGuideMessage(.inputMenuMessage)
+    func deliverMenuInputValue() throws -> String {
+        OutputManager.printMessage(.inputMenu)
         let menuInput = try inputManager.menuInput()
         
         return menuInput
     }
     
-    mutating func pipeInMenu(input: String) {
-            guard let menu = Menu(rawValue: input) else {
-                OutputManager.printGuideMessage(.invalidMenuMessage)
+    mutating func pipeInMenu(_ input: String) {
+            guard let input = Menu(rawValue: input) else {
+                OutputManager.printMessage(.invalidMenu)
                 return
             }
-            switch menu {
+            switch input {
             case .addProfile:
                 addProfile()
             case .listUpProfile:
@@ -59,21 +45,21 @@ struct ContactManageSystem {
     
     mutating func addProfile() {
         do {
-            OutputManager.printGuideMessage(.inputInfoMessage)
+            OutputManager.printMessage(.inputInfo)
             let inputArray = try inputManager.parseUserInput()
             let (name, age ,tel) = (inputArray[0], inputArray[1], inputArray[2])
             try inputManager.checkUserInput(name, age, tel)
             let profile = Profile(name: name, age: age, tel: tel)
-            contactList.append(profile)
-            OutputManager.printProfileMessage(profile)
+            profileData.append(profile)
+            OutputManager.printProfile(profile)
         } catch InputError.invalidInput {
-            OutputManager.printGuideMessage(.invalidInputMessage)
+            OutputManager.printMessage(.invalidInput)
         } catch InputError.invalidAge {
-            OutputManager.printGuideMessage(.invalidAgeMessage)
+            OutputManager.printMessage(.invalidAge)
         } catch InputError.invalidTel {
-            OutputManager.printGuideMessage(.invalidTelMessage)
+            OutputManager.printMessage(.invalidTel)
         } catch {
-            OutputManager.printGuideMessage(.invalidInputMessage)
+            OutputManager.printMessage(.invalidInput)
         }
     }
     
@@ -86,7 +72,7 @@ struct ContactManageSystem {
     }
     
     mutating func stop() {
-        OutputManager.printGuideMessage(.stopSystemMessage)
-        repetition = false
+        OutputManager.printMessage(.stopSystem)
+        isFinished = true
     }
 }
