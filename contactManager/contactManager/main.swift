@@ -1,6 +1,6 @@
 import Foundation
 
-func validateSlashInput(input: String) -> Bool {
+func validateInputBySlash(input: String) -> Bool {
     guard (input.filter{ $0 == "/" }.count == 2) else {
         return false
     }
@@ -61,7 +61,7 @@ while repeatLoop {
         continue
     }
 
-    guard validateSlashInput(input: input) else {
+    guard validateInputBySlash(input: input) else {
         print("입력된 정보가 [이름]/[나이]/[전화번호] 형식인지 확인해주세요")
         continue
     }
