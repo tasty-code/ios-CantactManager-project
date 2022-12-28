@@ -22,6 +22,8 @@ final class ContactManager {
     
     let inputPattern = #"^.+\b(?<sep>( \/ )|(\/))(\b[^\s]+\b)\k<sep>(\b[^\s]+)$"#
     
+    let phonebook = Phonebook(contacts: [:])
+    
     func run() {
         do {
             IOManager.sendOutput(type: .menu, contents: StringLiteral.menu)
