@@ -13,12 +13,34 @@ final class ContactManager {
     static let shared = ContactManager()
     private init() { }
     
+    enum Option: String {
+        case addContact = "1"
+        case showAll = "2"
+        case findContact = "3"
+        case exit = "x"
+    }
+    
     let inputPattern = #"^.+\b(?<sep>( \/ )|(\/))(\b[^\s]+\b)\k<sep>(\b[^\s]+)$"#
     
     func run() {
         do {
             IOManager.sendOutput(type: .menu, contents: StringLiteral.menu)
             let input = try IOManager.getInput()
+            
+            switch Option(rawValue: input) {
+            case .addContact:
+                print("addContact")
+            case .showAll:
+                print("showAll")
+            case .findContact:
+                print("findContact")
+            case .exit:
+                print("exit")
+                return
+            default:
+                print(StringLiteral.wrongMenu)
+            }
+            
             let parsedInfoInput = try parse(input)
             
             let userInfo = try UserInfo(input: parsedInfoInput)
@@ -26,6 +48,8 @@ final class ContactManager {
         } catch {
             IOManager.sendOutput(type: .error, contents: error.localizedDescription)
         }
+        
+        run()
     }
     
     private func parse(_ input: String) throws -> InfoInput {
