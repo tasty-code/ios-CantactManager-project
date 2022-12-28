@@ -1,20 +1,5 @@
 import Foundation
 
-func validateInputBySlash(input: String) -> Bool {
-    guard (input.filter{ $0 == "/" }.count == 2) else {
-        return false
-    }
-    return true
-}
-
-func calculateHyphenNum(input: String) -> Bool {
-    guard (input.filter { $0 == "-" }.count == 2) else {
-        return false
-    }
-    return true
-}
-
-
 var isMenuInputError: Bool = false
 let regex = "^[A-Za-z\\s]+$"
 
