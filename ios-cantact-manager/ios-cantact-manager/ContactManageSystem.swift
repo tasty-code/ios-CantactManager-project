@@ -41,19 +41,21 @@ struct ContactManageSystem {
     }
     
     mutating func pipeInMenu(input: String) {
-        switch Menu(rawValue: input) {
-        case .addProfile:
-            addProfile()
-        case .listUpProfile:
-            listUpProfile()
-        case .searchProfile:
-            searchProfile()
-        case .stop:
-            stop()
-        default:
-            OutputManager.printGuideMessage(.invalidMenuMessage)
+            guard let menu = Menu(rawValue: input) else {
+                OutputManager.printGuideMessage(.invalidMenuMessage)
+                return
+            }
+            switch menu {
+            case .addProfile:
+                addProfile()
+            case .listUpProfile:
+                listUpProfile()
+            case .searchProfile:
+                searchProfile()
+            case .stop:
+                stop()
+            }
         }
-    }
     
     mutating func addProfile() {
         do {
