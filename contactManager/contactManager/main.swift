@@ -49,35 +49,41 @@ func errorCheck(trimName: String, trimAge: String, trimNum: String) -> Bool {
     return true
 }
 
-var isAddContactError: Bool = false
 let regex = "^[A-Za-z\\s]+$"
 
-while !isAddContactError {
-    print("")
-    print("연락처 정보를 입력해주세요: ", terminator: "")
+func addContact(){
+    var isAddContactError: Bool = false
     
-    guard let input = readLine(), input != "" else {
-        print("아무것도 입력되지 않았습니다. 입력 형식을 확인해주세요.")
-        continue
-    }
+    while !isAddContactError {
+        print("")
+        print("연락처 정보를 입력해주세요: ", terminator: "")
+        
+        guard let input = readLine(), input != "" else {
+            print("아무것도 입력되지 않았습니다. 입력 형식을 확인해주세요.")
+            continue
+        }
 
-    guard validateInputBySlash(input: input) else {
-        print("입력된 정보가 [이름]/[나이]/[전화번호] 형식인지 확인해주세요")
-        continue
+        guard validateInputBySlash(input: input) else {
+            print("입력된 정보가 [이름]/[나이]/[전화번호] 형식인지 확인해주세요")
+            continue
+        }
+        
+        let seperatedInput = input.components(separatedBy:"/")
+        
+        let trimName = seperatedInput[0].trimmingCharacters(in: [" "])
+        let trimAge = seperatedInput[1].trimmingCharacters(in: [" "])
+        let trimNum = seperatedInput[2].trimmingCharacters(in: [" "])
+        
+        let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
+        
+        guard errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum) else {
+            continue
+        }
+        isAddContactError = true
+        print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
+
     }
-    
-    let seperatedInput = input.components(separatedBy:"/")
-    
-    let trimName = seperatedInput[0].trimmingCharacters(in: [" "])
-    let trimAge = seperatedInput[1].trimmingCharacters(in: [" "])
-    let trimNum = seperatedInput[2].trimmingCharacters(in: [" "])
-    
-    let zeroBlankName = trimName.components(separatedBy: [" "]).joined()
-    
-    guard errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum) else {
-        continue
-    }
-    isAddContactError = true
-    print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
 
 }
+
+
