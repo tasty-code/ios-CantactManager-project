@@ -7,4 +7,5 @@
 
 import Foundation
 
-ContactManageSystem.start()
+var contactManager = ContactManager()
+contactManager.run()
