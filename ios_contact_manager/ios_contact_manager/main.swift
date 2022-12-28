@@ -26,7 +26,7 @@ var checkedPhoneNumber: String = ""
 
 
 func inputNewUser() {
-    print("연락처 정보를 입력해주세요 : ")
+    print("연락처 정보를 입력해주세요 : ", terminator: "")
     let input = readLine()
     if let someInput = input, someInput.count > 0 {
         validInput = someInput
@@ -97,7 +97,7 @@ var isAppRunning = true
 
 func startApp() {
     while isAppRunning {
-        print("1) 연락처 추가 2) 연락처 목록보기 3) 연락처 검색 x) 종료\n메뉴를 선택해주세요 : ")
+        print("1) 연락처 추가 2) 연락처 목록보기 3) 연락처 검색 x) 종료\n메뉴를 선택해주세요 : ", terminator: "")
         let inputMenu = readLine() ?? ""
         
         switch inputMenu {
