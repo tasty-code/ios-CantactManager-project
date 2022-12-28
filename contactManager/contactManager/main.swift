@@ -49,7 +49,16 @@ func errorCheck(trimName: String, trimAge: String, trimNum: String) -> Bool {
     return true
 }
 
+var isMenuInputError: Bool = false
 let regex = "^[A-Za-z\\s]+$"
+
+while !isMenuInputError {
+    print("1) 연락처 추가 2) 연락처 목록보기 3) 연락처 검색 x) 종료")
+    print("메뉴를 선택해주세요 : ",terminator: "")
+    guard let input = readLine(), input != "" else{
+        continue
+    }
+}
 
 func addContact(){
     var isAddContactError: Bool = false
