@@ -49,10 +49,10 @@ func errorCheck(trimName: String, trimAge: String, trimNum: String) -> Bool {
     return true
 }
 
-var repeatLoop: Bool = true
+var repeatErrorMessage: Bool = true
 let regex = "^[A-Za-z\\s]+$"
 
-while repeatLoop {
+while repeatErrorMessage {
     print("")
     print("연락처 정보를 입력해주세요: ", terminator: "")
     
@@ -77,7 +77,7 @@ while repeatLoop {
     guard errorCheck(trimName: trimName, trimAge: trimAge, trimNum: trimNum) else {
         continue
     }
-    repeatLoop = false
+    repeatErrorMessage = false
     print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
 
 }
