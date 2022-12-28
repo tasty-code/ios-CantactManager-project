@@ -9,7 +9,6 @@ import Foundation
 
 struct ContactManageSystem {
     let inputManager = InputManager()
-    let outputManager = OutputManager()
     var contactList = [Profile]()
     var repetition = true
     
@@ -29,13 +28,13 @@ struct ContactManageSystem {
                 contactManageSystem.pipeInMenu(input: menuInput)
                 print()
             } catch {
-                contactManageSystem.outputManager.printInvalidMenu()
+                OutputManager.printGuideMessage(.invalidMenuMessage)
             }
         }
     }
     
     func receiveMenu() throws -> String {
-        outputManager.printInputMenu()
+        OutputManager.printGuideMessage(.inputMenuMessage)
         let menuInput = try inputManager.menuInput()
         
         return menuInput
@@ -52,27 +51,27 @@ struct ContactManageSystem {
         case .stop:
             stop()
         default:
-            outputManager.printInvalidMenu()
+            OutputManager.printGuideMessage(.invalidMenuMessage)
         }
     }
     
     mutating func addProfile() {
         do {
-            outputManager.printInputInfo()
+            OutputManager.printGuideMessage(.inputInfoMessage)
             let inputArray = try inputManager.parseUserInput()
             let (name, age ,tel) = (inputArray[0], inputArray[1], inputArray[2])
             try inputManager.checkUserInput(name, age, tel)
             let profile = Profile(name: name, age: age, tel: tel)
             contactList.append(profile)
-            outputManager.printUserInput(profile)
+            OutputManager.printProfileMessage(profile)
         } catch InputError.invalidInput {
-            outputManager.printInvalidInput()
+            OutputManager.printGuideMessage(.invalidInputMessage)
         } catch InputError.invalidAge {
-            outputManager.printInvalidAge()
+            OutputManager.printGuideMessage(.invalidAgeMessage)
         } catch InputError.invalidTel {
-            outputManager.printInvalidTel()
+            OutputManager.printGuideMessage(.invalidTelMessage)
         } catch {
-            outputManager.printInvalidInput()
+            OutputManager.printGuideMessage(.invalidInputMessage)
         }
     }
     
@@ -85,7 +84,7 @@ struct ContactManageSystem {
     }
     
     mutating func stop() {
-        outputManager.printStopSystem()
+        OutputManager.printGuideMessage(.stopSystemMessage)
         repetition = false
     }
 }
