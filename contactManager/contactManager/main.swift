@@ -58,6 +58,19 @@ while !isMenuInputError {
     guard let input = readLine(), input != "" else{
         continue
     }
+    switch input{
+    case "1":
+        addContact()
+    case "2":
+        continue
+    case "3":
+        continue
+    case "x":
+        isMenuInputError = true
+    default:
+        print("선택이 잘못되었습니다. 확인 후 다시 입력해주세요.\n")
+        continue
+    }
 }
 
 func addContact(){
