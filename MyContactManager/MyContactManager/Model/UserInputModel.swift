@@ -13,6 +13,7 @@ struct UserInputModel {
     let phoneNum: String
     
     func convertToPerson() -> Person? {
-        return Person(name: name, age: Int(age) ?? 0, phoneNum: phoneNum)
+        guard let age = Int(age) else { return nil }
+        return Person(name: name, age: age, phoneNum: phoneNum)
     }
 }
