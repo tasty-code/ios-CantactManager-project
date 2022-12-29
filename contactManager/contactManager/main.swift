@@ -31,6 +31,7 @@ while !isMenuInputError {
         guard let inputValue = readLine() else {
             continue
         }
+        findContact(inputName: inputValue)
         continue
     case "x":
         isMenuInputError = true
