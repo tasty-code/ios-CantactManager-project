@@ -28,7 +28,10 @@ func addContact(){
         }
         isAddContactError = true
         print("입력한 정보는 \(trimAge)세 \(zeroBlankName)(\(trimNum))입니다.")
-
+        
+        let contact = Contact(name: zeroBlankName, age: trimAge, phoneNumber: trimNum)
+        
+        ContactSet.insert(contact)
     }
 
 }
