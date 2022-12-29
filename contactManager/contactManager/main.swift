@@ -27,6 +27,10 @@ while !isMenuInputError {
         print("")
         continue
     case "3":
+        print("연락처에서 찾을 이름을 입력해주세요 : ", terminator: "")
+        guard let inputValue = readLine() else {
+            continue
+        }
         continue
     case "x":
         isMenuInputError = true
