@@ -8,6 +8,7 @@
 import Foundation
 
 enum ContactManagerError: Error {
+    case invalidCommand
     case invalidInput
     case emptyInput
     case invalidName
@@ -18,6 +19,8 @@ enum ContactManagerError: Error {
 extension ContactManagerError: LocalizedError {
     var errorDescription: String? {
         switch self {
+        case .invalidCommand:
+            return "선택이 잘못되었습니다 확인 후 다시 입력해주세요."
         case .invalidInput:
             return "입력이 잘못되었습니다. 입력 형식을 확인해주세요."
         case .emptyInput:
