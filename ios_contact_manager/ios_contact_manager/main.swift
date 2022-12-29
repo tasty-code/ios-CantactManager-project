@@ -98,7 +98,7 @@ func searchContact() {
         someInput == user.name
     }
     if !nameFiltered.isEmpty {
-        let nameSortedArray = allUsersData.sorted(by: { $0.name < $1.name })
+        let nameSortedArray = nameFiltered.sorted(by: { $0.name < $1.name })
         nameSortedArray.forEach { n in
             print("- \(n.name) / \(n.age) / \(n.phoneNumber)", terminator: "\n")
         }
