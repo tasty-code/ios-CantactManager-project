@@ -83,6 +83,14 @@ func addNewUser() {
     }
 }
 
+func viewContactList() {
+    let nameSorted = allUsersData.sorted(by: { $0.name < $1.name })
+    let ageSorted = nameSorted.sorted(by: { $0.age < $1.age })
+    ageSorted.forEach { element in
+        print("- \(element.name) / \(element.age) / \(element.phoneNumbers)", terminator: "\n")
+    }
+}
+
 func endApp() {
     print("[프로그램 종료]")
     isAppRunning = false
