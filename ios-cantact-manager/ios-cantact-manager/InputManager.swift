@@ -55,7 +55,7 @@ struct InputManager {
         }
     }
     
-    func searchProfileInput() throws -> String {
+    func targetInput() throws -> String {
         let input = readLine()
         guard let input = input else {
             throw InputError.invalidInput

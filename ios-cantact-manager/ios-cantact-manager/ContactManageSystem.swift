@@ -64,29 +64,21 @@ struct ContactManageSystem {
     }
     
     func listUpProfile() {
-        profileData.forEach { profile in
-            print("- \(profile.name) / \(profile.age) / \(profile.tel)")
-        }
+        OutputManager.printProfileList(profileData)
     }
     
     func searchProfile() {
         do {
-            OutputManager.printMessage(.inputName)
-            let searchNameInput = try inputManager.searchProfileInput()
-            var arrayA = [Profile]()
-            arrayA = profileData.filter {
-                $0.name == searchNameInput
-            }
-            guard !arrayA.isEmpty else {
-                OutputManager.printNoMatchingData(name: searchNameInput)
+            OutputManager.printMessage(.inputProfileName)
+            let targetInput = try inputManager.targetInput()
+            let filteredProfileData = profileData.filter { $0.name == targetInput }
+            guard filteredProfileData.isEmpty else {
+                OutputManager.printProfileList(filteredProfileData)
                 return
             }
-            
-            arrayA.forEach { profile in
-                print("- \(profile.name) / \(profile.age) / \(profile.tel)")
-            }
+            OutputManager.printNoMatchingData(name: targetInput)
         } catch {
-            print("\(error)")
+            OutputManager.printMessage(.invalidInput)
         }
     }
     
