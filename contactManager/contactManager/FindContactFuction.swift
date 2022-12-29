@@ -11,6 +11,6 @@ func findContact(inputName : String){
         print("")
         return
     }
-    print("연락처에 \(inputName)이 없습니다.\n")
+    print("연락처에 \(inputName) 이(가) 없습니다.\n")
 }
 

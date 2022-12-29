@@ -35,6 +35,7 @@ while !isMenuInputError {
         continue
     case "x":
         isMenuInputError = true
+        print("\n[프로그램 종료]")
     default:
         print("선택이 잘못되었습니다. 확인 후 다시 입력해주세요.\n")
         continue
