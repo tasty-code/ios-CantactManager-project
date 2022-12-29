@@ -18,6 +18,14 @@ struct OutputEditor {
     }
     
     func printResult(with person: Person) {
-        print("입력한 정보는 \(person.age)세 \(person.name) (\(person.phoneNum))입니다.")
+        print("입력한 정보는 \(person.age)세 \(person.name) (\(person.phoneNum))입니다.\n")
+    }
+    
+    func printWrongSelect() {
+        print(Messages.wrongSelect.rawValue, terminator: "\n\n")
+    }
+    
+    func printTerminateProgram() {
+        print(Messages.terminateProgram.rawValue)
     }
 }

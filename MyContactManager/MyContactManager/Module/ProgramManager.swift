@@ -16,11 +16,9 @@ final class ProgramManager {
     
     func runProgram() {
         while shouldRun {
-            outputEditor.askContactInfo()
-            do {
-                let userInput = try inputEditor.getUserInput()
-                let person = try inputEditor.requestValidation(with: userInput)
-                outputEditor.printResult(with: person)
+            outputEditor.printMenu()
+            do{
+                shouldRun = try inputEditor.selectMenu()
             } catch {
                 print(error.localizedDescription)
             }
