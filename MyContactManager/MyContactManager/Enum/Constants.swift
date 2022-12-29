@@ -8,6 +8,6 @@
 import Foundation
 
 enum Constants {
-    static let maximumAge = 999
     static let minimumAge = 1
+    static let maximumAge = 999
 }

@@ -12,8 +12,9 @@ enum Errors: LocalizedError {
     case wrongPhoneNumber
     case noUserInput
     case defaultError
+    case readFail
     
-    var errorDescription: String? {
+    var errorDescription: String {
         switch self {
         case .wrongAge:
             return "입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요."
@@ -22,7 +23,9 @@ enum Errors: LocalizedError {
         case .noUserInput:
             return "아무것도 입력되지 않았습니다. 입력 형식을 확인해주세요."
         case .defaultError:
-            return "입력한 정보가 잘못되었습니다. 입력 형식을 확인해주세요."
+            return "Default Error."
+        case .readFail:
+            return "Read Fail"
         }
     }
 }
