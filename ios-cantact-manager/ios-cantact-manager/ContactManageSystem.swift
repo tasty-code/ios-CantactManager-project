@@ -9,7 +9,7 @@ import Foundation
 
 struct ContactManageSystem {
     let inputManager = InputManager()
-    var profileData = [Profile]()
+    var profileData = Set<Profile>()
     var isFinished = false
     
     enum Menu: String {
@@ -50,7 +50,7 @@ struct ContactManageSystem {
             let (name, age ,tel) = (inputArray[0], inputArray[1], inputArray[2])
             try inputManager.checkUserInput(name, age, tel)
             let profile = Profile(name: name, age: age, tel: tel)
-            profileData.append(profile)
+            profileData.insert(profile)
             OutputManager.printProfile(profile)
         } catch InputError.invalidInput {
             OutputManager.printMessage(.invalidInput)

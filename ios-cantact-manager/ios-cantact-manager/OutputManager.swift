@@ -36,7 +36,7 @@ extension OutputManager: CustomStringConvertible {
         print("입력한 정보는 \(profile.age)세 \(profile.name)(\(profile.tel))입니다.")
     }
     
-    static func printProfileList(_ profileData: [Profile]) {
+    static func printProfileList(_ profileData: Set<Profile>) {
         profileData.sorted(by: { $0.name < $1.name }).forEach {
             print("- \($0.name) / \($0.age) / \($0.tel)")
         }
