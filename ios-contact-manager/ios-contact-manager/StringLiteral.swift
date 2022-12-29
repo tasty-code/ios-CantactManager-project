@@ -17,6 +17,8 @@ enum StringLiteral {
         연락처 정보를 입력해주세요.
         """
     
+    static let findContract = "연락처에서 찾을 이름을 입력해주세요 : "
+    
     static func infoPrint(of item: CustomStringConvertible) -> String {
         return "입력한 정보는 \(item) 입니다."
     }
@@ -24,6 +26,10 @@ enum StringLiteral {
     static let help = """
         입력 형태를 확인해주세요.
         """
+    
+    static func notFound(name: String) -> String {
+        return "연락처에 \(name) 이(가) 없습니다."
+    }
     
     static let wrongMenu = """
         선택이 잘못되었습니다 확인 후 다시 입력해주세요.

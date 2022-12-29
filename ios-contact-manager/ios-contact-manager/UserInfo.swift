@@ -34,17 +34,13 @@ struct UserInfo {
     let phone: String
     
     init(name:String, age:String, phone: String) throws {
-        do {
-            let regexName = try name.matches(infoType: .name)
-            self.name = regexName.components(separatedBy: " ").joined()
-            guard let age = Int(try age.matches(infoType: .age)) else {
-                throw IOError.invalidProperty(parameter: .age)
-            }
-            self.age = age
-            self.phone = try phone.matches(infoType: .phone)
-        } catch {
-            throw error
+        let regexName = try name.matches(infoType: .name)
+        self.name = regexName.components(separatedBy: " ").joined()
+        guard let age = Int(try age.matches(infoType: .age)) else {
+            throw IOError.invalidProperty(parameter: .age)
         }
+        self.age = age
+        self.phone = try phone.matches(infoType: .phone)
     }
     
     init(input: InfoInput) throws {
@@ -54,6 +50,6 @@ struct UserInfo {
 
 extension UserInfo: CustomStringConvertible {
     var description: String {
-        return "\(self.age)세 \(self.name)(\(self.phone))"
+        return "\(self.name) / \(self.age) / \(self.phone)"
     }
 }

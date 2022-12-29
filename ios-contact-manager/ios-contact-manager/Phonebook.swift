@@ -16,4 +16,17 @@ final class Phonebook {
     func add(contact: UserInfo) {
         contacts[contact.name, default: []].append(contact)
     }
+    
+    func getContact(of name: String) -> String? {
+        guard let foundUserInfos = contacts[name] else {
+            return nil
+        }
+        return convertDescription(from: foundUserInfos)
+    }
+    
+    private func convertDescription(from userInfos: [UserInfo]) -> String {
+        userInfos.reduce("") { partialResult, currentUserInfo in
+            return partialResult + "- \(currentUserInfo)\n"
+        }
+    }
 }

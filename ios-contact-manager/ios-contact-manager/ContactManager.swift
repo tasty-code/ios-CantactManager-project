@@ -37,7 +37,7 @@ final class ContactManager {
             case .showAll:
                 print("showAll")
             case .findContact:
-                print("findContact")
+                try findContact()
             case .exit:
                 IOManager.sendOutput(
                     type: .infomation,
@@ -89,6 +89,24 @@ extension ContactManager {
         IOManager.sendOutput(
             type: .infomation,
             contents: StringLiteral.infoPrint(of: userInfo)
+        )
+    }
+}
+
+// MARK: - findContract
+
+extension ContactManager {
+    private func findContact() throws {
+        IOManager.sendOutput(
+            type: .menu,
+            contents: StringLiteral.findContract
+        )
+        let input = try IOManager.getInput()
+        let userName = try input.matches(infoType: .name)
+        let result = phonebook.getContact(of: userName) ?? StringLiteral.notFound(name: userName)
+        IOManager.sendOutput(
+            type: .infomation,
+            contents: result
         )
     }
 }
