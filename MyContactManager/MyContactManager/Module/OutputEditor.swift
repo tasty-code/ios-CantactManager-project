@@ -10,7 +10,7 @@ import Foundation
 struct OutputEditor {
     
     func printMenu() {
-        print(Messages.menu.rawValue, terminator: " ")
+        print(Menu.greeting, Messages.enterMenu.rawValue, terminator: " ")
     }
     
     func askContactInfo() {
