@@ -13,6 +13,7 @@ enum Message: String {
     1) 연락처 추가 2) 연락처 목록보기 3) 연락처 검색 x) 종료
     메뉴를 선택해주세요 :
     """
+    case searchContact = "연락처에서 찾을 이름을 입력해주세요 :"
     case quit = "[프로그램 종료]"
 }
 

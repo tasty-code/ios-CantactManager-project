@@ -31,7 +31,7 @@ struct ContactManager {
         case .showContacts:
             showContact()
         case .searchContact:
-            return
+            searchContact()
         case .quit:
             self.state = .quit
         case .invilidCommand:
@@ -66,6 +66,26 @@ struct ContactManager {
         }
         for contact in contacts {
             print("- \(contact.name) / \(contact.age) / \(contact.phoneNumber)")
+        }
+    }
+
+    private func searchContact() {
+        do {
+            guard let name = try getLine(messageType: .searchContact) else {
+                return
+            }
+            let contacts = self.contacts.filter { contact in
+                contact.name == name
+            }
+            guard !contacts.isEmpty else {
+                print("연락처에 \(name) 이(가) 없습니다.")
+                return
+            }
+            for contact in contacts {
+                print("- \(contact.name) / \(contact.age) / \(contact.phoneNumber)")
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }
