@@ -1,5 +1,13 @@
 import Foundation
 
+struct Contact : Hashable {
+    let name : String
+    let age : String
+    let phoneNumber : String
+}
+
+var ContactSet : Set<Contact> = []
+
 var isMenuInputError: Bool = false
 let regex = "^[A-Za-z\\s]+$"
 
