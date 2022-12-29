@@ -21,6 +21,7 @@ enum State {
 }
 
 struct ContactManager {
+    private var contacts: Set<Contact> = []
     private var state: State = .continued
 
     private mutating func execute(command: Command) {
@@ -49,5 +50,13 @@ struct ContactManager {
             execute(command: command)
         }
         print(Message.quit.rawValue)
+    }
+
+    mutating func addContact() {
+        guard let contact = getContact() else {
+            return
+        }
+        print("입력한 정보는 \(contact.age)세 \(contact.name)(\(contact.phoneNumber))입니다.")
+        self.contacts.insert(contact)
     }
 }

@@ -7,20 +7,21 @@
 
 import Foundation
 
-func addContact() {
+func getContact() -> Contact? {
     do {
         guard let input: String = try getLine(messageType: .pleaseInputContactData) else {
-            return
+            return nil
         }
         let raw: (name: String, age: String, phoneNumber: String) = try split(input: input)
         let name: String = try getName(input: raw.name)
         let age: UInt = try getAge(input: raw.age)
         try isValidPhoneNumber(raw.phoneNumber)
         let phoneNumber: String = raw.phoneNumber
-        print("입력한 정보는 \(age)세 \(name)(\(phoneNumber))입니다.")
+        return Contact(name: name, age: age, phoneNumber: phoneNumber)
     } catch {
         print(error.localizedDescription)
     }
+    return nil
 }
 
 func split(input: String) throws -> (String, String, String) {
