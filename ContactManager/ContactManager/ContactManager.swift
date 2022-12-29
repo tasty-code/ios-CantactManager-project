@@ -52,7 +52,7 @@ struct ContactManager {
         print(Message.quit.rawValue)
     }
 
-    mutating func addContact() {
+    private mutating func addContact() {
         guard let contact = getContact() else {
             return
         }
