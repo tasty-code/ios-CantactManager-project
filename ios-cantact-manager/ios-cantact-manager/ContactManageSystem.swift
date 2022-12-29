@@ -70,7 +70,24 @@ struct ContactManageSystem {
     }
     
     func searchProfile() {
-        
+        do {
+            OutputManager.printMessage(.inputName)
+            let searchNameInput = try inputManager.searchProfileInput()
+            var arrayA = [Profile]()
+            arrayA = profileData.filter {
+                $0.name == searchNameInput
+            }
+            guard !arrayA.isEmpty else {
+                OutputManager.printNoMatchingData(name: searchNameInput)
+                return
+            }
+            
+            arrayA.forEach { profile in
+                print("- \(profile.name) / \(profile.age) / \(profile.tel)")
+            }
+        } catch {
+            print("\(error)")
+        }
     }
     
     mutating func stop() {

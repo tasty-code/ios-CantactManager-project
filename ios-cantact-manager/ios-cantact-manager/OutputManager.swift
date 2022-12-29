@@ -15,6 +15,7 @@ enum OutputManager: String {
     case invalidInput = "입력한 정보가 잘못되었습니다. 입력 형식을 확인해주세요."
     case invalidAge = "입력한 나이정보가 잘못되었습니다. 입력 형식을 확인해주세요."
     case invalidTel = "입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요."
+    case inputName = "연락처에서 찾을 이름을 입력해주세요 : "
 }
 
 extension OutputManager: CustomStringConvertible {
@@ -24,7 +25,7 @@ extension OutputManager: CustomStringConvertible {
     
     static func printMessage(_ text: OutputManager) {
         switch text {
-        case .inputInfo, .inputMenu, .stopSystem:
+        case .inputInfo, .inputMenu, .stopSystem, .inputName:
             print(text.description, terminator: "")
         default:
             print(text.description)
@@ -32,5 +33,8 @@ extension OutputManager: CustomStringConvertible {
     }
     static func printProfile(_ profile: Profile) {
         print("입력한 정보는 \(profile.age)세 \(profile.name)(\(profile.tel))입니다.")
+    }
+    static func printNoMatchingData(name: String) {
+        print("연락처에 \(name) 이(가) 없습니다.")
     }
 }
