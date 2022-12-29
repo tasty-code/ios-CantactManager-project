@@ -57,3 +57,15 @@ extension UserInfo: CustomStringConvertible {
         return "\(self.age)세 \(self.name)(\(self.phone))"
     }
 }
+
+extension UserInfo: Hashable {
+    static func == (lhs: UserInfo, rhs: UserInfo) -> Bool {
+        return lhs.description == rhs.description
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(age)
+        hasher.combine(phone)
+    }
+}

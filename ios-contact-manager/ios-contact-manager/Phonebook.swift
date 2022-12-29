@@ -8,10 +8,10 @@
 import Foundation
 
 final class Phonebook {
-    private var contacts: [String:[UserInfo]]
+    private var contacts: [String:Set<UserInfo>]
     
     var description: String? {
-        guard !contacts.isEmpty else {
+        guard false == contacts.isEmpty else {
             return nil
         }
         let sortedContacts = contacts.sorted { $0.key < $1.key }
@@ -21,12 +21,13 @@ final class Phonebook {
         return result
     }
     
-    init(contacts: [String : [UserInfo]]) {
+    init(contacts: [String:Set<UserInfo>]) {
         self.contacts = contacts
     }
     
-    func add(contact: UserInfo) {
-        contacts[contact.name, default: []].append(contact)
+    func add(contact: UserInfo) -> Bool {
+        let (inserted, _) = contacts[contact.name, default: Set<UserInfo>()].insert(contact)
+        return inserted
     }
     
     func getContact(of name: String) -> String? {
@@ -36,7 +37,7 @@ final class Phonebook {
         return description(of: foundUserInfos)
     }
     
-    private func description(of userInfos: [UserInfo]) -> String {
+    private func description(of userInfos: Set<UserInfo>) -> String {
         userInfos.reduce("") { partialResult, currentUserInfo in
             return partialResult + "- \(currentUserInfo)\n"
         }

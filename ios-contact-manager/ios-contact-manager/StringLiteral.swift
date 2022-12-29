@@ -27,5 +27,6 @@ enum StringLiteral {
             return "입력한 정보는 \(newContact) 입니다."
         }
         static let empty = "입력된 연락처가 없습니다."
+        static let exist = "동일한 연락처가 존재합니다. 다른 연락처를 입력해주세요."
     }
 }

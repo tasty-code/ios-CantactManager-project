@@ -57,7 +57,12 @@ final class ContactManager {
         }
         run()
     }
-    
+}
+
+
+// MARK: - addContact
+
+extension ContactManager {
     private func parse(info input: String) throws -> InfoInput {
         let inputPattern = #"^.+\b(?<sep>( \/ )|(\/))(\b[^\s]+\b)\k<sep>(\b[^\s]+)$"#
         
@@ -70,12 +75,7 @@ final class ContactManager {
         let infoInput = (name: splitedInput[0], age: splitedInput[1], phone: splitedInput[2])
         return infoInput
     }
-}
-
-
-// MARK: - addContact
-
-extension ContactManager {
+    
     private func addContact() throws {
         IOManager.sendOutput(
             type: .menu,
@@ -84,11 +84,11 @@ extension ContactManager {
         let input = try IOManager.getInput()
         let parsedInfoInput = try parse(info: input)
         let userInfo = try UserInfo(input: parsedInfoInput)
-        phonebook.add(contact: userInfo)
-        
+        let inserted = phonebook.add(contact: userInfo)
+        let description = inserted ? StringLiteral.Contact.added( userInfo.addedDescription) : StringLiteral.Contact.exist
         IOManager.sendOutput(
             type: .infomation,
-            contents: StringLiteral.Contact.added( userInfo.addedDescription)
+            contents: description
         )
     }
 }
@@ -108,6 +108,10 @@ extension ContactManager {
 // MARK: - findContract
 
 extension ContactManager {
+    private func parse(name: String) throws -> String {
+        return try name.matches(infoType: .name)
+    }
+    
     private func findContact() throws {
         IOManager.sendOutput(
             type: .menu,
@@ -120,10 +124,6 @@ extension ContactManager {
             type: .infomation,
             contents: description
         )
-    }
-    
-    private func parse(name: String) throws -> String {
-        return try name.matches(infoType: .name)
     }
 }
 
