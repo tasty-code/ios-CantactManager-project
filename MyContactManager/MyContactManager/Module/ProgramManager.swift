@@ -17,7 +17,7 @@ final class ProgramManager {
     func runProgram() {
         while shouldRun {
             outputEditor.printMenu()
-            do{
+            do {
                 shouldRun = try inputEditor.selectMenu()
             } catch {
                 print(error.localizedDescription)

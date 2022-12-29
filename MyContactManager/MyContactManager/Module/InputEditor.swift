@@ -14,7 +14,7 @@ struct InputEditor {
     
     func getUserInput() throws -> String {
         guard let userInput = readLine() else {
-            throw Errors.readFail // 시스템에러 검증
+            throw Errors.readFail
         }
         return userInput
     }
@@ -22,7 +22,7 @@ struct InputEditor {
     func getContactInfo() throws -> UserInputModel {
         let userInput = try getUserInput()
         
-        let isEmpty = validator.checkInputEmpty(with: userInput) // 비어있는거 검증
+        let isEmpty = validator.checkInputEmpty(with: userInput)
         
         if isEmpty {
             throw Errors.noUserInput
@@ -37,7 +37,6 @@ struct InputEditor {
         
         let menu = Menu(rawValue: userInput)
         
-        // 스위치문 다시 ProgramManager으로 뺄 것.!!!!
         switch menu {
         case .add:
             outputEditor.askContactInfo()
@@ -49,23 +48,17 @@ struct InputEditor {
                 print(error.localizedDescription)
                 return true
             }
-        case .showList:
-            return true
-        case .search:
+        case .showList, .search:
+            print("\n", terminator: "")
             return true
         case .exit:
             outputEditor.printTerminateProgram()
             return false
         default:
-            outputEditor.printWrongSelect()
-            return true
+            throw Errors.invalidSelect
         }
         return true
     }
-    
-    
-    
-    
     
     func trimming(of str: String) -> [String] {
         let unspacedString = str.components(separatedBy: " ").joined()
