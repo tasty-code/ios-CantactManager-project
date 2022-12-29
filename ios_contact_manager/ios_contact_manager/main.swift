@@ -91,6 +91,24 @@ func viewContactList() {
     }
 }
 
+func searchContact() {
+    print("연락처에서 찾을 이름을 입력해주세요 : ", terminator: "")
+    let input = readLine()
+    guard let someInput = input, someInput.count > 0 else { return }
+    let nameFiltered = allUsersData.filter { user in
+        someInput == user.name
+    }
+    if !nameFiltered.isEmpty {
+        let nameSortedArray = allUsersData.sorted(by: { $0.name < $1.name })
+        let ageSortedArray = nameSortedArray.sorted(by: { $0.age < $1.age })
+        ageSortedArray.forEach { n in
+            print("- \(n.name) / \(n.age) / \(n.phoneNumbers)", terminator: "\n")
+        }
+    } else {
+        print("연락처에 \(someInput) 이(가) 없습니다.")
+    }
+}
+
 func endApp() {
     print("[프로그램 종료]")
     isAppRunning = false
