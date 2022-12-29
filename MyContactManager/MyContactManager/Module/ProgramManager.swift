@@ -16,7 +16,7 @@ final class ProgramManager {
     
     func runProgram() {
         while shouldRun {
-            outputEditor.printGreeting()
+            outputEditor.askContactInfo()
             do {
                 let userInput = try inputEditor.getUserInput()
                 let person = try inputEditor.requestValidation(with: userInput)

@@ -9,8 +9,12 @@ import Foundation
 
 struct OutputEditor {
     
-    func printGreeting() {
-        print(Messages.greeting.rawValue, terminator: " ")
+    func printMenu() {
+        print(Messages.menu.rawValue, terminator: " ")
+    }
+    
+    func askContactInfo() {
+        print(Messages.enterInfo.rawValue, terminator: " ")
     }
     
     func printResult(with person: Person) {
