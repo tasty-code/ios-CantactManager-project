@@ -29,7 +29,7 @@ struct ContactManager {
         case .addContact:
             addContact()
         case .showContacts:
-            return
+            showContact()
         case .searchContact:
             return
         case .quit:
@@ -58,5 +58,14 @@ struct ContactManager {
         }
         print("입력한 정보는 \(contact.age)세 \(contact.name)(\(contact.phoneNumber))입니다.")
         self.contacts.insert(contact)
+    }
+
+    private func showContact() {
+        let contacts = self.contacts.sorted {
+            ($0.name, $1.age) > ($1.name, $0.age)
+        }
+        for contact in contacts {
+            print("- \(contact.name) / \(contact.age) / \(contact.phoneNumber)")
+        }
     }
 }
