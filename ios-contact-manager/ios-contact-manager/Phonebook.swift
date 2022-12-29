@@ -10,17 +10,15 @@ import Foundation
 final class Phonebook {
     private var contacts: [String:[UserInfo]]
     
-    var isEmpty: Bool {
-        return contacts.isEmpty
-    }
-    
     var description: String? {
         guard !contacts.isEmpty else {
             return nil
         }
-        return contacts.sorted { $0.key < $1.key }.reduce("") { partialResult, contact in
-            partialResult + convertDescription(from: contact.value)
+        let sortedContacts = contacts.sorted { $0.key < $1.key }
+        let result = sortedContacts.reduce("") { partialResult, contact in
+            partialResult + description(of: contact.value)
         }
+        return result
     }
     
     init(contacts: [String : [UserInfo]]) {
@@ -35,10 +33,10 @@ final class Phonebook {
         guard let foundUserInfos = contacts[name] else {
             return nil
         }
-        return convertDescription(from: foundUserInfos)
+        return description(of: foundUserInfos)
     }
     
-    private func convertDescription(from userInfos: [UserInfo]) -> String {
+    private func description(of userInfos: [UserInfo]) -> String {
         userInfos.reduce("") { partialResult, currentUserInfo in
             return partialResult + "- \(currentUserInfo)\n"
         }

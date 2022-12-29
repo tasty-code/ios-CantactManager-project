@@ -15,7 +15,7 @@ enum UserInfoParameters: String {
     var regex: String {
         switch self {
         case .name:
-            return "^[A-Za-z ]+$"
+            return "^[A-Za-z]+$"
         case .age:
             return #"^\d{1,3}$"#
         case .phone:
@@ -51,5 +51,9 @@ struct UserInfo {
 extension UserInfo: CustomStringConvertible {
     var description: String {
         return "\(self.name) / \(self.age) / \(self.phone)"
+    }
+    
+    var addedDescription: String {
+        return "\(self.age)세 \(self.name)(\(self.phone))"
     }
 }

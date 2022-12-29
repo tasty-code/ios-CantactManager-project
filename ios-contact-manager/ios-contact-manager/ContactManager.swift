@@ -13,25 +13,24 @@ final class ContactManager {
     static let shared = ContactManager()
     private init() { }
     
-    enum Option: String {
+    enum Menu: String {
         case addContact = "1"
         case showAllContacts = "2"
         case findContact = "3"
         case exit = "x"
     }
-    
-    private let inputPattern = #"^.+\b(?<sep>( \/ )|(\/))(\b[^\s]+\b)\k<sep>(\b[^\s]+)$"#
+
     private let phonebook = Phonebook(contacts: [:])
     
     func run() {
         do {
             IOManager.sendOutput(
                 type: .menu,
-                contents: StringLiteral.menu
+                contents: StringLiteral.Menu.start
             )
             let input = try IOManager.getInput()
             
-            switch Option(rawValue: input) {
+            switch Menu(rawValue: input) {
             case .addContact:
                 try addContact()
             case .showAllContacts:
@@ -41,13 +40,13 @@ final class ContactManager {
             case .exit:
                 IOManager.sendOutput(
                     type: .infomation,
-                    contents: StringLiteral.end
+                    contents: StringLiteral.Menu.end
                 )
                 return
             default:
                 IOManager.sendOutput(
                     type: .infomation,
-                    contents: StringLiteral.wrongMenu
+                    contents: StringLiteral.Menu.wrong
                 )
             }
         } catch {
@@ -56,11 +55,12 @@ final class ContactManager {
                 contents: error.localizedDescription
             )
         }
-        
         run()
     }
     
-    private func parse(_ input: String) throws -> InfoInput {
+    private func parse(info input: String) throws -> InfoInput {
+        let inputPattern = #"^.+\b(?<sep>( \/ )|(\/))(\b[^\s]+\b)\k<sep>(\b[^\s]+)$"#
+        
         guard input ~= inputPattern else {
             throw IOError.invalidInputFormat
         }
@@ -79,16 +79,16 @@ extension ContactManager {
     private func addContact() throws {
         IOManager.sendOutput(
             type: .menu,
-            contents: StringLiteral.addContact
+            contents: StringLiteral.Contact.add
         )
         let input = try IOManager.getInput()
-        let parsedInfoInput = try parse(input)
+        let parsedInfoInput = try parse(info: input)
         let userInfo = try UserInfo(input: parsedInfoInput)
         phonebook.add(contact: userInfo)
         
         IOManager.sendOutput(
             type: .infomation,
-            contents: StringLiteral.infoPrint(of: userInfo)
+            contents: StringLiteral.Contact.added( userInfo.addedDescription)
         )
     }
 }
@@ -97,11 +97,10 @@ extension ContactManager {
 
 extension ContactManager {
     private func showAllContacts() {
-        
-        let result = phonebook.description ?? StringLiteral.emptyContacts
+        let description = phonebook.description ?? StringLiteral.Contact.empty
         IOManager.sendOutput(
             type: .infomation,
-            contents: result
+            contents: description
         )
     }
 }
@@ -112,15 +111,19 @@ extension ContactManager {
     private func findContact() throws {
         IOManager.sendOutput(
             type: .menu,
-            contents: StringLiteral.findContract
+            contents: StringLiteral.Contact.find
         )
         let input = try IOManager.getInput()
-        let userName = try input.matches(infoType: .name)
-        let result = phonebook.getContact(of: userName) ?? StringLiteral.notFound(name: userName)
+        let userName = try parse(name: input)
+        let description = phonebook.getContact(of: userName) ?? StringLiteral.Contact.notFound(name: userName)
         IOManager.sendOutput(
             type: .infomation,
-            contents: result
+            contents: description
         )
+    }
+    
+    private func parse(name: String) throws -> String {
+        return try name.matches(infoType: .name)
     }
 }
 
