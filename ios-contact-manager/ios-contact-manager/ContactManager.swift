@@ -15,7 +15,7 @@ final class ContactManager {
     
     enum Option: String {
         case addContact = "1"
-        case showAll = "2"
+        case showAllContacts = "2"
         case findContact = "3"
         case exit = "x"
     }
@@ -34,8 +34,8 @@ final class ContactManager {
             switch Option(rawValue: input) {
             case .addContact:
                 try addContact()
-            case .showAll:
-                print("showAll")
+            case .showAllContacts:
+                showAllContacts()
             case .findContact:
                 try findContact()
             case .exit:
@@ -89,6 +89,19 @@ extension ContactManager {
         IOManager.sendOutput(
             type: .infomation,
             contents: StringLiteral.infoPrint(of: userInfo)
+        )
+    }
+}
+
+// MARK: - showAllContacts
+
+extension ContactManager {
+    private func showAllContacts() {
+        
+        let result = phonebook.description ?? StringLiteral.emptyContacts
+        IOManager.sendOutput(
+            type: .infomation,
+            contents: result
         )
     }
 }

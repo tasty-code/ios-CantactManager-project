@@ -17,6 +17,10 @@ enum StringLiteral {
         연락처 정보를 입력해주세요.
         """
     
+    static let emptyContacts = """
+        입력된 연락처가 없습니다.
+        """
+    
     static let findContract = "연락처에서 찾을 이름을 입력해주세요 : "
     
     static func infoPrint(of item: CustomStringConvertible) -> String {
