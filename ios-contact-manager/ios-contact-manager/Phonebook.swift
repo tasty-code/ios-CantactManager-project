@@ -7,8 +7,8 @@
 
 import Foundation
 
-class Phonebook {
-    var contacts: [String:[UserInfo]]
+final class Phonebook {
+    private var contacts: [String:[UserInfo]]
     init(contacts: [String : [UserInfo]]) {
         self.contacts = contacts
     }

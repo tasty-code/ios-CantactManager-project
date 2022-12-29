@@ -20,13 +20,15 @@ final class ContactManager {
         case exit = "x"
     }
     
-    let inputPattern = #"^.+\b(?<sep>( \/ )|(\/))(\b[^\s]+\b)\k<sep>(\b[^\s]+)$"#
-    
-    let phonebook = Phonebook(contacts: [:])
+    private let inputPattern = #"^.+\b(?<sep>( \/ )|(\/))(\b[^\s]+\b)\k<sep>(\b[^\s]+)$"#
+    private let phonebook = Phonebook(contacts: [:])
     
     func run() {
         do {
-            IOManager.sendOutput(type: .menu, contents: StringLiteral.menu)
+            IOManager.sendOutput(
+                type: .menu,
+                contents: StringLiteral.menu
+            )
             let input = try IOManager.getInput()
             
             switch Option(rawValue: input) {
@@ -37,13 +39,22 @@ final class ContactManager {
             case .findContact:
                 print("findContact")
             case .exit:
-                IOManager.sendOutput(type: .infomation, contents: StringLiteral.end)
+                IOManager.sendOutput(
+                    type: .infomation,
+                    contents: StringLiteral.end
+                )
                 return
             default:
-                IOManager.sendOutput(type: .infomation, contents: StringLiteral.wrongMenu)
+                IOManager.sendOutput(
+                    type: .infomation,
+                    contents: StringLiteral.wrongMenu
+                )
             }
         } catch {
-            IOManager.sendOutput(type: .error, contents: error.localizedDescription)
+            IOManager.sendOutput(
+                type: .error,
+                contents: error.localizedDescription
+            )
         }
         
         run()
@@ -53,8 +64,11 @@ final class ContactManager {
         guard input ~= inputPattern else {
             throw IOError.invalidInputFormat
         }
-        let splitedInput = input.components(separatedBy: "/").map {$0.trimmingCharacters(in: .whitespaces)}
-        return (name: splitedInput[0], age: splitedInput[1], phone: splitedInput[2])
+        let splitedInput = input.components(separatedBy: "/").map {
+            $0.trimmingCharacters(in: .whitespaces)
+        }
+        let infoInput = (name: splitedInput[0], age: splitedInput[1], phone: splitedInput[2])
+        return infoInput
     }
 }
 
@@ -71,7 +85,11 @@ extension ContactManager {
         let parsedInfoInput = try parse(input)
         let userInfo = try UserInfo(input: parsedInfoInput)
         phonebook.add(contact: userInfo)
-        IOManager.sendOutput(type: .infomation, contents: StringLiteral.infoPrint(of: userInfo))
+        
+        IOManager.sendOutput(
+            type: .infomation,
+            contents: StringLiteral.infoPrint(of: userInfo)
+        )
     }
 }
 
