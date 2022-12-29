@@ -3,7 +3,7 @@ import Foundation
 struct UserInfo {
     var name: String
     var age: Int
-    var phoneNumbers: [String]
+    var phoneNumber: String
 }
 
 enum RegularExpressionChecker: String {
@@ -78,16 +78,15 @@ func verifyInput(input: Array<String>) {
 func addNewUser() {
     if checkedAge > 0, checkedName != "", checkedPhoneNumber != "" {
         print("입력한 정보는 \(checkedAge)세 \(checkedName)(\(checkedPhoneNumber))입니다.")
-        allUsersData.append(UserInfo(name: checkedName, age: checkedAge, phoneNumbers: [checkedPhoneNumber]))
+        allUsersData.append(UserInfo(name: checkedName, age: checkedAge, phoneNumber: checkedPhoneNumber))
         
     }
 }
 
 func viewContactList() {
     let nameSorted = allUsersData.sorted(by: { $0.name < $1.name })
-    let ageSorted = nameSorted.sorted(by: { $0.age < $1.age })
-    ageSorted.forEach { element in
-        print("- \(element.name) / \(element.age) / \(element.phoneNumbers)", terminator: "\n")
+    nameSorted.forEach { element in
+        print("- \(element.name) / \(element.age) / \(element.phoneNumber)", terminator: "\n")
     }
 }
 
@@ -100,9 +99,8 @@ func searchContact() {
     }
     if !nameFiltered.isEmpty {
         let nameSortedArray = allUsersData.sorted(by: { $0.name < $1.name })
-        let ageSortedArray = nameSortedArray.sorted(by: { $0.age < $1.age })
-        ageSortedArray.forEach { n in
-            print("- \(n.name) / \(n.age) / \(n.phoneNumbers)", terminator: "\n")
+        nameSortedArray.forEach { n in
+            print("- \(n.name) / \(n.age) / \(n.phoneNumber)", terminator: "\n")
         }
     } else {
         print("연락처에 \(someInput) 이(가) 없습니다.")
@@ -121,8 +119,8 @@ func startApp() {
         
         switch inputMenu {
         case "1": inputNewUser()
-        case "2": continue
-        case "3": continue
+        case "2": viewContactList()
+        case "3": searchContact()
         case "x": endApp()
         default:
             print("선택이 잘못되었습니다 확인 후 다시 입력해주세요.")
