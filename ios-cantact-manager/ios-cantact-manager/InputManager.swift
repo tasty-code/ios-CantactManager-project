@@ -54,4 +54,12 @@ struct InputManager {
             throw InputError.invalidTel
         }
     }
+    
+    func searchProfileInput() throws -> String {
+        let input = readLine()
+        guard let input = input else {
+            throw InputError.invalidInput
+        }
+        return input
+    }
 }
