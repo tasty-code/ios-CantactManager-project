@@ -64,7 +64,9 @@ struct ContactManageSystem {
     }
     
     func listUpProfile() {
-        
+        profileData.forEach { profile in
+            print("- \(profile.name) / \(profile.age) / \(profile.tel)")
+        }
     }
     
     func searchProfile() {
