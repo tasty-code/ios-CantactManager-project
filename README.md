@@ -9,12 +9,13 @@
     - [issue](#issue)
     - [Step1 실행 화면](#step1-실행-화면)
   - [Step 2](#step-2)
+    - [Step2 실행 화면](#step2-실행-화면)
   - [Step 3](#step-3)
     - [핵심 구현 요구 사항](#핵심-구현-요구-사항)
     - [고민한 부분: 연락처 데이터 저장 방식 / 데이터 구조](#고민한-부분-연락처-데이터-저장-방식--데이터-구조)
     - [Dictionary Default Parameter](#dictionary-default-parameter)
     - [연락처 중복 추가 방지를 위해 `Set<UserInfo>`로 변경](#연락처-중복-추가-방지를-위해-setuserinfo로-변경)
-    - [작동 스샷](#작동-스샷)
+    - [Step3 실행 화면](#step3-실행-화면)
 
 # ios-cantact-manager
 
@@ -54,17 +55,18 @@
 ### issue
 
 - `/` 입력 검증 방법<br>
-: ContactManager.swift 의 parse() 를 통해 ‘/‘을 검증하였습니다. 저희는 기존 기준을 더 명확히 하기 위해 추가적인 제한을 더 추가했습니다.
+  : ContactManager.swift 의 parse() 를 통해 ‘/‘을 검증하였습니다. 저희는 기존 기준을 더 명확히 하기 위해 추가적인 제한을 더 추가했습니다.
+
   - “이름 / 나이 / 전화번호” : / 기준으로 앞,뒤 space
   - “이름/나이/전화번호” : / 기준으로 앞,뒤 모두 space X
   - 이 두가지의 경우에만 ‘/‘ 검증을 통과하도록 했습니다.
   - 예를들어 “이름/ 나이/ 전화번호” 이런 경우, 통과하지 못하도록 구현했습니다.
 
-- `/` 검증 정규식 
+- `/` 검증 정규식
+
 ```swift
     let inputPattern = #"^.+\b(?<sep>( \/ )|(\/))(\b[^\s]+\b)\k<sep>(\b[^\s]+)$"#
 ```
-
 
 ### Step1 실행 화면
 
@@ -87,19 +89,35 @@
 - 무한루프를 반복문(while true)에 비해 재귀함수로 구현하는 것의 이점?
 
 1. 재귀함수
-  - 함수 안에 자기 자신을 호출하는 함수와 종료를 위한 조건이 존재한다.
-  - 조건에 수렴하지 않으면 무한한 함수 호출을 일으키기 때문에 스택 오버플로우를 일으킬 수 있다.
-  - 반복문보다 실행 속도가 느리다.
-2. 반복문
-  - 특정 조건에 도달하기 전까지 일련의 명령을 반복적으로 실행한다.
-  - 반복문은 무한 루프에 빠질 경우, 스택 메모리가 아닌 CPU 사이클을 반복적으로 사용한다.
-  - 재귀함수보다 실행 속도가 빠르다.
-3. 그럼에도 불구하고 재귀함수를 쓰는 이유는?
-  - 알고리즘 자체가 재귀함수에 더 자연스러운 경우
-  - 가독성이 더 좋아진다.
-  - 변수 사용을 줄인다.
-    → 반복문보다 재귀함수를 사용했을 때, 변수의 수를 줄일 수 있다. 변수의 수를 줄이면 프로그램은 변경 가능한 상태(mutable state)를 제거하고 오류가 발생할 확률을 줄일 수 있다.
+   - 함수 안에 자기 자신을 호출하는 함수와 종료를 위한 조건이 존재한다.
+   - 조건에 수렴하지 않으면 무한한 함수 호출을 일으키기 때문에 스택 오버플로우를 일으킬 수 있다.
+   - 반복문보다 실행 속도가 느리다.
 
+2. 반복문
+   - 특정 조건에 도달하기 전까지 일련의 명령을 반복적으로 실행한다.
+   - 반복문은 무한 루프에 빠질 경우, 스택 메모리가 아닌 CPU 사이클을 반복적으로 사용한다.
+   - 재귀함수보다 실행 속도가 빠르다.
+
+3. 그럼에도 불구하고 재귀함수를 쓰는 이유는?
+   - 알고리즘 자체가 재귀함수에 더 자연스러운 경우
+   - 가독성이 더 좋아진다.
+   - 변수 사용을 줄인다.<br>
+     → 반복문보다 재귀함수를 사용했을 때, 변수의 수를 줄일 수 있다. 변수의 수를 줄이면 프로그램은 변경 가능한 상태(mutable state)를 제거하고 오류가 발생할 확률을 줄일 수 있다.
+
+### Step2 실행 화면
+
+1. 메뉴 - 올바른 메뉴 선택
+   <img src="https://user-images.githubusercontent.com/107124308/210037642-425059a7-6090-48fd-8fa9-a17c7b283cf7.png" width="" height="">
+   <img src="https://user-images.githubusercontent.com/107124308/210037642-425059a7-6090-48fd-8fa9-a17c7b283cf7.png" width="" height=""> - 바르지 못한 메뉴 선택
+   <img src="https://user-images.githubusercontent.com/107124308/210037643-af33b30b-27aa-4c68-a645-23bb2b2a969f.png" width="" height=""> - 종료  
+   <img src="https://user-images.githubusercontent.com/107124308/210037645-82cd0dd6-bb08-4c2c-a624-e1c883fcd302.png" width="" height="">
+1. 연락처 추가
+   - Step 1에서 보여드린 연락처 추가와 동일한 코드이기 때문에 연락처 검증 test case 별 동작 사진은 따로 첨부하지 않겠습니다.
+   - 중복 되지 않는 연락처 추가
+     <img src="https://user-images.githubusercontent.com/107124308/210038101-3bce8b3f-0bc8-43da-98e3-4ba76d70d591.png" width="" height="">
+     <img src="https://user-images.githubusercontent.com/107124308/210038107-d8eeca47-792f-4281-baad-52f13b12195f.png" width="" height="">
+   - 중복된 연락처 추가
+     <img src="https://user-images.githubusercontent.com/107124308/210038375-a0542af1-1d91-408c-9f31-bec226bcf437.png" width="" height="">
 
 ## Step 3
 
@@ -202,13 +220,12 @@ print(d) // ["a": ["haha"], "b": ["bb", "bbc"]]
       - `subscript(_:default:)`는 Set에서도 구현되어 있었다👍
    3. `phonebook.add(contact:)`가 반환하는 Bool을 이용해서 ContactManager는 연락처가 성공적으로 추가되었는지 체크한다
 
-### 작동 스샷
+### Step3 실행 화면
+
 - 연락처 전체 조회
-    ![연락처_조회](https://user-images.githubusercontent.com/107124308/210038896-e735b220-1659-407a-89e4-8b899b4a281e.png)
-    - 연락처가 저장되지 않은 경우
-   <img src="https://user-images.githubusercontent.com/107124308/210049318-f9669738-7d7f-46ff-94a1-1e964ec10279.png" width="" height="">
-    
+  <img src="https://user-images.githubusercontent.com/107124308/210038896-e735b220-1659-407a-89e4-8b899b4a281e.png" width="" height=""> - 연락처가 저장되지 않은 경우
+  <img src="https://user-images.githubusercontent.com/107124308/210049318-f9669738-7d7f-46ff-94a1-1e964ec10279.png" width="" height="">
 - 연락처 검색
-   <img src="https://user-images.githubusercontent.com/107124308/210038884-16f78ccc-781b-48e8-8923-3c9aacd91903.png" width="" height="">
-   - 연락처에 찾는 이름이 없을떄
-   <img src="https://user-images.githubusercontent.com/107124308/210049336-6973dfa4-0f0e-44b6-9aca-7ecb899b5e92.png" width="" height="">
+  <img src="https://user-images.githubusercontent.com/107124308/210038884-16f78ccc-781b-48e8-8923-3c9aacd91903.png" width="" height="">
+  - 연락처에 찾는 이름이 없을떄
+    <img src="https://user-images.githubusercontent.com/107124308/210049336-6973dfa4-0f0e-44b6-9aca-7ecb899b5e92.png" width="" height="">
