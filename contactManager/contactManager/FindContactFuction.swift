@@ -5,7 +5,7 @@ func findContact(inputName : String){
             continue
         }
         correctCount += 1
-        print("- \(contact.name) / \(contact.age) / \(contact.phoneNumber)")
+        print(contact.description)
     }
     guard correctCount == 0 else{
         print("")

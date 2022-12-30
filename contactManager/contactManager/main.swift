@@ -4,6 +4,10 @@ struct Contact : Hashable {
     let name : String
     let age : String
     let phoneNumber : String
+    
+    var description: String {
+          "- \(self.name) / \(self.age) / \(self.phoneNumber)"
+       }
 }
 
 enum ErrorType{
@@ -51,7 +55,7 @@ while !isMenuInputError {
         addContact()
     case .viewContactList:
         for contact in contacts.sorted(by: {$0.name < $1.name}) {
-            print("- \(contact.name) / \(contact.age) / \(contact.phoneNumber)")
+            print(contact.description)
         }
         print("")
         continue
