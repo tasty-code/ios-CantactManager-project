@@ -12,6 +12,11 @@ enum ErrorType{
     case phoneNumber
 }
 
+enum GuideText {
+   static let menu = "1) 연락처 추가 2) 연락처 목록보기 3) 연락처 검색 x) 종료"
+   static let selectMenu = "메뉴를 선택해주세요 : "
+}
+
 func errorTextOutput(with type: ErrorType){
     let errorText: String
     switch type {
@@ -28,8 +33,8 @@ var isMenuInputError: Bool = false
 let regex = "^[A-Za-z\\s]+$"
 
 while !isMenuInputError {
-    print("1) 연락처 추가 2) 연락처 목록보기 3) 연락처 검색 x) 종료")
-    print("메뉴를 선택해주세요 : ",terminator: "")
+    print(GuideText.menu)
+    print(GuideText.selectMenu,terminator: "")
     guard let input = readLine(), input != "" else{
         continue
     }
