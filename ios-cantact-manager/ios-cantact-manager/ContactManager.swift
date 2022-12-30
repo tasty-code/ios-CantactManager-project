@@ -13,7 +13,7 @@ struct ContactManager {
     mutating func run() {
         while !contactManageSystem.isFinished {
             do {
-                let input = try contactManageSystem.deliverMenuInputValue()
+                let input = try contactManageSystem.menuInputValue()
                 contactManageSystem.pipeInMenu(input)
                 print()
             } catch {

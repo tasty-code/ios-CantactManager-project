@@ -9,7 +9,7 @@ import Foundation
 
 struct ContactManageSystem {
     let inputManager = InputManager()
-    var profileData = Set<Profile>()
+    var profiles = Set<Profile>()
     var isFinished = false
     
     enum Menu: String {
@@ -19,7 +19,7 @@ struct ContactManageSystem {
         case stop = "x"
     }
     
-    func deliverMenuInputValue() throws -> String {
+    func menuInputValue() throws -> String {
         OutputManager.printMessage(.inputMenu)
         let menuInput = try inputManager.menuInput()
         
@@ -27,21 +27,21 @@ struct ContactManageSystem {
     }
     
     mutating func pipeInMenu(_ input: String) {
-            guard let input = Menu(rawValue: input) else {
-                OutputManager.printMessage(.invalidMenu)
-                return
-            }
-            switch input {
-            case .addProfile:
-                addProfile()
-            case .listUpProfile:
-                listUpProfile()
-            case .searchProfile:
-                searchProfile()
-            case .stop:
-                stop()
-            }
+        guard let input = Menu(rawValue: input) else {
+            OutputManager.printMessage(.invalidMenu)
+            return
         }
+        switch input {
+        case .addProfile:
+            addProfile()
+        case .listUpProfile:
+            listUpProfile()
+        case .searchProfile:
+            searchProfile()
+        case .stop:
+            stop()
+        }
+    }
     
     mutating func addProfile() {
         do {
@@ -50,7 +50,7 @@ struct ContactManageSystem {
             let (name, age ,tel) = (inputArray[0], inputArray[1], inputArray[2])
             try inputManager.checkUserInput(name, age, tel)
             let profile = Profile(name: name, age: age, tel: tel)
-            profileData.insert(profile)
+            profiles.insert(profile)
             OutputManager.printProfile(profile)
         } catch InputError.invalidInput {
             OutputManager.printMessage(.invalidInput)
@@ -64,19 +64,19 @@ struct ContactManageSystem {
     }
     
     func listUpProfile() {
-        OutputManager.printProfileList(profileData)
+        OutputManager.printProfileList(profiles)
     }
     
     func searchProfile() {
         do {
             OutputManager.printMessage(.inputProfileName)
             let targetInput = try inputManager.targetInput()
-            let filteredProfileData = profileData.filter { $0.name == targetInput }
-            guard filteredProfileData.isEmpty else {
-                OutputManager.printProfileList(filteredProfileData)
+            let filteredProfileData = profiles.filter { $0.name == targetInput }
+            guard !filteredProfileData.isEmpty else {
+                OutputManager.printNoMatchingData(name: targetInput)
                 return
             }
-            OutputManager.printNoMatchingData(name: targetInput)
+            OutputManager.printProfileList(filteredProfileData)
         } catch {
             OutputManager.printMessage(.invalidInput)
         }
