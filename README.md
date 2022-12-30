@@ -1,83 +1,83 @@
 # 📞 연락처 관리 프로그램
-=====
 
 # 🏛️ 프로젝트 구조
 ## 'main.swift'
 
-### - struct -Contact
+### - `struct` - Contact
     -  name, age, phoneNumber 저장 프로퍼티 및 description 연산 프로퍼티를 갖는 struct
 
 
-### - enum -ErrorType
+### - `enum` - ErrorType
     - name, age, phoneNumber 입력시 생기는 에러를 담는 enum
 
 
-### - enum -GuideText
+### - `enum` - GuideText
     - 반복되는 출력문을 타입 프로퍼티로 담고 있는 enum
 
 
-### - enum -MenuType
+### - `enum` - MenuType
     - '1','2','3','x'를 옵션을 담는 enum
 
-### - struct -Validation
-    -  fun -validateInputBySlash(input:)
+### - `struct` - Validation
+    -  `func` -`validateInputBySlash(input:)`
         -  Slash 갯수를 통하여 입력값을 검증하는 함수
-    -  fun -validateInputByHyphenNum(input:)
+    -  `func` -`validateInputByHyphenNum(input:)`
         - Hyphen 갯수를 통하여 입력값을 검증하는 함수
 
-### - fun -errorTextOutput(with type:)
+### - `func` - `errorTextOutput(with type:)`
     -  각각의 에러 타입에 따라서 다른 출력문을 출력하는 함수
 
 
-### - while문
+### - `while`문
     -  메뉴 선택시 알맞은 입력값이 들어올 때까지 반복적으로 입력값을 받는다.
 
 ## 'AddContactFunction.swift'
-### - func -addContact()
+### - `func` - `addContact()`
     -  while문을 통하여 알맞은 연락처 정보값을 입력받을 때까지 반복적으로 입력값을 받는다. 
 
 
 ## 'CheckErrorFunction.swift'
-### - fun -checkNameError(name: String) -> Bool
+### - `func` - `checkNameError(name: String) -> Bool`
     - 정규식을 통하여 입력받은 값 검증
-### - fun -checkAgeError(age: String) -> Bool
+### - `func` - `checkAgeError(age: String) -> Bool`
     - 입력 받은 나이값이 숫자인지, 1000보다 작은 지를 검증
-### - fun -checkPhoneNumError(num: String) -> Bool 
+### - `func` - `checkPhoneNumError(num: String) -> Bool`
     - 입력 받은 전화번호 값을 errorTextOutput 함수를 통하여 검증
-### - fun -errorCheck(trimName: String, trimAge: String, trimNum: String) -> Bool
+### - `func` - `errorCheck(trimName: String, trimAge: String, trimNum: String) -> Bool`
     - 각각의 에러함수를 호출하는 함수 
 
 ## 'findContact.swift'
-### - fun -findContact(inputName : String)
+### - `func` - `findContact(inputName : String)`
 ### - 연락처에 입력받은 이름이 존재하는 검증하는 함수
 
 
 # 🚫 프로젝트 제약사항
-## 코드에 느낌표(!)를 사용하지 않습니다.
-## Swift API Design Guidelines 의 문서대로 코드를 작성합니다.
-## 코드에 주석을 남기지 않습니다.
-## 외부 라이브러리를 사용하지 않습니다.
-## 짝 프로그래밍을 통해 구현합니다.
-## 들여쓰기는 3번을 초과하지 않습니다.
-## 커밋은 짝꿍과 번갈아가며 남깁니다.
+
+- 코드에 느낌표(!)를 사용하지 않습니다.
+- Swift API Design Guidelines 의 문서대로 코드를 작성합니다.
+- 코드에 주석을 남기지 않습니다.
+- 외부 라이브러리를 사용하지 않습니다.
+- 짝 프로그래밍을 통해 구현합니다.
+- 들여쓰기는 3번을 초과하지 않습니다.
+- 커밋은 짝꿍과 번갈아가며 남깁니다.
 
 # 🍦 프로젝트 요구사항
   ## - [기본 구성]
-    ### 1) 사용자의 입력을 받는 동작 구현
-    ### 2) 출력 내용과 입력방법은 예시와 똑같이 따릅니다.
-    ### 3) 사용자에게 동작을 선택할 메뉴를 표기합니다.
-    ### 4) 1, 2, 3, x 외의 입력을 받으면 잘못된 입력을 알리고 다시 메뉴를 출력합니다.
+    1) 사용자의 입력을 받는 동작 구현
+    2) 출력 내용과 입력방법은 예시와 똑같이 따릅니다.
+    3) 사용자에게 동작을 선택할 메뉴를 표기합니다.
+    4) 1, 2, 3, x 외의 입력을 받으면 잘못된 입력을 알리고 다시 메뉴를 출력합니다.
     
   ## - [연락처 추가]
-    ### 1) 입력받은 문자열을 검증합니다
-    ### 2) 입력받은 내용을 검증하여 사용자에게 안내문을 출력합니다
+    1) 입력받은 문자열을 검증합니다
+    2) 입력받은 내용을 검증하여 사용자에게 안내문을 출력합니다
     
   ## - [연락처 목록 보기]
-    ### 1) 목록은 이름순으로 출력합니다.
+    1) 목록은 이름순으로 출력합니다.
     
   ## - [연락처 검색]
-    ### 1) 이름을 통해 연락처 검색
-    ### 2) 검색 결과의 출력 순서는 입력받았던 순서와 무관합니다. 
+    1) 이름을 통해 연락처 검색
+    2) 검색 결과의 출력 순서는 입력받았던 순서와 무관합니다. 
 
 # 🎡 기능 구현
   ## - [기본 구성]
