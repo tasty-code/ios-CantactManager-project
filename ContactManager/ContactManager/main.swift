@@ -9,8 +9,7 @@ import Foundation
 
 var manager = ContactManager()
 
-func getLine(messageType: Message) throws -> String? {
-    messageType.printSelf()
+func getLine() throws -> String? {
     guard let input = readLine() else {
         return nil
     }
@@ -20,9 +19,10 @@ func getLine(messageType: Message) throws -> String? {
     return input
 }
 
-func getCommand() -> Command? {
+func createCommand() -> Command? {
+    Message.pleaseInputMenu.printSelf()
     do {
-        guard let input = try getLine(messageType: .pleaseInputMenu) else {
+        guard let input = try getLine() else {
             return Command.quit
         }
         guard let command = Command(rawValue: input) else {

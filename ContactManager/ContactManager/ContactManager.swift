@@ -44,7 +44,7 @@ struct ContactManager {
             defer {
                 print()
             }
-            guard let command = getCommand() else {
+            guard let command = createCommand() else {
                 continue
             }
             execute(command: command)
@@ -53,7 +53,7 @@ struct ContactManager {
     }
 
     private mutating func addContact() {
-        guard let contact = getContact() else {
+        guard let contact = createContact() else {
             return
         }
         Message.inputContact(contact: contact).printSelf()
@@ -70,8 +70,9 @@ struct ContactManager {
     }
 
     private func searchContact() {
+        Message.searchContact.printSelf()
         do {
-            guard let name = try getLine(messageType: .searchContact) else {
+            guard let name = try getLine() else {
                 return
             }
             let contacts = self.contacts.filter { contact in
