@@ -1,6 +1,6 @@
 func findContact(inputName : String){
     var correctCount : Int = 0
-    for contact in ContactSet {
+    for contact in contacts {
         guard contact.name == inputName else {
             continue
         }

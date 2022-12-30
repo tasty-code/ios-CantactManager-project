@@ -6,7 +6,7 @@ struct Contact : Hashable {
     let phoneNumber : String
 }
 
-var ContactSet : Set<Contact> = []
+var contacts : Set<Contact> = []
 
 var isMenuInputError: Bool = false
 let regex = "^[A-Za-z\\s]+$"
@@ -21,7 +21,7 @@ while !isMenuInputError {
     case "1":
         addContact()
     case "2":
-        for num in ContactSet.sorted(by: {$0.name < $1.name}) {
+        for num in contacts.sorted(by: {$0.name < $1.name}) {
             print("- \(num.name) / \(num.age) / \(num.phoneNumber)")
         }
         print("")

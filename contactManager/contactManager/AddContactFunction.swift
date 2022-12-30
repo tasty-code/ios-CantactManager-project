@@ -31,7 +31,7 @@ func addContact(){
         
         let contact = Contact(name: zeroBlankName, age: trimAge, phoneNumber: trimNum)
         
-        ContactSet.insert(contact)
+        contacts.insert(contact)
     }
 
 }
