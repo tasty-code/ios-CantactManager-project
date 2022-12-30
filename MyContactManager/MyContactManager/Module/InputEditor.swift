@@ -21,7 +21,6 @@ struct InputEditor {
     
     private func getContactInfo() throws -> UserInputModel {
         let userInput = try getUserInput()
-        
         let isEmpty = validator.checkInputEmpty(with: userInput)
         
         if isEmpty {
@@ -34,39 +33,17 @@ struct InputEditor {
     
     func selectMenu() throws -> Bool {
         let userInput = try getUserInput()
-        
         let menu = Menu(rawValue: userInput)
         
         switch menu {
         case .add:
-            outputEditor.askContactInfo()
-            do {
-                let userInput = try getContactInfo()
-                let person = try requestValidation(with: userInput)
-                outputEditor.printResult(with: person)
-                DataManager.shared.setContact(person)
-            } catch {
-                print(error.localizedDescription)
-                return true
-            }
+            addProgram()
+            return true
         case .showList:
-            let contactsList = DataManager.shared.getContactsList()
-            contactsList.forEach { print($0, terminator: "\n") }
-            print("")
+            showListProgram()
             return true
         case .search:
-            var contactList: [Person] = []
-            outputEditor.printAskName()
-            guard let userInput = readLine() else { return true }
-            let person = DataManager.shared.getContactsData()
-            contactList = person.filter { $0.name == userInput }
-            
-            if contactList.isEmpty {
-                print("연락처에 \(userInput) 이(가) 없습니다.")
-            } else {
-                contactList.forEach{ print("- \($0.name) / \($0.age) / \($0.phoneNum)", terminator: "\n")}
-            }
-            print("")
+            searchProgram()
             return true
         case .exit:
             outputEditor.printTerminateProgram()
@@ -74,7 +51,6 @@ struct InputEditor {
         default:
             throw Errors.invalidSelect
         }
-        return true
     }
     
     private func trimming(of str: String) -> [String] {
@@ -94,5 +70,39 @@ struct InputEditor {
         } catch {
             throw error
         }
+    }
+    
+    private func addProgram() {
+        outputEditor.askContactInfo()
+        do {
+            let userInput = try getContactInfo()
+            let person = try requestValidation(with: userInput)
+            outputEditor.printResult(with: person)
+            DataManager.shared.setContact(person)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func showListProgram() {
+        let contactsList = DataManager.shared.getContactsList()
+        contactsList.forEach { print($0, terminator: "\n") }
+        print("")
+    }
+    
+    private func searchProgram() {
+        var contactList: [Person] = []
+        outputEditor.printAskName()
+        
+        guard let userInput = readLine() else { return }
+        let person = DataManager.shared.getContactsData()
+        contactList = person.filter { $0.name == userInput }
+        
+        if contactList.isEmpty {
+            print("연락처에 \(userInput) 이(가) 없습니다.")
+        } else {
+            contactList.forEach{ print("- \($0.name) / \($0.age) / \($0.phoneNum)", terminator: "\n")}
+        }
+        print("")
     }
 }
