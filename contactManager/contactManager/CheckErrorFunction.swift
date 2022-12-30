@@ -20,7 +20,7 @@ func checkAgeError(age: String) -> Bool{
 }
 
 func checkPhoneNumError(num: String) -> Bool {
-    guard calculateHyphenNum(input: num), num.components(separatedBy: ["-"]).joined().count >= 9 else {
+    guard validateInputByHyphenNum(input: num), num.components(separatedBy: ["-"]).joined().count >= 9 else {
         print("입력한 연락처정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
         return false
     }
