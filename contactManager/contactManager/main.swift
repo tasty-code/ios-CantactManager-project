@@ -21,8 +21,8 @@ while !isMenuInputError {
     case "1":
         addContact()
     case "2":
-        for num in contacts.sorted(by: {$0.name < $1.name}) {
-            print("- \(num.name) / \(num.age) / \(num.phoneNumber)")
+        for contact in contacts.sorted(by: {$0.name < $1.name}) {
+            print("- \(contact.name) / \(contact.age) / \(contact.phoneNumber)")
         }
         print("")
         continue
