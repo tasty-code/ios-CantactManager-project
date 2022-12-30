@@ -6,6 +6,22 @@ struct Contact : Hashable {
     let phoneNumber : String
 }
 
+enum ErrorType{
+    case name
+    case age
+    case phoneNumber
+}
+
+func errorTextOutput(with type: ErrorType){
+    let errorText: String
+    switch type {
+    case .name: errorText = "이름"
+    case .age: errorText = "나이"
+    case .phoneNumber: errorText = "연락처"
+    }
+    print("입력한 \(errorText)정보가 잘못되었습니다. 입력 형식을 확인해주세요.")
+}
+
 var contacts : Set<Contact> = []
 
 var isMenuInputError: Bool = false
