@@ -8,4 +8,4 @@
 import Foundation
 
 var contactManageSystem = ContactManageSystem()
-contactManageSystem.addProfile()
+contactManageSystem.run()

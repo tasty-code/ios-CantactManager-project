@@ -8,17 +8,25 @@
 import Foundation
 
 struct InputManager {
-    private let inputInfoMessage = "연락처 정보를 입력해주세요 : "
+
     private let splitInputCount = 3
     private let hyphenCount = 2
-
-    func parseUserInput() throws -> [String] {
-        print(inputInfoMessage, terminator: "")
+    
+    func menuInput() throws -> String {
+        let input = readLine()
+        guard let input = input else {
+            throw InputError.invalidInput
+        }
         
+        return input
+    }
+    
+    func parseUserInput() throws -> [String] {
         let input = readLine()
         guard let input = input, input != "" else {
             throw InputError.invalidInput
         }
+        
         let splitInput = input.components(separatedBy: "/").map {
             $0.replacingOccurrences(of: " ", with: "")
         }
@@ -45,5 +53,13 @@ struct InputManager {
         guard telRegexTest.evaluate(with: filteredTel) else {
             throw InputError.invalidTel
         }
+    }
+    
+    func targetInput() throws -> String {
+        let input = readLine()
+        guard let input = input else {
+            throw InputError.invalidInput
+        }
+        return input
     }
 }

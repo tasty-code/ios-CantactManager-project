@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Profile {
+struct Profile: Hashable {
     let name: String
-    var age: String
-    var tel: String
+    let age: String
+    let tel: String
 }
