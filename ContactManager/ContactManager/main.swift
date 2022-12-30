@@ -19,14 +19,14 @@ func getLine() throws -> String? {
     return input
 }
 
-func createCommand() -> Command? {
+func createCommand() throws -> Command? {
     Message.pleaseInputMenu.printSelf()
     do {
         guard let input = try getLine() else {
             return Command.quit
         }
         guard let command = Command(rawValue: input) else {
-            return Command.invalidCommand
+            throw ContactManagerError.invalidCommand
         }
         return command
     } catch {

@@ -12,7 +12,6 @@ enum Command: String {
     case showContacts = "2"
     case searchContact = "3"
     case quit = "x"
-    case invalidCommand
 }
 
 enum State {
@@ -34,8 +33,6 @@ struct ContactManager {
             searchContact()
         case .quit:
             self.state = .quit
-        case .invalidCommand:
-            print(ContactManagerError.invalidCommand.localizedDescription)
         }
     }
 
@@ -44,10 +41,14 @@ struct ContactManager {
             defer {
                 print()
             }
-            guard let command = createCommand() else {
-                continue
+            do {
+                guard let command = try createCommand() else {
+                    continue
+                }
+                execute(command: command)
+            } catch {
+                print(error.localizedDescription)
             }
-            execute(command: command)
         }
         Message.quit.printSelf()
     }
