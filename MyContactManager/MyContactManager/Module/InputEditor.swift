@@ -56,10 +56,16 @@ struct InputEditor {
             return true
         case .search:
             var contactList: [Person] = []
+            outputEditor.printAskName()
             guard let userInput = readLine() else { return true }
             let person = DataManager.shared.getContactsData()
             contactList = person.filter { $0.name == userInput }
-            dump(contactList)
+            
+            if contactList.isEmpty {
+                print("연락처에 \(userInput) 이(가) 없습니다.\n")
+            }else{
+                contactList.forEach{ print("\($0.name) / \($0.age) / \($0.phoneNum)", terminator: "\n\n")}
+            }
             return true
         case .exit:
             outputEditor.printTerminateProgram()
