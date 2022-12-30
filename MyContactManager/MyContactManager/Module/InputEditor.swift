@@ -62,10 +62,11 @@ struct InputEditor {
             contactList = person.filter { $0.name == userInput }
             
             if contactList.isEmpty {
-                print("연락처에 \(userInput) 이(가) 없습니다.\n")
-            }else{
-                contactList.forEach{ print("\($0.name) / \($0.age) / \($0.phoneNum)", terminator: "\n\n")}
+                print("연락처에 \(userInput) 이(가) 없습니다.")
+            } else {
+                contactList.forEach{ print("- \($0.name) / \($0.age) / \($0.phoneNum)", terminator: "\n")}
             }
+            print("")
             return true
         case .exit:
             outputEditor.printTerminateProgram()
