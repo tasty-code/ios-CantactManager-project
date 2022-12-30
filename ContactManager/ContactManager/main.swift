@@ -14,7 +14,7 @@ func getLine(messageType: Message) throws -> String? {
     guard let input = readLine() else {
         return nil
     }
-    guard !input.isEmpty else {
+    guard input.isEmpty == false else {
         throw ContactManagerError.emptyInput
     }
     return input
@@ -26,7 +26,7 @@ func getCommand() -> Command? {
             return Command.quit
         }
         guard let command = Command(rawValue: input) else {
-            return Command.invilidCommand
+            return Command.invalidCommand
         }
         return command
     } catch {

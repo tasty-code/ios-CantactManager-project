@@ -12,7 +12,7 @@ enum Command: String {
     case showContacts = "2"
     case searchContact = "3"
     case quit = "x"
-    case invilidCommand
+    case invalidCommand
 }
 
 enum State {
@@ -34,7 +34,7 @@ struct ContactManager {
             searchContact()
         case .quit:
             self.state = .quit
-        case .invilidCommand:
+        case .invalidCommand:
             print(ContactManagerError.invalidCommand.localizedDescription)
         }
     }
@@ -49,14 +49,14 @@ struct ContactManager {
             }
             execute(command: command)
         }
-        print(Message.quit.rawValue)
+        Message.quit.printSelf()
     }
 
     private mutating func addContact() {
         guard let contact = getContact() else {
             return
         }
-        print("입력한 정보는 \(contact.age)세 \(contact.name)(\(contact.phoneNumber))입니다.")
+        Message.inputContact(contact: contact).printSelf()
         self.contacts.insert(contact)
     }
 
@@ -65,7 +65,7 @@ struct ContactManager {
             ($0.name, $1.age) > ($1.name, $0.age)
         }
         for contact in contacts {
-            print("- \(contact.name) / \(contact.age) / \(contact.phoneNumber)")
+            Message.getContact(contact: contact).printSelf()
         }
     }
 
@@ -77,12 +77,12 @@ struct ContactManager {
             let contacts = self.contacts.filter { contact in
                 contact.name == name
             }
-            guard !contacts.isEmpty else {
-                print("연락처에 \(name) 이(가) 없습니다.")
+            guard contacts.isEmpty == false else {
+                print(ContactManagerError.excludeContact(name: name).localizedDescription)
                 return
             }
             for contact in contacts {
-                print("- \(contact.name) / \(contact.age) / \(contact.phoneNumber)")
+                Message.getContact(contact: contact).printSelf()
             }
         } catch {
             print(error.localizedDescription)
