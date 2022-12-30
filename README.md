@@ -75,7 +75,7 @@
 </p>
 
 
-### Keyword
+### Step 1 Keyword
 
 - [Swift API Design Guidelines] Naming
 - guard 문 사용을 통한 Early-Exit
@@ -124,7 +124,7 @@
 <!-- 
 ![image](https://user-images.githubusercontent.com/99641242/210038727-bb9fc191-5c9a-45ba-b70a-74e4ba4478be.png) -->
 
-### Keyword
+### Step 2 Keyword
 
 - function
 - while
@@ -190,7 +190,7 @@ nameFilterd.sorted(by: { $[0.name](http://0.name/) < $[1.name](http://1.name/)�
 </p>
 
 
-### Keyword
+### Step 3 Keyword
 
 - higherorder-Funcion
     - foreach
