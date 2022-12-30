@@ -82,10 +82,10 @@ struct ContactManageSystem {
     private func searchProfile() {
         do {
             OutputManager.print(text: .inputProfileName)
-            let targetInput = try inputManager.targetInput()
-            let filteredProfileData = profiles.filter { $0.name == targetInput }
+            let targetName = try inputManager.targetInput()
+            let filteredProfileData = profiles.filter { $0.name == targetName }
             guard !filteredProfileData.isEmpty else {
-                OutputManager.printNoMatchingData(name: targetInput)
+                OutputManager.printNoMatchingData(name: targetName)
                 return
             }
             OutputManager.print(profiles: filteredProfileData)
