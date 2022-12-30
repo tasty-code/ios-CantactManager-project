@@ -49,8 +49,13 @@ struct InputEditor {
                 print(error.localizedDescription)
                 return true
             }
-        case .showList, .search:
-            print("\n", terminator: "")
+        case .showList:
+            let contactsList = DataManager.shared.getContactsList()
+            contactsList.forEach{print($0,terminator: "\n")}
+            print("")
+            return true
+        case .search:
+            
             return true
         case .exit:
             outputEditor.printTerminateProgram()
