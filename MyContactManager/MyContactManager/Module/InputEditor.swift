@@ -44,6 +44,7 @@ struct InputEditor {
                 let userInput = try getContactInfo()
                 let person = try requestValidation(with: userInput)
                 outputEditor.printResult(with: person)
+                DataManager.shared.setContact(person)
             } catch {
                 print(error.localizedDescription)
                 return true
