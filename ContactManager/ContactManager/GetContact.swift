@@ -10,19 +10,15 @@ import Foundation
 extension ContactManager {
     func createContact() throws -> Contact? {
         Message.pleaseInputContactData.printSelf()
-        do {
-            guard let input: String = try getLine() else {
-                return nil
-            }
-            let raw: (name: String, age: String, phoneNumber: String) = try split(input: input)
-            let name: String = try getName(input: raw.name)
-            let age: UInt = try getAge(input: raw.age)
-            try isValidPhoneNumber(raw.phoneNumber)
-            let phoneNumber: String = raw.phoneNumber
-            return Contact(name: name, age: age, phoneNumber: phoneNumber)
-        } catch {
-            throw error
+        guard let input: String = try getLine() else {
+            return nil
         }
+        let raw: (name: String, age: String, phoneNumber: String) = try split(input: input)
+        let name: String = try getName(input: raw.name)
+        let age: UInt = try getAge(input: raw.age)
+        try isValidPhoneNumber(raw.phoneNumber)
+        let phoneNumber: String = raw.phoneNumber
+        return Contact(name: name, age: age, phoneNumber: phoneNumber)
     }
 
     private func split(input: String) throws -> (String, String, String) {

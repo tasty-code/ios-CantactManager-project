@@ -24,19 +24,15 @@ struct ContactManager {
     private var state: State = .continued
 
     private mutating func execute(command: Command) throws {
-        do {
-            switch command {
-            case .addContact:
-                try addContact()
-            case .showContacts:
-                showContact()
-            case .searchContact:
-                try searchContact()
-            case .quit:
-                self.state = .quit
-            }
-        } catch {
-            throw error
+        switch command {
+        case .addContact:
+            try addContact()
+        case .showContacts:
+            showContact()
+        case .searchContact:
+            try searchContact()
+        case .quit:
+            self.state = .quit
         }
     }
 
@@ -58,15 +54,11 @@ struct ContactManager {
     }
 
     private mutating func addContact() throws {
-        do {
-            guard let contact = try createContact() else {
-                return
-            }
-            Message.inputContact(contact: contact).printSelf()
-            self.contacts.insert(contact)
-        } catch {
-            throw error
+        guard let contact = try createContact() else {
+            return
         }
+        Message.inputContact(contact: contact).printSelf()
+        self.contacts.insert(contact)
     }
 
     private func showContact() {
@@ -80,22 +72,18 @@ struct ContactManager {
 
     private func searchContact() throws {
         Message.searchContact.printSelf()
-        do {
-            guard let name = try getLine() else {
-                return
-            }
-            let contacts = self.contacts.filter { contact in
-                contact.name == name
-            }
-            guard contacts.isEmpty == false else {
-                print(ContactManagerError.excludeContact(name: name).localizedDescription)
-                return
-            }
-            for contact in contacts {
-                Message.getContact(contact: contact).printSelf()
-            }
-        } catch {
-            throw error
+        guard let name = try getLine() else {
+            return
+        }
+        let contacts = self.contacts.filter { contact in
+            contact.name == name
+        }
+        guard contacts.isEmpty == false else {
+            print(ContactManagerError.excludeContact(name: name).localizedDescription)
+            return
+        }
+        for contact in contacts {
+            Message.getContact(contact: contact).printSelf()
         }
     }
 
@@ -111,16 +99,12 @@ struct ContactManager {
 
     private func createCommand() throws -> Command? {
         Message.pleaseInputMenu.printSelf()
-        do {
-            guard let input = try getLine() else {
-                return Command.quit
-            }
-            guard let command = Command(rawValue: input) else {
-                throw ContactManagerError.invalidCommand
-            }
-            return command
-        } catch {
-            throw error
+        guard let input = try getLine() else {
+            return Command.quit
         }
+        guard let command = Command(rawValue: input) else {
+            throw ContactManagerError.invalidCommand
+        }
+        return command
     }
 }
