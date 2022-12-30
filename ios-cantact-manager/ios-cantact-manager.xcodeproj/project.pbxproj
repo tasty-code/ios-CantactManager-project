@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B7BD53E295BFFF900023831 /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7BD53D295BFFF900023831 /* ContactManager.swift */; };
 		3B7DEA132952C861002C7E4D /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7DEA122952C861002C7E4D /* InputManager.swift */; };
 		3B7DEA152952C8F1002C7E4D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7DEA142952C8F1002C7E4D /* Profile.swift */; };
 		3B7DEA172952D10D002C7E4D /* ContactManageSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7DEA162952D10D002C7E4D /* ContactManageSystem.swift */; };
@@ -29,7 +28,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3B7BD53D295BFFF900023831 /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		3B7DEA122952C861002C7E4D /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
 		3B7DEA142952C8F1002C7E4D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		3B7DEA162952D10D002C7E4D /* ContactManageSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManageSystem.swift; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 				3B7DEA162952D10D002C7E4D /* ContactManageSystem.swift */,
 				EB1AE1922953F044003C94B0 /* InputError.swift */,
 				EB374D09295AC31800A737ED /* OutputManager.swift */,
-				3B7BD53D295BFFF900023831 /* ContactManager.swift */,
 			);
 			path = "ios-cantact-manager";
 			sourceTree = "<group>";
@@ -141,7 +138,6 @@
 				EB374D0A295AC31800A737ED /* OutputManager.swift in Sources */,
 				3B7DEA132952C861002C7E4D /* InputManager.swift in Sources */,
 				3B7DEA152952C8F1002C7E4D /* Profile.swift in Sources */,
-				3B7BD53E295BFFF900023831 /* ContactManager.swift in Sources */,
 				3B7DEA172952D10D002C7E4D /* ContactManageSystem.swift in Sources */,
 				EB5EB1AA2952BE4300752155 /* main.swift in Sources */,
 				EB1AE1932953F044003C94B0 /* InputError.swift in Sources */,

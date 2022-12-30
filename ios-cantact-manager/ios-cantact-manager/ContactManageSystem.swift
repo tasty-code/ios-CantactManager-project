@@ -19,6 +19,18 @@ struct ContactManageSystem {
         case stop = "x"
     }
     
+    mutating func run() {
+        while !isFinished {
+            do {
+                let input = try menuInputValue()
+                pipeInMenu(input)
+                print()
+            } catch {
+                OutputManager.print(text: .invalidMenu)
+            }
+        }
+    }
+    
     func menuInputValue() throws -> String {
         OutputManager.print(text: .inputMenu)
         let menuInput = try inputManager.menuInput()
@@ -63,11 +75,11 @@ struct ContactManageSystem {
         }
     }
     
-    func listUpProfile() {
+    private func listUpProfile() {
         OutputManager.print(profiles: profiles)
     }
     
-    func searchProfile() {
+    private func searchProfile() {
         do {
             OutputManager.print(text: .inputProfileName)
             let targetInput = try inputManager.targetInput()
