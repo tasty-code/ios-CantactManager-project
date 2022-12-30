@@ -11,7 +11,6 @@
 		87C3EE1D295D5ABF00A76712 /* FindContactFuction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C3EE1C295D5ABF00A76712 /* FindContactFuction.swift */; };
 		D9D3AEFD29597A7B0031A2F2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3AEFC29597A7B0031A2F2 /* main.swift */; };
 		D9E15C03295C312C003FB06D /* AddContactFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E15C02295C312C003FB06D /* AddContactFunction.swift */; };
-		D9E15C05295C3421003FB06D /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E15C04295C3421003FB06D /* Function.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,7 +31,6 @@
 		D9D3AEF929597A7B0031A2F2 /* contactManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = contactManager; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D3AEFC29597A7B0031A2F2 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D9E15C02295C312C003FB06D /* AddContactFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactFunction.swift; sourceTree = "<group>"; };
-		D9E15C04295C3421003FB06D /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +66,6 @@
 				D9D3AEFC29597A7B0031A2F2 /* main.swift */,
 				D9E15C02295C312C003FB06D /* AddContactFunction.swift */,
 				8733744E295C3295000EAC23 /* CheckErrorFunction.swift */,
-				D9E15C04295C3421003FB06D /* Function.swift */,
 				87C3EE1C295D5ABF00A76712 /* FindContactFuction.swift */,
 			);
 			path = contactManager;
@@ -136,7 +133,6 @@
 				D9D3AEFD29597A7B0031A2F2 /* main.swift in Sources */,
 				8733744F295C3295000EAC23 /* CheckErrorFunction.swift in Sources */,
 				87C3EE1D295D5ABF00A76712 /* FindContactFuction.swift in Sources */,
-				D9E15C05295C3421003FB06D /* Function.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

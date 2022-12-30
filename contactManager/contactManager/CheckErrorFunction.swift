@@ -20,7 +20,7 @@ func checkAgeError(age: String) -> Bool{
 }
 
 func checkPhoneNumError(num: String) -> Bool {
-    guard validateInputByHyphenNum(input: num), num.components(separatedBy: ["-"]).joined().count >= 9 else {
+    guard Validation.validateInputByHyphenNum(input: num), num.components(separatedBy: ["-"]).joined().count >= 9 else {
         errorTextOutput(with: .phoneNumber)
         return false
     }

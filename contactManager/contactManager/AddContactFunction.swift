@@ -10,7 +10,7 @@ func addContact(){
             continue
         }
 
-        guard validateInputBySlash(input: input) else {
+        guard Validation.validateInputBySlash(input: input) else {
             print("입력된 정보가 [이름]/[나이]/[전화번호] 형식인지 확인해주세요")
             continue
         }
