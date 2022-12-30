@@ -7,9 +7,14 @@
     - [연락처 검색](#연락처-검색)
   - [Step 1](#step-1)
     - [issue](#issue)
-    - [실행 동작](#실행-동작)
+    - [Step1 실행 화면](#step1-실행-화면)
   - [Step 2](#step-2)
   - [Step 3](#step-3)
+    - [핵심 구현 요구 사항](#핵심-구현-요구-사항)
+    - [고민한 부분: 연락처 데이터 저장 방식 / 데이터 구조](#고민한-부분-연락처-데이터-저장-방식--데이터-구조)
+    - [Dictionary Default Parameter](#dictionary-default-parameter)
+    - [연락처 중복 추가 방지를 위해 `Set<UserInfo>`로 변경](#연락처-중복-추가-방지를-위해-setuserinfo로-변경)
+    - [작동 스샷](#작동-스샷)
 
 # ios-cantact-manager
 
@@ -61,7 +66,7 @@
 ```
 
 
-### 실행 동작
+### Step1 실행 화면
 
 - 올바른 입력
   <img src="https://user-images.githubusercontent.com/107124308/209295250-ecb4c07f-7aed-41b9-86d6-461656394ace.png" width="" height="">
@@ -99,3 +104,111 @@
 ## Step 3
 
 [Step3 순서도](#연락처-검색)
+
+### 핵심 구현 요구 사항
+
+- 연락처 전체 조회
+  - 출력은 이름순으로
+- 연락처 검색
+  - 이름으로 검색
+
+### 고민한 부분: 연락처 데이터 저장 방식 / 데이터 구조
+
+**Phonebook Class 생성**
+
+```swift
+// Phonebook.swift
+final class Phonebook {
+    private var contacts: [String:Set<UserInfo>]
+
+    init(contacts: [String:Set<UserInfo>]) {
+        self.contacts = contacts
+    }
+
+    func add(contact: UserInfo) -> Bool {
+        let (inserted, _) = contacts[contact.name, default: Set<UserInfo>()].insert(contact)
+        return inserted
+    }
+}
+```
+
+Phonebook: **class** vs struct
+
+- Phonebook의 contacts 속성의 타입 때문에 이를 class로 구현했다. contacts는 Key/Value로 String과 Set을 사용한다. String과 Set은 struct지만, 가변 길이 데이터이기 때문에 Heap에 저장되게 된다. [Understanding Swift Performance](https://developer.apple.com/videos/play/wwdc2016/416/)를 참고한 결과,
+  - Struct containing many reference가 Class에 비해 reference counting 더 높고
+  - 비록 Phonebook의 property는 contacts 1개지만,
+  - contacts가 dictionary이고, key, value가 String, Set으로 모두 Heap에 저장되기 때문에
+  - reference counting이 Struct로 만들었을 때 더 높을 것이라고 판단했다
+  - 따라서 Phonebook은 struct보다 class에 저장하는 것이 더 맞다고 생각했다!
+  - 개념적으로 배운 것을 실제 코드에 적용하기에 아직 확신이 부족하여,
+  - ❓우리가 잘 이해한게 맞고, 실제로 그렇게 동작하는 것인지 더 공부해서 알아봐야겠다😊
+
+**Dictionary를 선택한 이유**
+
+유저가 추가한 연락처를 ContactManager 객체가 어떻게 저장할지, 연락처 관리를 위한 데이터 구조를 고민했다.
+
+- Key값을 `userInfo.name: String`, Value값이 `Set<UserInfo>`인 contacts Dictionary를 생성했다
+
+```swift
+/// key: userInfo.name
+// 중복 고려 전
+let contacts: [String: Array<UserInfo>]
+// 중복 고려 후
+let contacts: [String: Set<UserInfo>]
+```
+
+처음에는 유저의 이름이 key이고 value가 UserInfo의 Collections Type인 Dictionary를 생각했다
+Collections Type 중 Dictionary를 선택한 이유는, 프로그램의 기능 중 검색 기능이 **이름으로 검색**하기 때문
+
+- 평균 시간 복잡도
+  |Collection Type| 검색 by 이름 | 추가 | 조회 |
+  |--|--|--|--|
+  |Dictionary_Array|O(1)|O(1)|O(NlogN)|
+  |Dictionary_Set|O(1)|O(1)|O(NlogN)|
+
+처음에는 중복을 고려하지 못해서 Dictionary_Array로 가닥을 잡고 구현했다<br>
+그런데 이름, 나이, 연락처가 같은 중복 연락처인 경우에도 여과없이 Array에 추가되는 점이 바람직하지 않다고 생각했고 이를 해결하기 위해 Dictionary_Set으로 데이터 구조를 수정했다
+
+### Dictionary Default Parameter
+
+Dictionary 구현하며 새로 배운 Swift 문법은 subscript의 default parameter 이다<br>
+key의 존재 여부를 따로 체크하지 않아도 괜찮아서 편리했다! 그런데 위험하지는 않은지, 실제 디바이스의 메모리단에서 어떻게 동작하는지는 등 아직 Dictionary, Array의 실제 구현과 컴퓨터 구조에 익숙하지 않아서 설명할 수 없는 점이 아쉬웠다. 조금 더 공부하고 고민해봐야겠다🙃
+
+```swift
+var d = ["a": []]
+d["a"]?.append("haha")
+print(d) // ["a": ["haha"]]
+
+d["b"]?.append("haha") // ["a": ["haha"]]
+
+d["b", default: []].append("bb")
+print(d) // ["a": ["haha"], "b": ["bb"]]
+
+d["b", default: []].append("bbc")
+print(d) // ["a": ["haha"], "b": ["bb", "bbc"]]
+```
+
+### 연락처 중복 추가 방지를 위해 `Set<UserInfo>`로 변경
+
+1. Set의 특성을 이용해 Value값에 연락처가 중복 저장되지 않도록 구현
+   - 연락처 중 이름이 동일한 연락처는 존재할 수 있지만, 이름-나이-번호 가 모두 동일한 연락처는 중복으로 생각하고
+   - `"동일한 연락처가 존재합니다. 다른 연락처를 입력해주세요."`를 출력
+2. Array에서 Set으로 구현을 변경하면서,
+   1. UserInfo를 Hashable 프로토콜을 채택했다
+      - `static let ==` 연산과
+      - `hash(into:)` 함수를 구현하고 hasher.combine()에 name, age, phone을 넣었다
+   2. UserInfo를 `phonebook.contacts`에 추가할 때,
+      - append() 대신 `insert()` method를 사용했다
+      - `subscript(_:default:)`는 Set에서도 구현되어 있었다👍
+   3. `phonebook.add(contact:)`가 반환하는 Bool을 이용해서 ContactManager는 연락처가 성공적으로 추가되었는지 체크한다
+
+### 작동 스샷
+- 연락처 전체 조회
+    ![연락처_조회](https://user-images.githubusercontent.com/107124308/210038896-e735b220-1659-407a-89e4-8b899b4a281e.png)
+    - 연락처가 저장되지 않은 경우
+   <img src="https://user-images.githubusercontent.com/107124308/210049318-f9669738-7d7f-46ff-94a1-1e964ec10279.png" width="" height="">
+    
+- 연락처 검색
+   <img src="https://user-images.githubusercontent.com/107124308/210038884-16f78ccc-781b-48e8-8923-3c9aacd91903.png" width="" height="">
+   - 연락처에 찾는 이름이 없을떄
+   <img src="https://user-images.githubusercontent.com/107124308/210049336-6973dfa4-0f0e-44b6-9aca-7ecb899b5e92.png" width="" height="">
