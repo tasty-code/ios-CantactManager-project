@@ -1,6 +1,6 @@
-# README
+# 📖 README
 
-## 프로젝트 소개
+## 📱 프로젝트 소개
 
 ### **swift로 CLI 환경에서 연락처 관리 프로그램 구현**
 
@@ -15,13 +15,18 @@
 
 ## 팀원소개
 
-**Toughie**: 어려운 문제에도 굴하지 않는 강한 iOS개발자가 되고 싶습니다.
+**🦁 Toughie**: 어려운 문제에도 굴하지 않는 강한 iOS개발자가 되고 싶습니다.
 
-**iyeah**: 완만하더라도 꾸준히 우상향하는 iOS개발자가 되고 싶습니다.
+**✨ iyeah**: 완만하더라도 꾸준히 우상향하는 iOS개발자가 되고 싶습니다.
 
-## Key Experience
+## 🌟 Key Experience
+- 페어 프로그래밍
+- Git, Gitub를 통한 협업
+- Swift 문법 기초
+- 코드 review를 통한 코드 개선
+- [Swift API Design Guideline] 준수 노력
 
-## 순서도(기획 프로토타입)
+## 🌱 순서도(기획 프로토타입)
 <p align="center">
 <img src ="https://user-images.githubusercontent.com/99641242/210038680-932a05c5-321e-41d5-a9db-693b1512766b.png" width="528" height="264"/>
 </p>
@@ -63,7 +68,7 @@
 - 성공 시: 사용자 입력 정보 출력
 - 입력받은 데이터를 Array에 저장
 
-### 코드리뷰 및 수정
+### 🤔 코드리뷰 및 수정
 
 - **type PascalCase 적용**
 - **런타임에러 발생 위험 발견 후 수정**
@@ -106,7 +111,7 @@
 - **콘솔창에서 입력 값이 줄바꿈되지 않도록 수정**
     - print 함수에 terminator: "" 추가
 
-### 코드리뷰 및 수정
+### 🤔 코드리뷰 및 수정
 
 - **스타일, 컨벤션 수정, 개행 통일화 → for 코드 가독성 증가**
     - 변수는 변수끼리, 함수는 함수끼리 위치하도록 수정
@@ -153,7 +158,7 @@
     - 동일한 이름이 있으면 이름을 오름차순으로 정렬 후 정보 출력
     - 동일한 이름이 없다면 에러메세지 출력
 
-### 코드리뷰 및 수정
+### 🤔 코드리뷰 및 수정
 
 - **정렬 과정에서 ( .sorted(by: { } )를 활용했는데 이름을 오름차순으로 정렬 후 이름이 같다면, 나이를 오름차순으로 정렬하는 기능을 구현하고 싶었으나, 해결하지 못함**
 <p align="center">
@@ -197,7 +202,7 @@ nameFilterd.sorted(by: { $[0.name](http://0.name/) < $[1.name](http://1.name/)�
     - filter
 - sorted method
 
-## 최종 작동 결과
+## 🎉 최종 작동 결과
 <p align="center">
 <img src ="https://user-images.githubusercontent.com/99641242/210039283-9e2a7728-a6c6-49f3-9f18-c5ba26b3d630.png" width="535" height="565"/>
 </p>
