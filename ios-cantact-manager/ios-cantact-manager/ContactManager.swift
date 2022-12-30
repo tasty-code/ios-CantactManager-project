@@ -17,7 +17,7 @@ struct ContactManager {
                 contactManageSystem.pipeInMenu(input)
                 print()
             } catch {
-                OutputManager.printMessage(.invalidMenu)
+                OutputManager.print(text: .invalidMenu)
             }
         }
     }

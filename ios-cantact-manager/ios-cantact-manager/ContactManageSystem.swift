@@ -20,7 +20,7 @@ struct ContactManageSystem {
     }
     
     func menuInputValue() throws -> String {
-        OutputManager.printMessage(.inputMenu)
+        OutputManager.print(text: .inputMenu)
         let menuInput = try inputManager.menuInput()
         
         return menuInput
@@ -28,7 +28,7 @@ struct ContactManageSystem {
     
     mutating func pipeInMenu(_ input: String) {
         guard let input = Menu(rawValue: input) else {
-            OutputManager.printMessage(.invalidMenu)
+            OutputManager.print(text: .invalidMenu)
             return
         }
         switch input {
@@ -45,45 +45,45 @@ struct ContactManageSystem {
     
     mutating func addProfile() {
         do {
-            OutputManager.printMessage(.inputInfo)
+            OutputManager.print(text: .inputInfo)
             let inputArray = try inputManager.parseUserInput()
             let (name, age ,tel) = (inputArray[0], inputArray[1], inputArray[2])
             try inputManager.checkUserInput(name, age, tel)
             let profile = Profile(name: name, age: age, tel: tel)
             profiles.insert(profile)
-            OutputManager.printProfile(profile)
+            OutputManager.print(profile: profile)
         } catch InputError.invalidInput {
-            OutputManager.printMessage(.invalidInput)
+            OutputManager.print(text: .invalidInput)
         } catch InputError.invalidAge {
-            OutputManager.printMessage(.invalidAge)
+            OutputManager.print(text: .invalidAge)
         } catch InputError.invalidTel {
-            OutputManager.printMessage(.invalidTel)
+            OutputManager.print(text: .invalidTel)
         } catch {
-            OutputManager.printMessage(.invalidInput)
+            OutputManager.print(text: .invalidInput)
         }
     }
     
     func listUpProfile() {
-        OutputManager.printProfileList(profiles)
+        OutputManager.print(profiles: profiles)
     }
     
     func searchProfile() {
         do {
-            OutputManager.printMessage(.inputProfileName)
+            OutputManager.print(text: .inputProfileName)
             let targetInput = try inputManager.targetInput()
             let filteredProfileData = profiles.filter { $0.name == targetInput }
             guard !filteredProfileData.isEmpty else {
                 OutputManager.printNoMatchingData(name: targetInput)
                 return
             }
-            OutputManager.printProfileList(filteredProfileData)
+            OutputManager.print(profiles: filteredProfileData)
         } catch {
-            OutputManager.printMessage(.invalidInput)
+            OutputManager.print(text: .invalidInput)
         }
     }
     
     mutating func stop() {
-        OutputManager.printMessage(.stopSystem)
+        OutputManager.print(text: .stopSystem)
         isFinished = true
     }
 }
