@@ -7,6 +7,9 @@
 
 import Foundation
 
-let myContactManager = MyContactManager()
+func main() {
+    let programManager = ProgramManager()
+    programManager.runProgram()
+}
 
-myContactManager.runProgram()
+main()

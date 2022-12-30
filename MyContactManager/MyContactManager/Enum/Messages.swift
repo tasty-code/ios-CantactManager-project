@@ -8,5 +8,7 @@
 import Foundation
 
 enum Messages: String {
-    case greeting = "연락처 정보를 입력해주세요 :"
+    case enterInfo = "연락처 정보를 입력해주세요 :"
+    case enterMenu = "\n메뉴를 입력해주세요 :"
+    case terminateProgram = "\n[프로그램 종료]"
 }
