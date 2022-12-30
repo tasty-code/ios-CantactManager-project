@@ -51,11 +51,15 @@ struct InputEditor {
             }
         case .showList:
             let contactsList = DataManager.shared.getContactsList()
-            contactsList.forEach{print($0,terminator: "\n")}
+            contactsList.forEach { print($0, terminator: "\n") }
             print("")
             return true
         case .search:
-            
+            var contactList: [Person] = []
+            guard let userInput = readLine() else { return true }
+            let person = DataManager.shared.getContactsData()
+            contactList = person.filter { $0.name == userInput }
+            dump(contactList)
             return true
         case .exit:
             outputEditor.printTerminateProgram()

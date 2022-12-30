@@ -8,6 +8,7 @@
 import Foundation
 
 class DataManager {
+    
     static let shared = DataManager()
     
     var contacts: Set<Person> = Set<Person>()
