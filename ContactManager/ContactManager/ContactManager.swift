@@ -23,16 +23,20 @@ struct ContactManager {
     private var contacts: Set<Contact> = []
     private var state: State = .continued
 
-    private mutating func execute(command: Command) {
-        switch command {
-        case .addContact:
-            addContact()
-        case .showContacts:
-            showContact()
-        case .searchContact:
-            searchContact()
-        case .quit:
-            self.state = .quit
+    private mutating func execute(command: Command) throws {
+        do {
+            switch command {
+            case .addContact:
+                try addContact()
+            case .showContacts:
+                showContact()
+            case .searchContact:
+                try searchContact()
+            case .quit:
+                self.state = .quit
+            }
+        } catch {
+            throw error
         }
     }
 
@@ -45,7 +49,7 @@ struct ContactManager {
                 guard let command = try createCommand() else {
                     continue
                 }
-                execute(command: command)
+                try execute(command: command)
             } catch {
                 print(error.localizedDescription)
             }
@@ -53,12 +57,16 @@ struct ContactManager {
         Message.quit.printSelf()
     }
 
-    private mutating func addContact() {
-        guard let contact = createContact() else {
-            return
+    private mutating func addContact() throws {
+        do {
+            guard let contact = try createContact() else {
+                return
+            }
+            Message.inputContact(contact: contact).printSelf()
+            self.contacts.insert(contact)
+        } catch {
+            throw error
         }
-        Message.inputContact(contact: contact).printSelf()
-        self.contacts.insert(contact)
     }
 
     private func showContact() {
@@ -70,7 +78,7 @@ struct ContactManager {
         }
     }
 
-    private func searchContact() {
+    private func searchContact() throws {
         Message.searchContact.printSelf()
         do {
             guard let name = try getLine() else {
@@ -87,7 +95,7 @@ struct ContactManager {
                 Message.getContact(contact: contact).printSelf()
             }
         } catch {
-            print(error.localizedDescription)
+            throw error
         }
     }
 
@@ -112,8 +120,7 @@ struct ContactManager {
             }
             return command
         } catch {
-            print(error.localizedDescription)
+            throw error
         }
-        return nil
     }
 }

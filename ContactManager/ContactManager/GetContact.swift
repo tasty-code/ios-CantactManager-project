@@ -8,7 +8,7 @@
 import Foundation
 
 extension ContactManager {
-    func createContact() -> Contact? {
+    func createContact() throws -> Contact? {
         Message.pleaseInputContactData.printSelf()
         do {
             guard let input: String = try getLine() else {
@@ -21,9 +21,8 @@ extension ContactManager {
             let phoneNumber: String = raw.phoneNumber
             return Contact(name: name, age: age, phoneNumber: phoneNumber)
         } catch {
-            print(error.localizedDescription)
+            throw error
         }
-        return nil
     }
 
     private func split(input: String) throws -> (String, String, String) {
