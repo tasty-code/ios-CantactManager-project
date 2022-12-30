@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8733744F295C3295000EAC23 /* CheckErrorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733744E295C3295000EAC23 /* CheckErrorFunction.swift */; };
+		87C3EE1D295D5ABF00A76712 /* FindContactFuction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C3EE1C295D5ABF00A76712 /* FindContactFuction.swift */; };
 		D9D3AEFD29597A7B0031A2F2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3AEFC29597A7B0031A2F2 /* main.swift */; };
+		D9E15C03295C312C003FB06D /* AddContactFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E15C02295C312C003FB06D /* AddContactFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8733744E295C3295000EAC23 /* CheckErrorFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckErrorFunction.swift; sourceTree = "<group>"; };
+		87C3EE1C295D5ABF00A76712 /* FindContactFuction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindContactFuction.swift; sourceTree = "<group>"; };
 		D9D3AEF929597A7B0031A2F2 /* contactManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = contactManager; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D3AEFC29597A7B0031A2F2 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D9E15C02295C312C003FB06D /* AddContactFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,9 @@
 			isa = PBXGroup;
 			children = (
 				D9D3AEFC29597A7B0031A2F2 /* main.swift */,
+				D9E15C02295C312C003FB06D /* AddContactFunction.swift */,
+				8733744E295C3295000EAC23 /* CheckErrorFunction.swift */,
+				87C3EE1C295D5ABF00A76712 /* FindContactFuction.swift */,
 			);
 			path = contactManager;
 			sourceTree = "<group>";
@@ -120,7 +129,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9E15C03295C312C003FB06D /* AddContactFunction.swift in Sources */,
 				D9D3AEFD29597A7B0031A2F2 /* main.swift in Sources */,
+				8733744F295C3295000EAC23 /* CheckErrorFunction.swift in Sources */,
+				87C3EE1D295D5ABF00A76712 /* FindContactFuction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
