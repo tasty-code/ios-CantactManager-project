@@ -12,14 +12,14 @@ struct InputEditor {
     let validator = Validator()
     let outputEditor = OutputEditor()
     
-    func getUserInput() throws -> String {
+    private func getUserInput() throws -> String {
         guard let userInput = readLine() else {
             throw Errors.readFail
         }
         return userInput
     }
     
-    func getContactInfo() throws -> UserInputModel {
+    private func getContactInfo() throws -> UserInputModel {
         let userInput = try getUserInput()
         
         let isEmpty = validator.checkInputEmpty(with: userInput)
@@ -60,17 +60,17 @@ struct InputEditor {
         return true
     }
     
-    func trimming(of str: String) -> [String] {
+    private func trimming(of str: String) -> [String] {
         let unspacedString = str.components(separatedBy: " ").joined()
         let splitedString = unspacedString.split(separator: "/").map { String($0) }
         return splitedString
     }
     
-    func convertToUserInputModel(with str: [String]) -> UserInputModel {
+    private func convertToUserInputModel(with str: [String]) -> UserInputModel {
         return UserInputModel(name: str[0], age: str[1], phoneNum: str[2])
     }
     
-    func requestValidation(with model: UserInputModel) throws -> Person {
+    private func requestValidation(with model: UserInputModel) throws -> Person {
         do {
             let person = try validator.checkValidAgeAndNum(input: model)
             return person

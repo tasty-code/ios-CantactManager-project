@@ -22,20 +22,19 @@ struct Validator {
         } catch {
             throw error
         }
-        
     }
     
-    func validateAge(_ age: String) throws {
+    private func validateAge(_ age: String) throws {
         guard let ageInt = Int(age),
               ageInt >= Constants.minimumAge && ageInt <= Constants.maximumAge else { throw Errors.wrongAge }
     }
     
-    func validateNumber(_ number: String) throws {
+    private func validateNumber(_ number: String) throws {
         let numberSplit = number.split(separator: "-").map({ String($0) })
         if number.count < 10 || numberSplit.count < 3 { throw Errors.wrongPhoneNumber }
     }
     
     func checkInputEmpty(with str: String) -> Bool {
-        str.isEmpty ? true : false
+        return str.isEmpty ? true : false
     }
 }

@@ -27,6 +27,6 @@ enum Menu: String, CaseIterable {
     }
     
     static var greeting: String {
-        Menu.allCases.map { "\($0.rawValue)) \($0.description) " }.joined()
+        return Menu.allCases.map { "\($0.rawValue)) \($0.description) " }.joined()
     }
 }
