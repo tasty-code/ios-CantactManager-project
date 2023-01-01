@@ -15,7 +15,7 @@ enum UserInfoParameters: String {
     var regex: String {
         switch self {
         case .name:
-            return "^[A-Za-z ]+$"
+            return "^[A-Za-z]+$"
         case .age:
             return #"^\d{1,3}$"#
         case .phone:
@@ -34,17 +34,13 @@ struct UserInfo {
     let phone: String
     
     init(name:String, age:String, phone: String) throws {
-        do {
-            let regexName = try name.matches(infoType: .name)
-            self.name = regexName.components(separatedBy: " ").joined()
-            guard let age = Int(try age.matches(infoType: .age)) else {
-                throw IOError.invalidProperty(parameter: .age)
-            }
-            self.age = age
-            self.phone = try phone.matches(infoType: .phone)
-        } catch {
-            throw error
+        let regexName = try name.matches(infoType: .name)
+        self.name = regexName.components(separatedBy: " ").joined()
+        guard let age = Int(try age.matches(infoType: .age)) else {
+            throw IOError.invalidProperty(parameter: .age)
         }
+        self.age = age
+        self.phone = try phone.matches(infoType: .phone)
     }
     
     init(input: InfoInput) throws {
@@ -54,15 +50,22 @@ struct UserInfo {
 
 extension UserInfo: CustomStringConvertible {
     var description: String {
+        return "\(self.name) / \(self.age) / \(self.phone)"
+    }
+    
+    var addedDescription: String {
         return "\(self.age)세 \(self.name)(\(self.phone))"
     }
 }
 
-fileprivate extension String {
-    func matches(infoType: UserInfoParameters) throws -> String {
-        guard self ~= infoType.regex else {
-            throw infoType.error
-        }
-        return self
+extension UserInfo: Hashable {
+    static func == (lhs: UserInfo, rhs: UserInfo) -> Bool {
+        return lhs.description == rhs.description
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(age)
+        hasher.combine(phone)
     }
 }

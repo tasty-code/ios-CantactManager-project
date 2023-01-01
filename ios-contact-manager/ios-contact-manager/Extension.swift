@@ -11,4 +11,11 @@ extension String {
     static func ~= (_ lhs: String, _ rhs: String) -> Bool {
         return lhs.range(of: rhs, options: .regularExpression) != nil
     }
+    
+    func matches(infoType: UserInfoParameters) throws -> String {
+        guard self ~= infoType.regex else {
+            throw infoType.error
+        }
+        return self
+    }
 }

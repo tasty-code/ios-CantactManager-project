@@ -24,6 +24,6 @@ extension IOError: LocalizedError {
         case .invalidInputFormat:
             description = "입력 형식이 잘못되었습니다."
         }
-        return "\(description) \(StringLiteral.help)"
+        return "\(description) 입력 형태를 확인해주세요."
     }
 }
