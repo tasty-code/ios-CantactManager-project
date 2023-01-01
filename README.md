@@ -59,6 +59,8 @@ final class ProgramManager {
 }
 ```
 
+
+
 `InputEditor` 에서 유저의 입력을 받고 → 입력값 겁증후 알맞은 작업을 수행
 
 - switch문을 이용한 분기
@@ -86,6 +88,8 @@ func selectMenu() throws -> Bool {
         }
     }
 ```
+
+
 
 - `LocalizedError` 를 채택하고 `errorDescription` 을 switch로 정의해서 검출된 오류별로 출력이 다르도록 구현
 
@@ -116,6 +120,8 @@ enum Errors: LocalizedError {
     }
 }
 ```
+
+
 
 - `CaseIterable`을 채택하여 `enum`을 배열화 한다음 메뉴를 출력하는 `greeting` 의 재사용성을 높임
 
