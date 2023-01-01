@@ -15,7 +15,8 @@
 
 
 ## 순서도
-![ContactManager_flowChart](https://user-images.githubusercontent.com/29590768/210161087-a2c13c81-476f-4e56-a918-17938476ce47.png)
+
+![ContactManager_flowChart](https://user-images.githubusercontent.com/29590768/210166564-9a0fcb50-3668-477f-a1c4-30491369a37f.png)
 
 
 # 단계별 구현 과 개선시도
