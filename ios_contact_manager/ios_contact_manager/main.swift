@@ -84,7 +84,10 @@ func addNewUser() {
 }
 
 func viewContactList() {
-    let nameSorted = allUsersData.sorted(by: { $0.name < $1.name })
+    let nameSorted = allUsersData.sorted(by: {
+        ($0.name != $1.name) ? ($0.name < $1.name) : ($0.age < $1.age)
+    })
+    
     nameSorted.forEach { element in
         print("- \(element.name) / \(element.age) / \(element.phoneNumber)", terminator: "\n")
     }
