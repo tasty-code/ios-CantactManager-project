@@ -1,4 +1,4 @@
-# TeamAL Contact Manager `incomplete`
+# TeamAL Contact Manager 
 
 ## 최종구현 요구사항
 
@@ -10,7 +10,7 @@
 - 외부 라이브러리를 사용하지 않습니다.
 - 들여쓰기는 3번을 초과하지 않습니다.
 
-## 프로그램 ERD
+## 프로그램 ERD `incomplete`
 ![ContactManager_ERD](https://user-images.githubusercontent.com/29590768/210161074-d154f732-fb49-4ea9-82f4-62690769ccba.png)
 
 
@@ -60,7 +60,7 @@ final class ProgramManager {
 ```
 
 
-
+---
 `InputEditor` 에서 유저의 입력을 받고 → 입력값 겁증후 알맞은 작업을 수행
 
 - switch문을 이용한 분기
@@ -90,7 +90,7 @@ func selectMenu() throws -> Bool {
 ```
 
 
-
+---
 - `LocalizedError` 를 채택하고 `errorDescription` 을 switch로 정의해서 검출된 오류별로 출력이 다르도록 구현
 
 ```swift
@@ -122,7 +122,7 @@ enum Errors: LocalizedError {
 ```
 
 
-
+---
 - `CaseIterable`을 채택하여 `enum`을 배열화 한다음 메뉴를 출력하는 `greeting` 의 재사용성을 높임
 
 ```swift
