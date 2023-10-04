@@ -1,89 +1,82 @@
 //
 //  TableViewController.swift
-//  ios-contact-manager
+//  ios-contact-manager-ui
 //
 //  Created by Swain Yun on 10/4/23.
 //
 
 import UIKit
 
-class TableViewController: UITableViewController {
+final class TableViewController: UITableViewController {
+    private let contactsModel: ContactsModel = ContactsModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
-    // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return contactsModel.count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath)
+        let contact = self.contactsModel.readContact(indexPath)
+        var content = cell.defaultContentConfiguration()
+        content.text = "\(contact.name)(\(contact.age))"
+        content.secondaryText = "\(contact.phoneNumber)"
+        cell.contentConfiguration = content
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
 
-    /*
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            // delete contact
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            // create contact
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
+    
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        // on change contact row
     }
-    */
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+//    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+    
+    @IBAction func touchAddButton(_ sender: UIBarButtonItem) {
+        pushToEditViewContoller(nil)
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let contact = self.contactsModel.readContact(indexPath)
+        pushToEditViewContoller(contact)
     }
-    */
+    
+    
+    private func pushToEditViewContoller(_ contact: Contact?) {
+        guard let editViewController = storyboard?.instantiateViewController(withIdentifier: "EditViewController") as? EditViewController else { return }
+        
+        editViewController.contact = contact
+        self.navigationController?.pushViewController(editViewController, animated: true)
+    }
+}
 
+extension TableViewController: ContactsManagable {
+    func createContact(_ contact: Contact) {
+        contactsModel.createContact(contact)
+    }
+    
+    func updateContact(_ contact: Contact) {
+        contactsModel.updateContact(contact)
+    }
 }
