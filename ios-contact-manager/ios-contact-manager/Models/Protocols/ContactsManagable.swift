@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol ContactsManagable {
-    func updateContact(_ contact: Contact)
+protocol ContactsManagable: AnyObject {
+    func updateContact(_ contact: Contact, _ indexPath: IndexPath)
     
     func createContact(_ contact: Contact)
 }

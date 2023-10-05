@@ -23,7 +23,7 @@ final class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath)
-        let contact = self.contactsModel.readContact(indexPath)
+        let contact = self.contactsModel.readContact(indexPath: indexPath)
         var content = cell.defaultContentConfiguration()
         content.text = "\(contact.name)(\(contact.age))"
         content.secondaryText = "\(contact.phoneNumber)"
@@ -33,24 +33,26 @@ final class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contact = self.contactsModel.readContact(indexPath)
-        pushToEditViewContoller(contact)
+        let contact = self.contactsModel.readContact(indexPath: indexPath)
+        pushToEditViewContoller(contact, indexPath)
     }
     
-    private func pushToEditViewContoller(_ contact: Contact?) {
+    private func pushToEditViewContoller(_ contact: Contact?, _ indexPath: IndexPath?) {
         guard let editViewController = storyboard?.instantiateViewController(withIdentifier: "EditViewController") as? EditViewController else { return }
         
         editViewController.contact = contact
+        editViewController.delegate = self
+        editViewController.indexPath = indexPath
         self.navigationController?.pushViewController(editViewController, animated: true)
     }
 }
 
 extension TableViewController: ContactsManagable {
     func createContact(_ contact: Contact) {
-        contactsModel.createContact(contact)
+        contactsModel.createContact(contact: contact)
     }
     
-    func updateContact(_ contact: Contact) {
-        contactsModel.updateContact(contact)
+    func updateContact(_ contact: Contact, _ indexPath: IndexPath) {
+        contactsModel.updateContact(contact: contact, indexPath: indexPath)
     }
 }
