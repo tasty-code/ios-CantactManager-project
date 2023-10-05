@@ -19,14 +19,6 @@ struct Contact {
     }
 }
 
-protocol ContactsManagable {
-    func updateContact(_ contact: Contact)
-    
-    func createContact(_ contact: Contact)
-}
-
-
-// model type
 final class ContactsModel {
     private var contactsList: [Contact] = [
         Contact(name: "Alice", age: 30, phoneNumber: 1234567890),
