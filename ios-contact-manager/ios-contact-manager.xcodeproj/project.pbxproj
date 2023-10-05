@@ -60,15 +60,11 @@
 		04C21E882ACD744D00FD476E /* ios-contact-manager */ = {
 			isa = PBXGroup;
 			children = (
-				04C21E892ACD744D00FD476E /* AppDelegate.swift */,
-				04C21E8B2ACD744D00FD476E /* SceneDelegate.swift */,
-				04C21E9D2ACD74C400FD476E /* TableViewController.swift */,
-				04C21E8D2ACD744D00FD476E /* EditViewController.swift */,
+				6BEE0C692ACE461100B8BCBE /* Controller */,
+				6BEE0C682ACE460600B8BCBE /* View */,
 				04C21E9F2ACD74E000FD476E /* Models */,
-				04C21E8F2ACD744D00FD476E /* Main.storyboard */,
-				04C21E922ACD744E00FD476E /* Assets.xcassets */,
-				04C21E942ACD744E00FD476E /* LaunchScreen.storyboard */,
 				04C21E972ACD744E00FD476E /* Info.plist */,
+				04C21E922ACD744E00FD476E /* Assets.xcassets */,
 			);
 			path = "ios-contact-manager";
 			sourceTree = "<group>";
@@ -79,6 +75,26 @@
 				04C21EA02ACD74F300FD476E /* ContactsModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		6BEE0C682ACE460600B8BCBE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04C21E8F2ACD744D00FD476E /* Main.storyboard */,
+				04C21E942ACD744E00FD476E /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6BEE0C692ACE461100B8BCBE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04C21E892ACD744D00FD476E /* AppDelegate.swift */,
+				04C21E8B2ACD744D00FD476E /* SceneDelegate.swift */,
+				04C21E9D2ACD74C400FD476E /* TableViewController.swift */,
+				04C21E8D2ACD744D00FD476E /* EditViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

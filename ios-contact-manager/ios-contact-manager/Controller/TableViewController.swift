@@ -1,13 +1,7 @@
-//
-//  TableViewController.swift
-//  ios-contact-manager-ui
-//
-//  Created by Swain Yun on 10/4/23.
-//
-
 import UIKit
 
 final class TableViewController: UITableViewController {
+    
     private let contactsModel: ContactsModel = ContactsModel()
 
     override func viewDidLoad() {
@@ -29,29 +23,10 @@ final class TableViewController: UITableViewController {
         content.text = "\(contact.name)(\(contact.age))"
         content.secondaryText = "\(contact.phoneNumber)"
         cell.contentConfiguration = content
+        
         return cell
     }
 
-//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // delete contact
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // create contact
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        // on change contact row
-    }
-
-//    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
     
     @IBAction func touchAddButton(_ sender: UIBarButtonItem) {
         pushToEditViewContoller(nil)

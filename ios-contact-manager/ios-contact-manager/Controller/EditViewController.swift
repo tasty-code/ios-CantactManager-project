@@ -1,17 +1,4 @@
-//
-//  EditViewController.swift
-//  ios-contact-manager-ui
-//
-//  Created by Swain Yun on 10/4/23.
-//
-
 import UIKit
-
-protocol ContactsManagable {
-    func updateContact(_ contact: Contact)
-    
-    func createContact(_ contact: Contact)
-}
 
 final class EditViewController: UIViewController {
     
