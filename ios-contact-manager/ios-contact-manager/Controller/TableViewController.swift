@@ -2,10 +2,15 @@ import UIKit
 
 final class TableViewController: UITableViewController {
     
-    private let contactsModel: ContactsModel = ContactsModel()
+    private var contactsModel: ContactsModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
+    }
+    
+    private func configure() {
+        self.contactsModel = ContactsModel()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -26,17 +31,11 @@ final class TableViewController: UITableViewController {
         
         return cell
     }
-
-    
-    @IBAction func touchAddButton(_ sender: UIBarButtonItem) {
-        pushToEditViewContoller(nil)
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let contact = self.contactsModel.readContact(indexPath)
         pushToEditViewContoller(contact)
     }
-    
     
     private func pushToEditViewContoller(_ contact: Contact?) {
         guard let editViewController = storyboard?.instantiateViewController(withIdentifier: "EditViewController") as? EditViewController else { return }
