@@ -19,7 +19,6 @@ struct Contact {
     }
 }
 
-// model type
 final class ContactsModel {
     private var contactsList: [Contact] = [
         Contact(name: "Alice", age: 30, phoneNumber: 1234567890),
@@ -37,20 +36,23 @@ final class ContactsModel {
     var count: Int {
         self.contactsList.count
     }
-    
-    func createContact(_ contact: Contact) {
+}
+
+// MARK: CRUD Methods
+extension ContactsModel {
+    func createContact(contact: Contact) {
         self.contactsList.append(contact)
+    }
+    
+    func readContact(indexPath: IndexPath) -> Contact {
+        return self.contactsList[indexPath.row]
+    }
+    
+    func updateContact(contact: Contact, indexPath: IndexPath) {
+        self.contactsList[indexPath.row] = contact
     }
     
     func deleteContact(indexPath: IndexPath) {
         self.contactsList.remove(at: indexPath.row)
-    }
-    
-    func updateContact(_ contact: Contact) {
-        
-    }
-    
-    func readContact(_ indexPath: IndexPath) -> Contact {
-        return self.contactsList[indexPath.row]
     }
 }
