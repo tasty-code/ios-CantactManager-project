@@ -1,7 +1,6 @@
 import UIKit
 
 final class TableViewController: UITableViewController {
-    
     private var contactsModel: ContactsModel!
 
     override func viewDidLoad() {
@@ -22,7 +21,7 @@ final class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as? ContactTableViewCell else { return UITableViewCell() }
         let contact = self.contactsModel.readContact(indexPath: indexPath)
         var content = cell.defaultContentConfiguration()
         content.text = "\(contact.name)(\(contact.age))"
@@ -34,16 +33,20 @@ final class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let contact = self.contactsModel.readContact(indexPath: indexPath)
-        pushToEditViewContoller(contact, indexPath)
+        presentModallyToEditViewContoller(contact, indexPath)
     }
     
-    private func pushToEditViewContoller(_ contact: Contact?, _ indexPath: IndexPath?) {
+    @IBAction func touchAddBarButton(_ sender: UIBarButtonItem) {
+        presentModallyToEditViewContoller(nil, nil)
+    }
+    
+    private func presentModallyToEditViewContoller(_ contact: Contact?, _ indexPath: IndexPath?) {
         guard let editViewController = storyboard?.instantiateViewController(withIdentifier: "EditViewController") as? EditViewController else { return }
         
         editViewController.contact = contact
         editViewController.delegate = self
         editViewController.indexPath = indexPath
-        self.navigationController?.pushViewController(editViewController, animated: true)
+        self.present(editViewController, animated: true)
     }
 }
 
